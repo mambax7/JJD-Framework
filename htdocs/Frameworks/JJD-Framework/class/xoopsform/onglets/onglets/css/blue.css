@@ -1,0 +1,24 @@
+
+.menu_disabled[modele="blue"]
+{
+	background:#192982; /*onglets non selectionne*/
+	color:#999999;
+}
+.menu_enabled[modele="blue"]
+{
+	background:#2669BC; /*onglets selectionne*/
+	color:#00F4FD;
+}
+[menu_onglet][modele="blue"] li span:hover,[menu_onglet] li span:focus
+{
+	background:#8080FF; /*onglets survole*/
+	color:#000;
+}
+
+[onglet_div][modele="blue"]   
+
+{
+	background:#99D9EA;  
+	margin-top:-6px; /*defini m'espace entre les onglets et le div contenur des donnees*/
+
+} 

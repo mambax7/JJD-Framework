@@ -1,0 +1,14 @@
+lib_chooseFile=Choisissez des fichiers à télécharger   
+&lib_uploadRun=Téléchargement en cours ...    
+&lib_clearList=Vider la liste
+&lib_browse=Parcourir les fichiers
+&lib_upload=Télécharger
+&lib_files=Fichiers
+&lib_bytes=Bytes
+&lib_propulse=Proposé par
+&lib_siteAuthor=www.nasuploader.com
+&lib_uploadFinished=Téléchargement terminé
+&lib_max_files_overload=Le maximum de fichiers à été dépassé
+&lib_max_file_to_big=Le fichier est trop gros
+&lib_stop_upload=Arrêter
+&lib_upload_stoped=Téléchargement arrêté par l'utilisateur

@@ -1,0 +1,95 @@
+  
+   
+
+[menu_onglet] 
+{
+	display:block;
+	float: left;
+	line-height: 28px;    
+	/*padding-left:0px;*/
+
+}
+  
+[menu_onglet] li a
+{
+	background:#98B924;
+	color:#fff;
+	border:1px solid #89a;
+	text-decoration:none;
+	/***
+	-moz-border-radius:10px 10px 0 0;
+	-webkit-border-radius:10px 10px 0 0;
+	border-radius:10px 10px 0 0;
+	behavior: url(script/PIE.htc);
+	 ***/	
+	margin:0;
+	padding:5px 20px;
+}
+
+[menu_onglet] li  span 
+{
+	-moz-border-radius:10px 10px 0 0;
+	-webkit-border-radius:10px 10px 0 0;
+	border-radius:10px 10px 0 0;
+	/***
+	behavior: url(http://localhost:8101/x255fra/class/xoopsform/onglets/onglets/PIE.htc);
+	 ***/	
+	behavior: url(onglets/PIE.htc);
+	margin:0;
+	padding: 5px 20px; /*defini les margee des onglets*/
+	font-weight: bold ;
+  cursor: pointer;
+	border:1px solid #89a;
+}
+
+
+[menu_onglet] li a:hover,[menu_onglet] li a:focus
+{
+	background:#b8da40;
+	color:#000;
+}
+      
+/*************************************************/
+.menu_disabled
+{
+	background:#98B924;
+	color:#fff;
+}
+.menu_enabled
+{
+	background:#CAEC51;
+	color:#018001;  /*98B924*/
+}
+
+[menu_onglet] li span:hover,[menu_onglet] li span:focus
+{
+	background:#b8DA40;
+	color:#000;
+}
+[onglet_div] 
+{
+	width:98%;
+	margin-top:-6px; 
+	margin-left:5px; 
+	padding-left: 5px;
+	padding-right: 5px;
+	/* Ajout d'une ligne sur le top du div conteneur pour relier les onglet
+  */
+	border-top:1px solid #89a; 
+
+} 
+
+[onglet_div_visible] 
+{
+    visibility:visible;
+    display:block;
+} 
+
+[onglet_div_hidden] 
+{
+    visibility:hidden;
+    display:none;
+} 
+
+
+/*************************************************/

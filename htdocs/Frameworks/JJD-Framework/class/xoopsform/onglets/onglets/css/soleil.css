@@ -1,0 +1,26 @@
+
+.menu_disabled[modele="soleil"]
+{
+	background:#FFFF01; /*onglets non selectionne*/
+	color:#00F4FD;
+	border:2px solid #800101;
+}
+.menu_enabled[modele="soleil"]
+{
+	background:#FFC90F; /*onglets selectionne*/
+	color:#0101FE;
+	border:2px solid #800101;
+}
+[menu_onglet][modele="soleil"] li span:hover,[menu_onglet] li span:focus
+{
+	background:#FF8041; /*onglets survole*/
+	color:#FF0000;
+	border:2px solid #800101;
+}
+
+[onglet_div][modele="soleil"]   
+{
+	background:#FFFF80;  
+	margin-top:-6px; 
+
+} 

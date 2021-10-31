@@ -1,0 +1,26 @@
+
+.menu_disabled[modele="green"]
+{
+	background:#98B924;
+	color:#fff;
+}
+
+.menu_enabled[modele="green"]
+{
+	background:#CAEC51;
+	color:#98B924;
+}
+
+[menu_onglet][modele="green"] li span:hover,[menu_onglet] li span:focus
+{
+	background:#b8da40;
+	color:#000;
+}
+
+[onglet_div][modele="green"]   
+
+{
+	background:#98B924;  
+	margin-top:-6px; /*defini m'espace entre les onglets et le div contenur des donnees*/
+
+} 

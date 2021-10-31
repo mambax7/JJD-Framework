@@ -1,0 +1,27 @@
+formdmultiuploads.php
+------------------------------------
+Version 2.1 du 28-08-2012 - JJDai(fr))
+- tous les chemins on été transformés en relatif.
+  Du coup le composant peut être installé n'importe ou,
+  il suffit d'adapter dans son propre script 
+  le include du fichier "formmultiuploads.php"
+
+------------------------------------
+Version 2.0 du 01-06-2011 - JJDai(fr))
+Passage a la version 2.0 qui marque des changement important dans le composant.
+
+------------------------------------
+Version 1.6 du 01-06-2011 - JJDai(fr))
+Reprise du flash nasupload : http://www.nasuploader.com
+Adaptation pour en faire un xoopsform dans xoops
+Ajout des fontionalités suivantes:
+    - parametrage complet via un template smarty
+    - Selection des extentions des fichiers parametrables
+    - Bouton d'arret
+    - Nombre de fichiers maximum autorises
+    - Taille maximulm des fichiers autorisee
+    - Am‚lioration de la logique d'interface
+    - Ajout de fichiers de langues
+	  - positionnement dans la liste du fichier en cours
+	  - Modification visuelles de l'interface (bouton en bas, ...)
+	- Etc ...

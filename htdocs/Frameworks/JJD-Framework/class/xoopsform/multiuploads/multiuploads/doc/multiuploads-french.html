@@ -1,0 +1,949 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>MultiUploads</title>
+
+<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js"></script>
+<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script>
+<link type="text/css" rel="stylesheet" href="http://alexgorbatchev.com/pub/sh/current/styles/shCoreDefault.css">
+<script type="text/javascript">
+SyntaxHighlighter.config.stripBrs = true;
+SyntaxHighlighter.config.bloggerMode = true;
+SyntaxHighlighter.all();
+</script>
+<link rel="stylesheet" type="text/css" media="all" title="Style sheet" href="multiuploads.css"></head>
+<body>
+<p class="comTitle blockTitle" style="text-align: center; font-weight: bold;"><span></span><big><big><big>MultiUploads
+version 2.0 pour Xoops</big></big></big></p>
+<p class="comTitle blockTitle" style="text-align: center; font-weight: bold;"><br>
+</p>
+<p class="comTitle blockTitle" style="text-align: center; font-weight: bold;"><big><big><big><br>
+</big></big></big></p>
+Auteur: <a href="http://xoops.kiolo.com/">Jean-Jacques
+DELALANDRE</a><br>
+Licence : GPL<br>
+<br>
+Auteur:&nbsp;<a href="http://www.nasuploader.com">http://www.nasuploader.com</a><br>
+Adaption pour Xoops : <a href="http://xoops.kiolo.com">Jean-Jacques
+DELALANDRE</a><br>
+Licence : GPL<br>
+<br>
+<h1><a class="mozTocH1" name="mozTocId629007"></a>Sommaire</h1>
+<ol id="mozToc"><!--mozToc h1 1 h2 2 h3 3 h4 4 h5 5 h6 6--><li><a href="#mozTocId629007">Sommaire</a></li><li><a href="#mozTocId360156">Présentation:</a></li><li><a href="#mozTocId769712">Installation</a></li><li><a href="#mozTocId508984">Description
+de
+l'Interface</a></li><li><a href="#mozTocId405310">Intégration
+dans Xoops</a><ol><li><a href="#mozTocId476182">L'intégration
+dans Xoops n'est pas forcément utile voir même
+déconseillée.</a></li><li><a href="#mozTocId67712">fichier
+"class/xoopsformloader.php"</a></li><li><a href="#mozTocId48587">Fichier
+"class/xoopsload.php"</a></li></ol></li><li><a href="#mozTocId623962">Utilisation</a><ol><li><a href="#mozTocId38444">
+initialisation</a></li><li><a href="#mozTocId341864">
+&nbsp; Paramètres du constructeur:</a></li></ol></li><li><a href="#mozTocId526622">Options
+complémentaires</a></li><li><a href="#mozTocId327980">Traduction</a><ol><li><a href="#mozTocId445809">Fichier
+"libelles.txt"</a></li><li><a href="#mozTocId505363">Fichier
+"main.php"</a></li></ol></li></ol>
+<span style="font-weight: bold;"><br>
+<br>
+</span><br>
+<a href="#mozTocId629007"><img src="images/home.gif" align="right"></a>
+<h1><a class="mozTocH1" name="mozTocId360156"></a>Présentation:</h1>
+<p>Ce composant permet de télécharger plusieurs fichiers
+simultanément.<br>
+Il est composé un objet flash qui permet : d'une part une sélection
+multiple, d'autre par de suivre et contrôler le téléchargement selon
+des critères prédéfini:<br>
+</p>
+<ul>
+<li>Taille maximum des fichiers</li>
+<li>Nombre de fichiers maximum a télécharger en une fois</li>
+<li>Extensions des fichiers</li>
+</ul>
+<p>Le composant permet également d'autres contrôles comme:<br>
+</p>
+<ul>
+<li>le nombre maximum de fichiers pour un dossier</li>
+<li>Un callback sur chaque fichier pour effectuer d'autre
+opération
+(création de vignette par esemple pour des images)</li>
+</ul>
+Copie d'écran d'un exemple d'utilisation dans le module "photowalls"<br>
+<br>
+<div style="text-align: center;"><img style="width: 499px; height: 488px;" alt="" src="images/presentation-01.png"><br>
+</div>
+<ul>
+</ul>
+<p><br>
+</p>
+<p>Ce composant est une adaptation du projet "NAS Uploader", qui
+est le
+seul source qui a fonctionné du premier coup et simplement lors de mes
+tests
+préliminaires.</p>
+<p>Toutefois, j'ai corrigé quelques anomalies récurrentes, et
+ajouté pas
+mal de fonctionnalités, notamment sur le contrôles des extensions, la
+taille et le nombre des fichiers, le comportement du flash, le passage
+de paramètres, ainsi que sur la langue d'affichage de l'interface, les
+messages
+d'anomalies, l'appel d'une fonction callback, etc. ...&nbsp;</p>
+<p>Afin de respecter les règle de préséance, voici le read.me
+original.<br>
+Je vous invite à vous rendre sur le site de l'auteur <a href="http://www.nasuploader.com">NAS Uploader</a>, un
+petit mot est toujours agréable.</p>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top;">NAS Uploader est un
+système
+d'upload multifichiers en Flash très simple à installer et à paramétrer.<br>
+<br>
+NAS Uploader NE peut PAS être vendu.<br>
+Utilisation gratuite, Open source.<br>
+<br>
+Je vous demande simplement de bien vouloir mettre un lien vers le site
+officiel de NAS Uploader <a href="http://www.nasuploader.com">www.nasuploader.com</a>
+sur votre site ou de
+laisser celui présent dans l'animation flash.<br>
+<br>
+Si vous êtes vraiment altruiste vous pouvez même faire un don depuis le
+site officiel.<br>
+<br>
+N'hésitez pas à m'envoyer un petit mail avec vos remarques et
+commentaires et aussi l'adresse du ou des sites sur lesquels vous
+utilisez NAS Uploader :) ça fait toujours plaisir.<br>
+<br>
+Version 1.5<br>
+<br>
+<a href="http://www.nasuploader.com">http://www.nasuploader.com</a></td>
+</tr>
+</tbody>
+</table>
+<p><br>
+</p>
+<a href="#mozTocId629007"><img src="images/home.gif" align="right"></a>
+<h1><a class="mozTocH1" name="mozTocId769712"></a>Installation</h1>
+<p>Copier le&nbsp;dossier complet dans le répertoire
+"class/xoopsform/" du site.</p>
+<p style="text-align: center;"><img style="width: 799px; height: 551px;" alt="" src="images/installation-01.png"></p>
+<p>Tous les fichiers ne sont pas nécessaires et si vous voulez
+économiser
+l'espace disque, supprimer les fichiers inutiles pour l'exploitation du
+composant en vous aidant du tableau ci-dessous:<br>
+<br>
+Si vous souhaiter intégrer&nbsp; complètement le composant dans
+Xoops
+il vous faut également modifier des fichiers du noyau.<br>
+Ces modification ne sont utiles que pour éviter de faire une inclusion
+de
+la classe à chaque fois&nbsp; que le composant est utilisé.<br>
+Bien que je vous le déconseille pour éviter les problèmes de mise à
+jour de Xoops voir le chapitre "intégration dans xoops" pour effectuer
+ces adaptations.</p>
+<p>Si vous avez besoins de limiter l'espace occupé, vous pouvez
+vous
+aider du tableau ci dessous pour ne mettre que les fichiers réellement
+utile. attention de respecter toutefois les directives de la licence
+d'utilisation.</p>
+<p>Les
+fichiers <span style="font-weight: bold;">"index.html"</span>
+ne sont pas listés dans ce tableau, mais doivent
+restés ans chaque dossier pour empêcher leur parcours via le navigateur.<br>
+</p>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top; text-align: center; font-weight: bold; background-color: rgb(255, 255, 204);">Dossier<br>
+</td>
+<td style="vertical-align: top; font-weight: bold; background-color: rgb(255, 255, 204);">Fichier</td>
+<td style="vertical-align: top; text-align: center; font-weight: bold; background-color: rgb(255, 255, 204);">Description<br>
+</td>
+<td style="vertical-align: top; text-align: center; font-weight: bold; background-color: rgb(255, 255, 204);">Prod<br>
+</td>
+<td style="vertical-align: top; text-align: center; font-weight: bold; background-color: rgb(255, 255, 204);">Dev<br>
+</td>
+<td style="vertical-align: top; text-align: center; font-weight: bold; background-color: rgb(255, 255, 204);">Doc<br>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="5" style="vertical-align: top;">multiuploads<br>
+</td>
+<td style="vertical-align: top;">changelog.txt</td>
+<td style="vertical-align: top;">Historique du
+composant<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;"></span><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+</tr>
+<tr>
+<td style="vertical-align: top;">formdmultiuploads.php</td>
+<td style="vertical-align: top;">Classe xoopsform à
+inclure dans
+le projet<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">readme.txt</td>
+<td style="vertical-align: top;">Information sur
+l'origine de ce
+composant<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+</tr>
+<tr>
+<td style="vertical-align: top;">tplMultiUploads.html</td>
+<td style="vertical-align: top;">Template utilisé
+par le composant pour l'insertion dans une page HTML.<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">upload_filemanager.php</td>
+<td style="vertical-align: top;">Fichier de
+réception des fichier en téléchargement.<br>
+Appelé régulièrement par le Flash..<br>
+C'est ici que le fichier et la fonction&nbsp;callback sera inclus
+(voir plus bas les options du composant).<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3" style="vertical-align: top;">/applications/<br>
+<br>
+<br>
+</td>
+<td style="vertical-align: top;">multiUploader.fla</td>
+<td style="vertical-align: top;">Source Flash du
+composant
+(utiliser flash 8 si vous souhaitez faire des modifications)<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">multiUploader.swd</td>
+<td style="vertical-align: top;">Généré par Flash
+pendant la
+conception<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">multiUploader.swf</td>
+<td style="vertical-align: top;">Objet Flash inséré
+dans la page HTML<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="2" style="vertical-align: top;">/doc/</td>
+<td style="vertical-align: top;">multiuploads-french.html</td>
+<td style="vertical-align: top;">documentation
+française du composant<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+</tr>
+<tr>
+<td style="vertical-align: top;">multiuploads-english.html</td>
+<td style="vertical-align: top;">documentation
+anglaise du
+composant</td>
+<td style="vertical-align: top;"><br>
+</td>
+<td style="vertical-align: top;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span><br>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="2" style="vertical-align: top;">/js/<br>
+<br>
+</td>
+<td style="vertical-align: top;">jsscript.js</td>
+<td style="vertical-align: top;">Javascript utilisé
+pour dialoguer avec le Flash.<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">swfobject.js</td>
+<td style="vertical-align: top;">Javascript qui
+permet la création de l'objet Flash.<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="2" style="vertical-align: top;">/language/french/<br>
+<br>
+</td>
+<td style="vertical-align: top;">libelles.txt</td>
+<td style="vertical-align: top;">Traduction
+française des libellés utilisés dans le flash.<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">main.php</td>
+<td style="vertical-align: top;">Traduction
+française des message renvoyés par le fichier "upload_filemanager.php".<br>
+</td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span> </td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="2" style="vertical-align: top;">/language/english/</td>
+<td style="vertical-align: top;">libelles.txt</td>
+<td style="vertical-align: top;">Traduction anglaise
+des libellés utilisés dans le flash. </td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span></td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">main.php</td>
+<td style="vertical-align: top;">Traduction anglaise
+des message renvoyés par le fichier "upload_filemanager.php". </td>
+<td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">X</span></td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+<td style="vertical-align: top; text-align: center;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<a href="#mozTocId629007"><img src="images/home.gif" align="right"></a>
+<h1><a class="mozTocH1" name="mozTocId508984"></a>Description
+de
+l'Interface</h1>
+<p style="text-align: center;"><img alt="" src="images/interface-04.png"></p>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="text-align: center; font-weight: bold; width: 32px;">A</td>
+<td>Ouvre l'explorateur de fichier en multi sélection.Seul
+les fichiers correspondant aux extensions paramètrées sont listés.</td>
+</tr>
+<tr>
+<td style="text-align: center; font-weight: bold;">B</td>
+<td>Lance le téléchargement. Une barre de progression
+apparait pour chaque fichier ainsi q'un iône tournant qui indique
+le&nbsp;oichier en cours de téléchargement.</td>
+</tr>
+<tr>
+<td style="text-align: center; font-weight: bold;">C</td>
+<td>Un fois la sélection faite ou le téléchargement
+terminé, vide la liste des fichier et permet une sélection.</td>
+</tr>
+<tr>
+<td style="text-align: center; font-weight: bold;">D</td>
+<td>Stop le téléchargement en cours. L'arrêt sera effectif
+à la fin du fichier courant.</td>
+</tr>
+<tr>
+<td style="text-align: center; font-weight: bold;">E</td>
+<td>Bouton de retour à une page du module, à dfinir dans le
+template du module.</td>
+</tr>
+<tr>
+<td style="text-align: center; font-weight: bold;">F</td>
+<td>Explorateur de fichier. Il peut différer selon le
+système du poste local.<br>
+Le libellé de la liste déroulante et la liste des extensions sont ceux
+passés en paramètre dans le constructeur.</td>
+</tr>
+<tr>
+<td style="text-align: center; font-weight: bold;">G</td>
+<td>Liste des fihciers à télécharger avec leur taille en
+octet.</td>
+</tr>
+<tr>
+<td style="text-align: center; font-weight: bold;">H</td>
+<td>La corbeile permet de supprimer des fichiers de la
+liste
+avant de lancer le téléchargement.</td>
+</tr>
+<tr>
+<td style="text-align: center; font-weight: bold;">I</td>
+<td>titre correspondant à "$caption" du constructeur.</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+</p>
+<a href="#mozTocId629007"><img src="images/home.gif" align="right"></a>
+<h1><a class="mozTocH1" name="mozTocId405310"></a>Intégration
+dans Xoops</h1>
+<h2><a class="mozTocH2" name="mozTocId476182"></a>L'intégration
+dans Xoops n'est pas forcément utile voir même
+déconseillée.</h2>
+Dans un cas il faut faire un "include_once" de la classe pour
+l'utiliser, dans
+l'autre il faut faire appel au loader pour l'utiliser.<br>
+<h2><a class="mozTocH2" name="mozTocId67712"></a>fichier
+"class/xoopsformloader.php"</h2>
+Ajouter à la fin du fichier la ligne suivante:<br>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top;">xoops_load('XoopsFormMultiUploads');<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h2><a class="mozTocH2" name="mozTocId48587"></a>Fichier
+"class/xoopsload.php"</h2>
+Dans le corps de la fonction&nbsp; "loadCoreConfig()" ajouter la
+ligne :<br>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top;">'xoopsformmultiuploads'
+=&gt;
+XOOPS_ROOT_PATH . '/class/xoopsform/multiuploads/formmultiuploads.php',<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<a href="#mozTocId629007"><img src="images/home.gif" align="right"></a>
+<h1><a class="mozTocH1" name="mozTocId623962"></a>Utilisation</h1>
+<br>
+<h2><a class="mozTocH2" name="mozTocId38444"></a><a class="mozTocH2" name="#mozTocId450970"></a>
+initialisation</h2>
+<div class="code">
+<pre class="brush: php;">//inclure la classe dans le cas ou le composant n'est pas intégré dans xoops<br>include_once ( XOOPS_ROOT_PATH . "/class/xoopsform/multiuploads/formmultiuploads.php");<br><br>//Instanciation de la classe<br>$objMU = new XoopsFormMultiUploads ($caption,<br>	$libExtension,<br>	$extensions,<br>	$uploadFolder,<br>	$redirectToAfter,<br>	$overWrite = 0,<br>	$btnUploadHtmlVisible = false) ;<br><br>//Affichage du sélecteur dans un template.<br>$xoopsTpl-&gt;assign('multiUploads', $objMU-&gt;render());<br><br>//ou bien directement:<br>// echo $objMU-&gt;render();<br><br><br></pre>
+</div>
+<br>
+<br>
+<br>
+<h2><a class="mozTocH2" name="mozTocId341864"></a>
+&nbsp; Paramètres du constructeur:</h2>
+<br>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top; font-weight: bold; text-align: center;">Paramètre<br>
+</td>
+<td style="vertical-align: top; font-weight: bold; text-align: center;">type</td>
+<td style="vertical-align: top; font-weight: bold; text-align: center;">Défaut</td>
+<td style="vertical-align: top; font-weight: bold; text-align: center;">description<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">$caption</td>
+<td style="vertical-align: top;">string<br>
+</td>
+<td style="vertical-align: top;">Obligatoire<br>
+</td>
+<td style="vertical-align: top;">Titre affiché<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">$libExtension</td>
+<td style="vertical-align: top;">string<br>
+</td>
+<td style="vertical-align: top;">Obligatoire</td>
+<td style="vertical-align: top;">Libellé de la liste
+des extensions. Ce
+libellé est affiché dans la liste déroutante des type de fichiers dans
+l'explorateur de sélection des fichiers.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">$extensions</td>
+<td style="vertical-align: top;"><br>
+</td>
+<td style="vertical-align: top;">Obligatoire</td>
+<td style="vertical-align: top;">Liste des
+extensions de filtrage séparée par des virgules.<br>
+exemple: "jpg,jpeg,jpe,gif,png,tif,tiff"</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">$uploadFolder</td>
+<td style="vertical-align: top;">string<br>
+</td>
+<td style="vertical-align: top;">Obligatoire</td>
+<td style="vertical-align: top;">Répertoire de
+destination des fichiers à télécharger.<br>
+Le chemin doit être relatif à la racine du site , et doit commencé par
+un "/"<br>
+exemple: " /uploads/photowalls//original".<br>
+Le dossier doit exister et être en chmod "0777".<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">$redirectToAfter</td>
+<td style="vertical-align: top;">string<br>
+</td>
+<td style="vertical-align: top;">chaine vide<br>
+</td>
+<td style="vertical-align: top;">Url de redirection
+en fin de téléchargement.<br>
+Si c'est une chaîne vide la page aucune redirection 'est faite et on
+reste sur la page de sélection des fichiers, ce qui permet de faire
+plusieurs téléchargements.<br>
+Si ce paramètre n'est pas vide, le composant et le bouton sous le
+sélecteur sont en capsulés dans une balise "&lt;form&gt;", et à
+la fin
+du téléchargement, le formulaire est validé, ce qui provoque une
+redirection sur cette URL. Cela permet d'enclencher par exemple un
+traitement automatique à la fin du téléchargement.<br>
+L'url doit être relative à la racine du site.<br>
+exemple:
+"/modules/photowalls/wall.php?op=buildThumbs&amp;idPhotoWalls=2"<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">$overWrite</td>
+<td style="vertical-align: top;">int<br>
+</td>
+<td style="vertical-align: top;">0<br>
+</td>
+<td style="vertical-align: top;">Action a effectué
+dans le cas ou un fichier de même nom existe déjà dans le dossier
+spécifié:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 = Not
+upload (Le fichier est rejeté)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 = upload
+and overWrite the file (Le fichier existant est écrasé)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 = upload
+and rename the file with random (le fichier est renommé pour conserver
+l'ancien)<br>
+<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">$btnUploadHtmlVisible</td>
+<td style="vertical-align: top;">bool<br>
+</td>
+<td style="vertical-align: top;">false<br>
+</td>
+<td style="vertical-align: top;">Dans le composant
+d'origine il était
+possible de lancer le téléchargement via un bouton externe au
+composant, via du javascript. Cette option a été gardé.<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+Exemple tiré du module "photowalls" : <br>
+<br>
+<div class="code">
+<pre class="brush: php;">//inclusion de la classe dans le cas oule composant n'est pas intégrer dans Xoops<br>include_once ( XOOPS_ROOT_PATH . "/class/xoopsform/multiuploads/formmultiuploads.php");<br>//Instancation de la classe<br>$objMU = new XoopsFormMultiUploads ("Sélectionné vos photos à télécharger",<br>	"Images",<br>	"jpg,jpeg,jpe,gif,png,tif,tiff",<br>	"/modules/photowalls/wall.php?op=buildThumbs&amp;idPhotoWalls=2",<br>	"",<br>	0,<br>	false) ;<br>//affichage du sélecteur<br>$xoopsTpl-&gt;assign('multiUploads',$objMU-&gt;render());<br></pre>
+</div>
+<br>
+<br>
+<br>
+<h1><a class="mozTocH1" name="mozTocId526622"></a>Options
+complémentaires</h1>
+&nbsp;
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td colspan="1" rowspan="3">setExtensions</td>
+<td>Prototype:<br>
+<span class="prototype">function <b>setExtensions</b>($extName,
+$extList =
+'',$sep=',')</span> </td>
+</tr>
+<tr>
+<td>Paramètres<br>
+<span style="font-weight: bold;">$extName</span>
+: libellé affiché ans la liste déroutante des
+types de fichier de l'explorateur<br>
+<span style="font-weight: bold;">$extList</span>
+: listes des extensions à filtrer séparée par $sep<br>
+<span style="font-weight: bold;">$sep</span> :
+Séparateur de la liste des extensions</td>
+</tr>
+<tr>
+<td>Commentaires:<br>
+également passé en paramètre dans le constructeur</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3">setUploadFolder</td>
+<td>Prototype:<br>
+<span class="prototype">function <span style="font-weight: bold;">setUploadFolder</span></span><span style="font-weight: bold;">($</span>uploadFolder)<br>
+</td>
+</tr>
+<tr>
+<td>Paramètres:<br>
+<span style="font-weight: bold;">$uploadFolder</span>
+: Dossier de destination des fichiers à
+télécharger</td>
+</tr>
+<tr>
+<td>Commentaires:<br>
+également passé en paramètre dans le constructeur<br>
+Le chemin doit être relatif à la racine du site , et doit commencé par
+un "/"<br>
+exemple: " /uploads/photowalls//original".<br>
+Le dossier doit exister et être en chmod "0777".</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3">setUrlGetData</td>
+<td>Prototype:<br>
+<span class="prototype">function <b>setUrlGetData</b>($urlGetData)</span></td>
+</tr>
+<tr>
+<td>Paramètres:<br>
+<span style="font-weight: bold;">$urlGetData</span>
+: Permet de récupérer des paramètres lors de l'affichage du
+composant dans la page HTML.<br>
+</td>
+</tr>
+<tr>
+<td>Commentaires:<br>
+Cette options n'est pas utilisée, mais a été gardée pour des raison de
+compatibilité avec la version originale.</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3">setOverWrite</td>
+<td>&nbsp;Prototype:<br>
+<span class="prototype">function <b>setOverWrite</b>($overWrite)</span></td>
+</tr>
+<tr>
+<td>Paramètres:<br>
+<span style="font-weight: bold;">$overWrite</span>
+:&nbsp;Action a effectué
+dans le cas ou un fichier de même nom existe déjà dans le dossier
+spécifié:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 = Not
+upload (Le fichier est rejeté)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 = upload
+and overWrite the file (Le fichier existant est écrasé)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 = upload
+and rename the file with random (le fichier est renommé pour conserver
+l'ancien) </td>
+</tr>
+<tr>
+<td>également passé en paramètre dans le constructeur</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3">getBtnUploadHtmlVisible</td>
+<td>Prototype:<br>
+<span class="prototype">function <b>setBtnUploadHtmlVisible</b>($btnUploadHtmlVisible)</span></td>
+</tr>
+<tr>
+<td>Paramètres :<br>
+<span style="font-weight: bold;">$btnUploadHtmlVisible</span>
+: Dans le composant
+d'origine il était
+possible de lancer le téléchargement via un bouton externe au
+composant, via du javascript. Cette option a été gardée par soucis de
+compatibilité.</td>
+</tr>
+<tr>
+<td>également passé en paramètre dans le constructeur.</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3">setRedirectToAfter</td>
+<td>Prototype:<br>
+<span class="prototype">function <b>setRedirectToAfter</b>($redirectToAfter)</span></td>
+</tr>
+<tr>
+<td>Paramètres:<br>
+<span style="font-weight: bold;">$redirectToAfter</span>
+: Url de redirection
+en fin de téléchargement.<br>
+Si c'est une chaîne vide la page aucune redirection 'est faite et on
+reste sur la page de sélection des fichiers, ce qui permet de faire
+plusieurs téléchargements.<br>
+Si ce paramètre n'est pas vide, le composant et le bouton sous le
+sélecteur sont en capsulés dans une balise "&lt;form&gt;", et à
+la fin
+du téléchargement, le formulaire est validé, ce qui provoque une
+redirection sur cette URL. Cela permet d'enclencher par exemple un
+traitement automatique à la fin du téléchargement.<br>
+L'url doit être relative à la racine du site.<br>
+exemple:
+"/modules/photowalls/wall.php?op=buildThumbs&amp;idPhotoWalls=2"<br>
+</td>
+</tr>
+<tr>
+<td>également passé en paramètre dans le constructeur.</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3">setMaxFiles</td>
+<td>Prototype:<br>
+<span class="prototype">function <b>setMaxFiles</b>($maxFiles)</span></td>
+</tr>
+<tr>
+<td>paramètres:<br>
+<span style="font-weight: bold;">$maxFiles</span>
+: nombre de fichiers maximum téléchargeables simultanément.
+La valeur par défaut est de 16 fichiers.<br>
+Si $maxFiles = 0, le nombre de fichier est illimité.</td>
+</tr>
+<tr>
+<td>Attention, il est préférable de limiter le nombre de
+fichiers quitte à refaire un autre téléchargement.</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3">setMaxSize</td>
+<td>Prototype:<br>
+<span class="prototype">function <b>setMaxSize</b>($maxSize)</span></td>
+</tr>
+<tr>
+<td>paramètres:<br>
+<span style="font-weight: bold;">$maxSize</span>
+: Taille maximum en octet des fichiers à téléchargé. Sil des
+fichiers dépasse ce cota, il ne sont pas traités. La valeur par défaut
+est 200 000 octets soit 200 ko.</td>
+</tr>
+<tr>
+<td>Commentaires:<br>
+Si $maxSize = 0 la taille est illimité.</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3">setCallForEachPhoto</td>
+<td>Prototype:<br>
+<span class="prototype">function <b>setCallForEachPhoto</b>($includePageforEachPhoto,
+$function2callForEachPhoto)</span></td>
+</tr>
+<tr>
+<td>Paramètres:<br>
+<span style="font-weight: bold;">$includePageforEachPhoto</span>
+: &nbsp;Chemin d'un fichier php a inclure
+automatiquement dans le composant<br>
+<span style="font-weight: bold;">$function2callForEachPhoto</span>
+: Nom d'une fonction contenu dans le fichier
+inclus</td>
+</tr>
+<tr>
+<td>Commentaires:<br>
+Cette&nbsp;option permet de faire un appel à une fonction de
+callback à la fin de chaque fichier téléchargé.<br>
+Dans le module photowalls, cela permet notamment de créer les
+vignettes, et les images tatouées au fur et à mesure que les fichiers
+sont téléchargés.<br>
+Elle peut être utilisée également pour ajouter des enregistrement dans
+une table.<br>
+Cette options peut remplacer avantageusement le paramètre "redirectTo"
+qui permettra de faire quelque chose d'équivalent, mais à la fin du
+téléchargement.<br>
+Le fichier inclus doit faire partie du module qui exploite le composant.<br>
+<br>
+<span style="font-weight: bold;">Prototype de
+fonction callback</span>:<br>
+function maFonctionCallBack($flashParams){}<br>
+<br>
+La fonction reçoit en paramètres un tableau associatif de toutes les
+variables qu'a reçues le composant flash ainsi que le nom complet et le
+nom court du
+nouveau fichier qui vient d'être téléchargé.<br>
+exemple de tableau associatif reçu par la fonction:<br>
+<br>
+<span style="font-weight: bold;">$flashParams</span>
+= array(<br>
+&nbsp;&nbsp;&nbsp; [dossierup] =&gt;
+/uploads/photowalls/wall/original<br>
+&nbsp;&nbsp;&nbsp; [overwrite] =&gt; 2<br>
+&nbsp;&nbsp;&nbsp; [maxFiles] =&gt; 100<br>
+&nbsp;&nbsp;&nbsp; [maxSize] =&gt; 250000<br>
+&nbsp;&nbsp;&nbsp; [language] =&gt; french<br>
+&nbsp;&nbsp;&nbsp; [urlFlash] =&gt;
+http://localhost/x250fra/class/xoopsform/multiuploads<br>
+&nbsp;&nbsp;&nbsp; [urlGetData] =&gt; <br>
+&nbsp;&nbsp;&nbsp; [extLib] =&gt; Photos<br>
+&nbsp;&nbsp;&nbsp; [extList] =&gt; jpg<br>
+&nbsp;&nbsp;&nbsp; [idPhotoWalls] =&gt; 1<br>
+&nbsp;&nbsp;&nbsp; [idWaterMarks] =&gt; 2<br>
+&nbsp;&nbsp;&nbsp; [includePageforEachPhoto] =&gt;
+/modules/photowalls/toDoForEachFile.php<br>
+&nbsp;&nbsp;&nbsp; [function2callForEachfiles] =&gt;
+buildTWM<br>
+&nbsp;&nbsp;&nbsp; [fullName] =&gt;
+F:/wamp/www/x250fra/uploads/photowalls/wall/original/_MG_6844_redimensionner_937.JPG<br>
+&nbsp;&nbsp;&nbsp; [fileDataName] =&gt;
+_MG_6844_redimensionner_937.JPG<br>
+)<br>
+<br>
+<span style="font-weight: bold;">Important</span>:
+C'est à la fonction callback de définir le comportement à
+avoir sur le fichier d'origine. Par exemple dans le module photowalls,
+si la
+vignette ou l'image tatouée n'ont pu être générés, la fonction callback
+supprime tous les fichiers qui auraient pu être générés ainsi que le
+fichier original.<br>
+<br>
+<span style="font-weight: bold;">Très important</span>
+:<br>
+Cette fonction est appelée via une requête "HttpRequest" (ajax), Il
+est primordial qu'il n'y est aucun affichage avec la fonction "echo" ou
+"print" sous peine d'avoir un message d'erreur à la fin du
+téléchargement du fichier.<br>
+Le mode "debug" est désactivé, donc aucune possibilité de contrôler les
+erreurs ou les requêtes effectuées;<br>
+Je vous conseille donc de développer la fonction callback
+&nbsp;dans un
+environnement de test qui vous permettra de la mettre au point, puis
+ensuite de l'intégrer dans votre module.<br>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3">addVars</td>
+<td>Prototype:<br>
+<span class="prototype">function <b>addVars</b>($key,
+$val)</span></td>
+</tr>
+<tr>
+<td>Paramètres:<br>
+<span style="font-weight: bold;">$key</span> :
+Clé d'un tableau associatif<br>
+<span style="font-weight: bold;">$val</span> :
+Valeur du tableau associatif<br>
+</td>
+</tr>
+<tr>
+<td>Commentaires:<br>
+Cette fonction ajoute une liste de paramètres dans un tableau
+associatif.<br>
+Touts les items de ce tableau sont renvoyés dans le tableau associatif
+&nbsp;"<b>flasshParams</b>" de la fonction "callback".<br>
+Cela permet par exemple de récupérer un identifiant ou tout autre
+valeur qui pourra être exploité dans la fonction "callback".<br>
+Dans le module "photowalls", cela permet de passer l'identifiant du mur
+de photo.<br>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3">render</td>
+<td>Prototype:<br>
+<span class="prototype">function <b>render</b>()</span></td>
+</tr>
+<tr>
+<td>Paramètres: aucun</td>
+</tr>
+<tr>
+<td>Renvoi le code HTML pur l'affichage du sélecteur de
+fichier dans la page du site.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<a href="#mozTocId629007"><img src="images/home.gif" align="right"></a>
+<h1><a class="mozTocH1" name="mozTocId327980"></a>Traduction</h1>
+Le répertoire "language" du composant contient les traductions et suit
+la même structure que celle de Xoops.<br>
+Le composant adapte automatiquement &nbsp;la langue d'affichage en
+fonction de celle du site, si la traduction existe (C'est la traduction
+anglaise
+qui sera utilisée si cette denière n'existe pas).
+<br>
+Pour l'heure il y a une traduction française et une anglaise.<br>
+<br>
+Chaque
+dossier de langues contient deux fichiers:<br>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>libelle.txt</td>
+<td>Ce fichier contient les traductions des libellés
+utilisés dans le Flash.</td>
+<td>Utilisé par le Flash</td>
+</tr>
+<tr>
+<td>main.php</td>
+<td>Ce fichier contient notamment les messages d'erreurs
+survenu pendant le téléchargement et renvoyés par le
+fichier&nbsp;."upload_filemanager.php"
+qui réceptionne le fichier.</td>
+<td>Utilisé par PHP</td>
+</tr>
+</tbody>
+</table>
+<br>
+Important:<br>
+La structure des deux fichiers est différente du fait de leur usage<br>
+<br>
+<h2><a class="mozTocH2" name="mozTocId445809"></a>Fichier
+"libelles.txt"</h2>
+Il ressemble à une liste de paramètre passé en mode "GET" sans le "?"<br>
+Pour plus de clarté il est possible de garder les retours à la ligne.<br>
+Ne changer pas les clés.<br>
+<br>
+<div class="code">
+<pre class="brush: php;">lib_chooseFile=Choisissez des fichiers à télécharger <br>&amp;lib_uploadRun=Téléchargement en cours ... <br>&amp;lib_clearList=Vider la liste<br>&amp;lib_browse=Parcourir les fichiers<br>&amp;lib_upload=Télécharger<br>&amp;lib_files=Fichiers<br>&amp;lib_bytes=Bytes<br>&amp;lib_propulse=Proposé par<br>&amp;lib_siteAuthor=www.nasuploader.com<br>&amp;lib_uploadFinished=Téléchargement terminé<br>&amp;lib_max_files_overload=Le maximum de fichiers à été dépassé<br>&amp;lib_max_file_to_big=Le fichier est trop gros<br>&amp;lib_stop_upload=Arrêter<br>&amp;lib_upload_stoped=Téléchargement arrêté par l'utilisateur<br></pre>
+</div>
+<br>
+<br>
+<br>
+<h2><a class="mozTocH2" name="mozTocId505363"></a>Fichier
+"main.php"</h2>
+Il a le même format que les fichiers de langue de Xoops<br>
+<div class="code">
+<pre class="brush: php;ruler: true;">&lt;?php<br>define ('_MU_AM_FOR_DOWNLOAD','To uploader photos, you must get');<br>define ('_MU_AM_PLAYER', 'the player flash');<br><br>define ('_MU_AM_ERR_FILE_EXIST', 'Un fichier porte déjà ce nom dans ce dossier');<br>define ('_MU_AM_ERR_WRITING', 'Erreur d\'écriture');<br>define ('_MU_AM_ERR_FILE_TO_BIG', 'Fichier trop volumineux');<br>define ('_MU_AM_ERR_FILE_UNCOMPLET', 'Fichier incomplet');<br>define ('_MU_AM_ERR_NO_FILE', 'Pas de fichier');<br>define ('_MU_AM_ERR_NO_TMP', 'Erreur serveur (pas de dossier tmp)');<br>define ('_MU_AM_ERR_UNKNOW', 'Erreur inconnue');<br>define ('_MU_AM_ERR_UNCORECT', 'Extension incorrecte');<br>define ('_MU_AM_ERR_NO_FILE_SEND', 'No file send');<br>define ('_MU_AM_ERR_FILE_NOT_VALID', 'this file type is not valid');<br>define ('_MU_AM_ERR_CALLBACK', 'Error in the callback of the module');<br><br>?&gt;<br><br></pre>
+</div>
+<br>
+<br>
+Note aux traducteurs: &nbsp;N'hésiter pas à m'envoyer vos
+traductions que je me ferai un plaisir d'inclure dans le package du
+composant.<br>
+<br>
+<p align="center">
+<br>
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+*<br>
+<br>
+*<br>
+</p>
+<br>
+</body></html>
