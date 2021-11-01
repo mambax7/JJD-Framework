@@ -44,4 +44,19 @@ function isBitOk($bitIndex, $binValue){
 
 }
 
+/***************************************************************************
+Charge les fichiers de langues
+****************************************************************************/
+function loadLanguageFWJJD($file){
+global $xoopsConfig;
+  $root =  JJD_PATH . "/language/"; 
+  $lang = $root . $xoopsConfig['language'] . "/" . $file . ".php";
+//echo "<hr>lg = {$lang}<hr>";
+  if (!file_exists($lang)){
+    $lang = $root . "english/common.php";
+  }
+//echo "<hr>lg = {$lang}<hr>";
+  return include_once ($lang);
+  
+}
 ?>

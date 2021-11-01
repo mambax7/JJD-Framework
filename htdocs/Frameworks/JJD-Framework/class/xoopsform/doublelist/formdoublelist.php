@@ -157,7 +157,7 @@ class XoopsFormDoubleList extends XoopsFormElement
      * @param bool $updownVisible show button to sort selected list
      *                                        
      */
-    function XoopsFormDoubleList($caption, 
+public function __construct($caption, 
                            $name, 
                            $values,
                            $options,

@@ -53,14 +53,6 @@ define  ("XOOPS_JJD_URL", XOOPS_URL . "/modules/jjd_tools/_xoops_plus");
 
 global $xoopsConfig;
 //---------------------------------------------------------------------
-//constante de langue générique de l'admin (Definition tout module, new,add,edit,...)
-$lang = JJD_PATH . "/language/" . $xoopsConfig['language'] . "/admin.php";
-if (!file_exists($lang)){
-  $lang = JJD_PATH . "/language/english/admin.php";
-}
-//echo "<hr>lg = {$lg}<hr>";
-include_once ($lang);
- 
 
 /*********************************************************************
  *                  functions du back office
@@ -71,6 +63,15 @@ include_once (JJD_PATH . "/include/jjd-functions.php");
 include_once (JJD_PATH . "/include/fso.php");
 include_once (JJD_PATH . "/include/date-functions.php");
 include_once (JJD_PATH . "/include/xform-functions.php");
+
+
+/*********************************************************************
+ *                  fichiers de langues
+ * constante de langue générique de l'admin (Definition tout module, new,add,edit,...)
+ * *******************************************************************/
+loadLanguageFWJJD('admin');
+loadLanguageFWJJD('main');
+loadLanguageFWJJD('common');
 
 
 /*********************************************************************

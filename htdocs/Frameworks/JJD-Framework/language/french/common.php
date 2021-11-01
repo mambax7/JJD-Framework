@@ -9,5 +9,7 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
+\define('_CO_JJD_LOCALE_MONTH', "janvier,février,mars,avril,mai,juin,juillet,août,septembre,octobre,novembre,décembre,lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche");
+\define('_CO_JJD_ENGLISH_MONTH', "January,February,March,April,May,June,July,August,September,October,November,December,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday");
 
 ?>

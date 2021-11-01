@@ -1,5 +1,5 @@
 <?php
-
+namespace JJD;
 // +-----------------------------------------------------------------------+
 // | Copyright (c) 2014, Charles Dezert                                    |
 // | All rights reserved.                                                  |
@@ -36,6 +36,8 @@
 //
 // $Id: .php,v 1.2 2004/09/18 19:25:55 dawilby Exp $
 
+//echo "<hr>JJD-FRamework is charged<hr>";
+
 define('JJD_PATH', XOOPS_ROOT_PATH . '/Frameworks/' . basename(dirname(__FILE__)));
 define('JJD_PATH_XFORMS', JJD_PATH . '/class/xoopsform');
 define('JJD_PATH_CSS', JJD_PATH . '/css');
@@ -53,7 +55,6 @@ define  ("XOOPS_JJD_URL", XOOPS_URL . "/modules/jjd_tools/_xoops_plus");
 
 global $xoopsConfig;
 //---------------------------------------------------------------------
- 
 
 /*********************************************************************
  *                  functions du back office
@@ -65,15 +66,22 @@ include_once (JJD_PATH . "/include/fso.php");
 include_once (JJD_PATH . "/include/date-functions.php");
 include_once (JJD_PATH . "/include/xform-functions.php");
 
+
+/*********************************************************************
+ *                  fichiers de langues
+ * constante de langue générique de l'admin (Definition tout module, new,add,edit,...)
+ * *******************************************************************/
+loadLanguageFWJJD('admin');
 loadLanguageFWJJD('main');
 loadLanguageFWJJD('common');
+
+
 /*********************************************************************
  *                  xoopsform du back office
  * *******************************************************************/
 include_once (XOOPS_ROOT_PATH . '/class/xoopsformloader.php');
 require_once (XOOPS_ROOT_PATH . '/class/template.php');
 //------------------------------------------------------------------
-/*
 
 //include_once ($xform . '/grouppermform.php');
 include_once (JJD_PATH_XFORMS . '/formLineBreak.php');
@@ -81,6 +89,7 @@ include_once (JJD_PATH_XFORMS . '/formLineBreak.php');
 include_once (JJD_PATH_XFORMS . '/formimg.php');
 include_once (JJD_PATH_XFORMS . '/formnumber.php');
 
+/*
 include_once (JJD_PATH_XFORMS . '/admintable/formadmintable.php');
 include_once (JJD_PATH_XFORMS . '/spin_map/formspinmap.php');
 include_once (JJD_PATH_XFORMS . '/checkboxbin/formBinCheckbox.php');

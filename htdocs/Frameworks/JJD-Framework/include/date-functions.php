@@ -37,12 +37,25 @@ function getSqlDate($dateVar = null, $formatSql = 'Y-m-d H:i:s', $formatFrom = '
     }
     return $ret;
   }
+
+// Convertit une date ou un timestamp en français
+function dateToLocale($dateStr) 
+{
+//echo _CO_JJD_ENGLISH_MONTH."<br>"._CO_JJD_LOCALE_MONTH."<br>";
+    $english_months = explode(',', _CO_JJD_ENGLISH_MONTH);
+    $french_months = explode(',',  _CO_JJD_LOCALE_MONTH);
+    return str_replace($english_months, $french_months, $dateStr);
+    
+
+}
+  
 /**************************************************************
  * 
  * ************************************************************/
 function getDateSql2Str($dateSql, $formatSql = 'd-m-Y H:i:s')
-{
-    return date($formatSql, strtotime ($dateSql));
+{setlocale(LC_TIME, "fr_FR");
+    $dateStr = date($formatSql, strtotime ($dateSql));
+    return dateToLocale($dateStr);
 }
 
 /**************************************************************
