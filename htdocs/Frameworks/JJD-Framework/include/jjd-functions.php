@@ -15,6 +15,7 @@ use ArrayObject;
 use ZipArchive;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+
 /***************************************************************************
 JJD - 15/07/2006
 Petite modif juste pour dire que c'est JJD qu'a foutu un peu le bordel
@@ -66,6 +67,65 @@ global $helper;
     return $tColors;
 }
 
+/**********************************************
+ *
+ **********************************************/
+function get_css_path($dirname = '', $isUrl = false){
+    if($dirname){
+        $folder = "/modules/{$dirname}/assets/css";
+    }else{
+        $folder = "/Frameworks/JJD-Frawework/css";
+    }
+    
+    
+    if($isUrl){
+        $dir = XOOPS_URL .  $folder;
+    }else{
+        $dir = XOOPS_ROOT_PATH  . $folder;
+    }
+    
+    return $dir;
+}
+
+/**********************************************
+ *
+ **********************************************/
+function load_css($dirname = ''){
+//global $helper, $xoopsModuleCongig;
+
+
+    //if ($helper->getConfig('css_folder') =="" ){
+    //if ($xoopsModuleCongig['css_folder'] =="" ){
+    /*
+    if ($helper->getConfig('css_folder') =="" ){
+          $dir = "browse.php?" . news_get_css_path();
+    }else{
+      $dir = news_get_css_path();
+    }
+    */
+    /*
+      $f = XOOPS_PATH . "/Frameworks/jquery/plugins/showHide.js";
+      if (file_exists($f)){
+        $GLOBALS['xoTheme']->addScript(XOOPS_URL . '/browse.php?Frameworks/jquery/plugins/showHide.js');
+      }else{
+        $f = XOOPS_ROOT_PATH . "/Frameworks/jquery/plugins/showHide.js";
+        if (file_exists($f)){
+          $GLOBALS['xoTheme']->addScript(XOOPS_URL . '/Frameworks/jquery/plugins/showHide.js');
+        }
+      }
+
+ $GLOBALS['xoTheme']->addScript(XOOPS_URL . '/browse.php?Frameworks/jquery/plugins/showHide.js');
+    */
+                    
+
+                                                       
+    $dir =  get_css_path($dirname, true);
+    $GLOBALS['xoTheme']->addStylesheet($GLOBALS['xoops']->url($dir . "/style-item-design.css"));
+    $GLOBALS['xoTheme']->addStylesheet($GLOBALS['xoops']->url($dir . "/style-item-color.css"));
+
+    $GLOBALS['xoTheme']->addStylesheet($GLOBALS['xoops']->url($dir . "/style.css"));
+}
+
 /**************************************************************
  * 
  * ************************************************************/
@@ -102,6 +162,7 @@ function zipSimpleDir($sourcePath, $zipFilename){
     {
         // Get real and relative path for current file
         $filePath = $file->getRealPath();
+//    echo "===>{$filePath}<br>";
         $relativePath = substr($filePath, strlen($rootPath));
     
         if (!$file->isDir())
@@ -116,7 +177,7 @@ function zipSimpleDir($sourcePath, $zipFilename){
     
     // Zip archive will be created only after closing object
     $zip->close();
-
+//exit;
 }
 /**
  * Zip a folder (include itself).
@@ -136,11 +197,36 @@ function unZipFile($fullName, $destPath){
         return false;
      }              
 }
-
+/****************************************************************************
+// copie le contenu du repertoire $orig vers le repertoire $dest en le créant 
+// copie tous les sous-reps de manière récursive 
+// sous-entend qu'on a les droits d'écriture, bien sûr! 
+ ****************************************************************************/
+// function CopyRep ($orig,$dest) { return CopieRep ($orig,$dest);}
+// function CopieRep ($orig,$dest) { 
+//    
+//   if (!is_dir($dest)) mkdir ($dest,0777); // à modifier si le rep cible existe déjà
+//   $dir = dir($orig); 
+//   while ($entry=$dir->read()) { 
+//     $pathOrig = "$orig/$entry"; 
+//     $pathDest = "$dest/$entry"; 
+//     // repertoire ->copie récursive
+//     if (is_dir($pathOrig) and (substr($entry,0,1)<>'.')) CopieRep ($pathOrig,$pathDest);     
+//    // fichier -> copie simple
+//    if (is_file($pathOrig) and ($pathDest<>'') and ($fp=fopen($pathOrig,'rb'))) { 
+//       $buf = fread($fp,filesize($pathOrig)); 
+//       $cop = fopen($pathDest,'ab+'); 
+//       fputs ($cop,$buf); 
+//       fclose ($cop); 
+//       fclose ($fp); 
+//     } 
+//   } 
+//   $dir->close(); 
+// } 
 /****************************************************************************
  * 
  ****************************************************************************/
-function include_highslide($options = null){
+function include_highslide($options = null, $moduleDirName = ''){
   Global $xoTheme,$helper, $xoopsModuleConfig;
 
   //$xoTheme->addScript('browse.php?jquery/jquery.js');
@@ -149,28 +235,36 @@ function include_highslide($options = null){
 //   $xoTheme->addStylesheet('browse.php?Frameworks/zoom/highslide.css');
 //   $xoTheme->addScript('browse.php?Frameworks/zoom/highslide.js');
 
-//$highslide = XOOPS_ROOT_PATH . "/Frameworks/" . $helper->getConfig('highslide');  
-$highslide = XOOPS_URL . "/Frameworks/" . $xoopsModuleConfig['highslide'];  
-//echo "===>highslide : <hr>{$highslide}<hr>";  
+//$fldHighslide = $xoopsModuleConfig['highslide'];
+$fldHighslide = "highslide";
+//$link = XOOPS_ROOT_PATH . "/Frameworks/" . $helper->getConfig('highslide');  
+$link = XOOPS_URL . "/Frameworks/" . $fldHighslide;  
+//echo "===>highslide : <hr>{$link}<hr>";  
 
-  $xoTheme->addStylesheet("{$highslide}/highslide.css");
-  $xoTheme->addScript("{$highslide}/highslide.js");
+  $xoTheme->addStylesheet("{$link}/highslide.css");
+  $xoTheme->addScript("{$link}/highslide.js");
 
   //$xoTheme->addScript('browse.php?modules/slider/assets/js/highslide.js');
-  $xoTheme->addScript(XOOPS_URL . '/modules/slider/assets/js/highslide.js');
+  if(file_exists(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/assets/js/config_highslide.js"))
+  {
+    $xoTheme->addScript(XOOPS_URL . "/modules/{$moduleDirName}/assets/js/config_highslide.js");
+  }else{
+    $xoTheme->addScript(XOOPS_URL . "/Frameworks/JJD_Framework/js/config_highslide.js");
+  }
 
-  if (!is_array($options))$options = array();
-  $options['graphicsDir'] = "{$highslide}/graphics/";
+  if (!is_array($options)) $options = array();
+  $options['graphicsDir'] = "{$link}/graphics/";
   \JJD\array2js('hs', $options, false, true);
 //exit ("include_highslide");
 }
+
 /****************************************************************************
 Genere la declaration d'un tableau en javascript
 $name : nom du ta&bleau javascript
-$options : tableau associatif. les clefs seront les m�me en javascript
-$bolEcho : si true envoie directement la chaine g�n�r�e dans le flux html
+$options : tableau associatif. les clefs seront les même en javascript
+$bolEcho : si true envoie directement la chaine générée dans le flux html
 retour : string a envoyer dans le flus html
-note : la balise script est ajout�e automatiquement
+note : la balise script est ajoutée automatiquement
  ****************************************************************************/
 function array2js($name, $options, $isNew = false, $bolEcho = false){
 
@@ -197,6 +291,65 @@ function array2js($name, $options, $isNew = false, $bolEcho = false){
   return $js;
 }
 
+/* *********************************************
+* prépare un texte pour une comparaison avec un autre texte saisi
+* - supprime les "<br>" et les  "|n"
+* - supprime les caractères de poncuation
+* - remplace les caractères accetués
+* *********************************************** */
+function sanityseNameForFile($exp){
 
+    $reponse = str_replace(" ", "_", $exp);
+    
+  $a = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð',
+             'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'ß', 'à', 'á', 'â', 'ã',
+             'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ',
+             'ö', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'ÿ', 'Ā', 'ā', 'Ă', 'ă', 'Ą', 'ą', 'Ć', 'ć', 'Ĉ',
+             'ĉ', 'Ċ', 'ċ', 'Č', 'č', 'Ď', 'ď', 'Đ', 'đ', 'Ē', 'ē', 'Ĕ', 'ĕ', 'Ė', 'ė', 'Ę', 'ę',
+             'Ě', 'ě', 'Ĝ', 'ĝ', 'Ğ', 'ğ', 'Ġ', 'ġ', 'Ģ', 'ģ', 'Ĥ', 'ĥ', 'Ħ', 'ħ', 'Ĩ', 'ĩ', 'Ī', 'ī',
+             'Ĭ', 'ĭ', 'Į', 'į', 'İ', 'ı', 'Ĳ', 'ĳ', 'Ĵ', 'ĵ', 'Ķ', 'ķ', 'Ĺ', 'ĺ', 'Ļ', 'ļ', 'Ľ', 'ľ',
+             'Ŀ', 'ŀ', 'Ł', 'ł', 'Ń', 'ń', 'Ņ', 'ņ', 'Ň', 'ň', 'ŉ', 'Ō', 'ō', 'Ŏ', 'ŏ', 'Ő', 'ő', 'Œ',
+             'œ', 'Ŕ', 'ŕ', 'Ŗ', 'ŗ', 'Ř', 'ř', 'Ś', 'ś', 'Ŝ', 'ŝ', 'Ş', 'ş', 'Š', 'š', 'Ţ', 'ţ', 'Ť', 
+             'ť', 'Ŧ', 'ŧ', 'Ũ', 'ũ', 'Ū', 'ū', 'Ŭ', 'ŭ', 'Ů', 'ů', 'Ű', 'ű', 'Ų', 'ų', 'Ŵ', 'ŵ', 'Ŷ', 
+             'ŷ', 'Ÿ', 'Ź', 'ź', 'Ż', 'ż', 'Ž', 'ž', 'ſ', 'ƒ', 'Ơ', 'ơ', 'Ư', 'ư', 'Ǎ', 'ǎ', 'Ǐ', 'ǐ',
+             'Ǒ', 'ǒ', 'Ǔ', 'ǔ', 'Ǖ', 'ǖ', 'Ǘ', 'ǘ', 'Ǚ', 'ǚ', 'Ǜ', 'ǜ', 'Ǻ', 'ǻ', 'Ǽ', 'ǽ', 'Ǿ', 'ǿ');
+
+  $b = array('A', 'A', 'A', 'A', 'A', 'A', 'AE', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'D', 'N', 'O',
+             'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'Y', 's', 'a', 'a', 'a', 'a', 'a', 'a', 'ae', 'c',
+             'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u',
+             'y', 'y', 'A', 'a', 'A', 'a', 'A', 'a', 'C', 'c', 'C', 'c', 'C', 'c', 'C', 'c', 'D', 'd', 'D',
+             'd', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'G', 'g', 'G', 'g', 'G', 'g', 'G', 'g',
+             'H', 'h', 'H', 'h', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'IJ', 'ij', 'J', 'j', 'K',
+             'k', 'L', 'l', 'L', 'l', 'L', 'l', 'L', 'l', 'L', 'l', 'N', 'n', 'N', 'n', 'N', 'n', 'n', 'O', 'o',
+             'O', 'o', 'O', 'o', 'OE', 'oe', 'R', 'r', 'R', 'r', 'R', 'r', 'S', 's', 'S', 's', 'S', 's', 'S',
+             's', 'T', 't', 'T', 't', 'T', 't', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'W',
+             'w', 'Y', 'y', 'Y', 'Z', 'z', 'Z', 'z', 'Z', 'z', 's', 'f', 'O', 'o', 'U', 'u', 'A', 'a', 'I', 'i',
+             'O', 'o', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'A', 'a', 'AE', 'ae', 'O', 'o');
+  $reponse = str_replace($a, $b, $reponse);
+
+    return $reponse;
+}
+    
+    /**
+     * enleve_accent : enlève tous les accent d'une chaine de caractère utf8, unicode, ...
+     * @param $str 
+     *
+     * @return string
+     */
+function enleve_accents($chaine=''){
+    $accent = array('%C3%80'=>'A','%C3%81'=>'A','%C3%82'=>'A','%C3%83'=>'A','%C3%84'=>'A','%C3%85'=>'A','%C3%A0'=>'a','%C3%A1'=>'a','%C3%A2'=>'a','%C3%A3'=>'a','%C3%A4'=>'a','%C3%A5'=>'a',
+                    '%C3%88'=>'E','%C3%89'=>'E','%C3%8A'=>'E','%C3%8B'=>'E','%C3%A8'=>'e','%C3%A9'=>'e','%C3%AA'=>'e','%C3%AB'=>'e',
+                    '%C3%8C'=>'I','%C3%8D'=>'I','%C3%8E'=>'I','%C3%8F'=>'I','%C3%AC'=>'i','%C3%AD'=>'i','%C3%AE'=>'i','%C3%AF'=>'i',
+                    '%C3%92'=>'O','%C3%93'=>'O','%C3%94'=>'O','%C3%95'=>'O','%C3%96'=>'O','%C3%98'=>'O','%C3%B2'=>'o','%C3%B3'=>'o','%C3%B4'=>'o','%C3%B5'=>'o','%C3%B6'=>'o','%C3%B8'=>'o',
+                    '%C3%99'=>'U','%C3%9A'=>'U','%C3%9B'=>'U','%C3%9C'=>'U','%C3%B9'=>'u','%C3%BA'=>'u','%C3%BB'=>'u','%C3%BC'=>'u',
+                    '%C3%BF'=>'y',
+                    '%C3%87'=>'C','%C3%A7'=>'c', '%C3%91'=>'N','%C3%B1'=>'n');
+    $chaine = urlencode($chaine);
+//     foreach ($accent as $key => $value) {
+//         $chaine = str_replace($key,$value,$chaine);
+//     }
+    $chaine = str_replace(array_keys($accent),$accent,$chaine);
+    return urldecode($chaine);
+}
 
 ?>

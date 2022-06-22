@@ -604,7 +604,7 @@ private function _render_barre(){
   for ($h=0; $h < count($ta); $h++){
     $tl = array();
     for ($i=0; $i<strlen($ta[$h]) ; $i++){
-      $currentLetter = $ta[$h]{$i};
+      $currentLetter = $ta[$h][$i];
       $isLetterOk = (!(strpos($lettersUsed, $currentLetter)===false) || $lettersUsed =='');
       $visu = $currentLetter;
       
@@ -864,7 +864,7 @@ function _render_init()
 {
   $t = array('fontColorLettersUnused','colorSelection','colorSelectionOver','fontColor','fontColorOver');
   foreach ($t as $key){
-    $this->_vars[$key] = (($this->_vars[$key]{0} == "#") ? "": "#") . $this->_vars[$key];
+    $this->_vars[$key] = (($this->_vars[$key][0] == "#") ? "": "#") . $this->_vars[$key];
   }
 }  
 

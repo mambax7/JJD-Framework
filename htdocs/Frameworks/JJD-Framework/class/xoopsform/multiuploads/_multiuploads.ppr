@@ -63,5 +63,5 @@ _multiuploads
 Main=
 Selected=formmultiuploads.php
 [formmultiuploads.php]
-TopLine=1
+TopLine=43
 Caret=26,6

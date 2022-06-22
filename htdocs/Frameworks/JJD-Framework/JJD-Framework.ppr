@@ -17,7 +17,7 @@ Extensions=*.*
 [Project tree]
 JJD-Frameworks
 	+JJD-Frameworks
-		-class
+		+class
 			-xoopsform
 				-admintable
 					-doc
@@ -1262,6 +1262,7 @@ JJD-Frameworks
 		desktop.ini
 		front_office.php
 		JJD-Frameworks.ppr
+		load.php
 [Open project files]
 0=front_office.php
 1=back_office.php
@@ -1278,16 +1279,16 @@ JJD-Frameworks
 12=include\jjd-functions.php
 [Selected Project Files]
 Main=
-Selected=load.php
+Selected=include\jjd-functions.php
 [front_office.php]
-TopLine=36
-Caret=1,56
+TopLine=1
+Caret=15,2
 [back_office.php]
 TopLine=92
 Caret=1,119
 [load.php]
-TopLine=13
-Caret=3,39
+TopLine=31
+Caret=1,41
 [class\xoopsform\admintable\doc\admintable.html]
 TopLine=62
 Caret=1,62
@@ -1295,8 +1296,8 @@ Caret=1,62
 TopLine=1
 Caret=7,12
 [include\fso.php]
-TopLine=49
-Caret=29,59
+TopLine=40
+Caret=18,55
 [language\french\admin.php]
 TopLine=1
 Caret=1,15
@@ -1317,4 +1318,4 @@ TopLine=141
 Caret=42,160
 [include\jjd-functions.php]
 TopLine=1
-Caret=1,2
+Caret=1,18

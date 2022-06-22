@@ -1,5 +1,5 @@
 <?php
-
+namespace JJD;
 // +-----------------------------------------------------------------------+
 // | Copyright (c) 2014, Charles Dezert                                    |
 // | All rights reserved.                                                  |
@@ -35,6 +35,9 @@
 // +-----------------------------------------------------------------------+
 //
 // $Id: .php,v 1.2 2004/09/18 19:25:55 dawilby Exp $
+
+//echo "<hr>JJD-FRamework is charged<hr>";
+echo "<hr> ----- framework JJD charge -----<hr>";
 
 define('JJD_PATH', XOOPS_ROOT_PATH . '/Frameworks/' . basename(dirname(__FILE__)));
 define('JJD_PATH_XFORMS', JJD_PATH . '/class/xoopsform');
