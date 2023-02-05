@@ -16,7 +16,7 @@ HTServer=localhost
 [Project tree]
 _multiuploads
 	+multiuploads
-		-applications
+		+applications
 			applications\index.html
 			applications\multiUploader.fla
 			applications\multiUploader.swd
@@ -63,5 +63,5 @@ _multiuploads
 Main=
 Selected=formmultiuploads.php
 [formmultiuploads.php]
-TopLine=43
+TopLine=6
 Caret=26,6

@@ -39,12 +39,17 @@ global $xoopsModule;
 /**********************************************
  *
  **********************************************/
-function  get_css_color($fileName = null, $addEmpty=false){
+function  get_css_color($dirname = null, $addEmpty=false){
 global $helper;
-    if (is_null($fileName)) $fileName = JJD_PATH_CSS . "style-item-color.css";
-    
+    if (substr($dirname , -4) == ".css"){
+      $fileName = $dirname;
+    }else{
+      $fileName = get_css_path($dirname) . "/style-item-color.css";
+    }
+    //if (is_null($fileName)) $fileName = JJD_PATH_CSS . "/style-item-color.css";
+//echo "<hr>get_css_color - fileName : {$fileName}<hr>";    
     $content = file_get_contents ($fileName);
-
+//echo $content . "<br>";
 //echo "<br>{$fileName}<br>{$content}<br>";
     $tLines = explode("\n" , $content);
 //echo "nbLines = " . count($tLines) . "<pre>" . print_r($tLines, true) . "</pre>";
@@ -74,7 +79,7 @@ function get_css_path($dirname = '', $isUrl = false){
     if($dirname){
         $folder = "/modules/{$dirname}/assets/css";
     }else{
-        $folder = "/Frameworks/JJD-Frawework/css";
+        $folder = "/Frameworks/JJD-Framework/css";
     }
     
     
@@ -90,38 +95,19 @@ function get_css_path($dirname = '', $isUrl = false){
 /**********************************************
  *
  **********************************************/
-function load_css($dirname = ''){
-//global $helper, $xoopsModuleCongig;
+function load_css($dirname = '', $loadOldCss = true){
 
-
-    //if ($helper->getConfig('css_folder') =="" ){
-    //if ($xoopsModuleCongig['css_folder'] =="" ){
-    /*
-    if ($helper->getConfig('css_folder') =="" ){
-          $dir = "browse.php?" . news_get_css_path();
-    }else{
-      $dir = news_get_css_path();
-    }
-    */
-    /*
-      $f = XOOPS_PATH . "/Frameworks/jquery/plugins/showHide.js";
-      if (file_exists($f)){
-        $GLOBALS['xoTheme']->addScript(XOOPS_URL . '/browse.php?Frameworks/jquery/plugins/showHide.js');
-      }else{
-        $f = XOOPS_ROOT_PATH . "/Frameworks/jquery/plugins/showHide.js";
-        if (file_exists($f)){
-          $GLOBALS['xoTheme']->addScript(XOOPS_URL . '/Frameworks/jquery/plugins/showHide.js');
-        }
-      }
-
- $GLOBALS['xoTheme']->addScript(XOOPS_URL . '/browse.php?Frameworks/jquery/plugins/showHide.js');
-    */
-                    
-
-                                                       
     $dir =  get_css_path($dirname, true);
+//echo "<hr>===> load_css - dir : {$dir}<hr>";                                                       
     $GLOBALS['xoTheme']->addStylesheet($GLOBALS['xoops']->url($dir . "/style-item-design.css"));
     $GLOBALS['xoTheme']->addStylesheet($GLOBALS['xoops']->url($dir . "/style-item-color.css"));
+
+    /* a virer des que possible, gardé pour l'instant pour compatibilité */
+    if($loadOldCss){
+      $GLOBALS['xoTheme']->addStylesheet($GLOBALS['xoops']->url($dir . "/style-item-design-old.css"));
+      $GLOBALS['xoTheme']->addStylesheet($GLOBALS['xoops']->url($dir . "/style-item-color-old.css"));
+    }
+
 
     $GLOBALS['xoTheme']->addStylesheet($GLOBALS['xoops']->url($dir . "/style.css"));
 }
@@ -179,6 +165,52 @@ function zipSimpleDir($sourcePath, $zipFilename){
     $zip->close();
 //exit;
 }
+
+function ZipReccurssiveDir($source, $destination)
+{
+    if (!extension_loaded('zip') || !file_exists($source)) {
+        return false;
+    }
+
+    $zip = new ZipArchive();
+    if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
+        return false;
+    }
+
+    $source = str_replace('\\', '/', realpath($source));
+
+    if (is_dir($source) === true)
+    {
+        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
+
+        foreach ($files as $file)
+        {
+            $file = str_replace('\\', '/', $file);
+
+            // Ignore "." and ".." folders
+            if( in_array(substr($file, strrpos($file, '/')+1), array('.', '..')) )
+                continue;
+
+            $file = realpath($file);
+
+            if (is_dir($file) === true)
+            {
+                $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
+            }
+            else if (is_file($file) === true)
+            {
+                $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
+            }
+        }
+    }
+    else if (is_file($source) === true)
+    {
+        $zip->addFromString(basename($source), file_get_contents($source));
+    }
+
+    return $zip->close();
+}
+
 /**
  * Zip a folder (include itself).
  * Usage:
@@ -197,6 +229,7 @@ function unZipFile($fullName, $destPath){
         return false;
      }              
 }
+
 /****************************************************************************
 // copie le contenu du repertoire $orig vers le repertoire $dest en le créant 
 // copie tous les sous-reps de manière récursive 

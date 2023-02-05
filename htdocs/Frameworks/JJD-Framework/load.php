@@ -60,8 +60,8 @@ global $xoopsConfig;
  *                  functions du back office
  * *******************************************************************/
 include_once (JJD_PATH . "/include/constantes.php");
-include_once (JJD_PATH . "/include/functions.php");
-include_once (JJD_PATH . "/include/jjd-functions.php");
+include_once (JJD_PATH . "/include/globales-functions.php");
+include_once (JJD_PATH . "/include/fw-functions.php");
 include_once (JJD_PATH . "/include/fso.php");
 include_once (JJD_PATH . "/include/date-functions.php");
 include_once (JJD_PATH . "/include/xform-functions.php");

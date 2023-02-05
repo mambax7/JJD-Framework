@@ -27,8 +27,8 @@ function echoArray($t, $title='', $bExit = false){
 /*******************************************************
  *
  *******************************************************/
-function displayArray($t, $name = "", $ident = 0){
-  echoArray($t, $name);  
+function displayArray($t, $title = "", $bExit = false){
+  echoArray($t, $title,$bExit);  
 }
 
 

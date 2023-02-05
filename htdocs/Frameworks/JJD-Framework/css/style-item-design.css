@@ -11,6 +11,18 @@
   -khtml-border-radius: 8px 8px 0px 0px;
   border-radius: 8px 8px 0px 0px;
 }
+.item-round-top-left-no{
+  -moz-border-radius: 0px 8px 0px 0px;
+  -webkit-border-radius: 0px 8px 0px 0px;
+  -khtml-border-radius: 0px 8px 0px 0px;
+  border-radius: 0px 8px 0px 0px;
+}
+.item-round-top-right-no{
+  -moz-border-radius: 0px 8px 0px 0px;
+  -webkit-border-radius: 0px 8px 0px 0px;
+  -khtml-border-radius: 0px 8px 0px 0px;
+  border-radius: 0px 8px 0px 0px;
+}
 .item-round-bottom{
   -moz-border-radius: 0px 0px 8px 8px;
   -webkit-border-radius: 0px 0px 8px 8px;
@@ -23,14 +35,16 @@
   -webkit-border-radius: 0px 0px 0px 0px;
   -khtml-border-radius: 0px 0px 0px 0px;
   border-radius: 0px 0px 0px 0px;
+  margin:0px 0px 0px 0px;
 }
 .item-boder-no{
   border: 0px solid;
 }
 
-.item {
+/* ----------------------------- */
+.item-global {
     border: 0px solid #666;
-    border-radius: 8px 8px 0px 0px;
+    /* border-radius: 8px 8px 0px 0px;  */
 }
 
 .item-legend {
@@ -44,18 +58,20 @@
     position:relative;
 }
 
-.itemHead {
+.item-head {
     padding: 3px;
     background-color: #808080;
     color: #fff;
-  -moz-border-radius: 8px 8px 0px 0px;
-  -webkit-border-radius: 8px 8px 0px 0px;
-  -khtml-border-radius: 8px 8px 0px 0px;
-  border-radius: 8px 8px 0px 0px;
 
     text-align:center;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-variant: small-caps;
+
+    background-color: transparent;
 }
-.itemHead a {
+
+.item-head a {
     font-size: 0.80em;
     font-weight: bold;
     font-variant: small-caps;
@@ -64,31 +80,31 @@
 
 }
 
-.itemInfo {
+.item-info {
     border: 0px solid;
     text-align: center;
-    padding: 3px;
+    padding: 5px;
     background-color: #BFBFBF;
 
 }
 
 
-.itemPoster {
+.item-poster {
     font-size: .9em;
     font-style: italic;
 }
 
-.itemPostDate {
+.item-post-date {
     font-size: .9em;
     font-style: italic;
 }
 
-.itemStats {
+.item-stats {
     font-size: .9em;
     font-style: italic;
 }
 
-.itemBody {
+.item-body {
     padding-left: 5px;
     background-color: #F2F2F2;
     border: 0px solid;
@@ -98,7 +114,7 @@
     border-radius: 0px 0px 0px 0px;
     padding:12px;
 }
-.itemBody_scoop {
+.item-body-scoop {
     padding-left: 5px;
     background-color: #F2F2F2;
     border: 0px solid;
@@ -109,69 +125,83 @@
     padding:12px;
 }
 
-.itemText {
+.item-text {
     margin-top: 5px;
     margin-bottom: 5px;
     line-height: 1.5em;
 }
 
-.itemText:first-letter {
+.item-text:first-letter {
     font-size: 1.3em;
     font-weight: bold;
 }
 
-.itemFoot {
+.item-foot {
     text-align: right;
     padding: 3px;
     background-color: #D9D9D9;
     border: 0px solid;
-  -moz-border-radius: 0px 0px 8px 8px;
-  -webkit-border-radius: 0px 0px 8px 8px;
-  -khtml-border-radius: 0px 0px 8px 8px;
-  border-radius: 0px 0px 8px 8px;
 }
 
-.itemAdminLink {
+.item-admin-link {
     font-size: .9em;
 }
 
-.itemPermaLink {
+.item-perm-alink {
     font-size: .9em;
 }
 
 
+.item-title{
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
 
-
-/* Flaired edges, by Tomas Theunissen */
-hr.style-seven {
-    overflow: visible; /* For IE */
-    height: 30px;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px 0 0 0;
-    border-radius: 20px;
 }
-hr.style-seven:before { /* Not really supposed to work, but does */
-    display: block;
-    content: "";
-    height: 30px;
-    margin-top: -31px;
-    border-style: solid;
-    border-color: black;
-    border-width: 0 0 1px 0;
-    border-radius: 20px;
+.item-info{
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: normal;
+    padding: 0px 12px 0px 12px;
+
 }
 
-/* Gradient transparent - color - transparent */
 
-hr.style-two {
-    border: 0;
-    height: 3px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 0, 0, 0.75), rgba(0, 0, 0, 0));
+.div_colors_set{
+  /* width:30px;
+  vertical-align: middle;
+  height:40px;
+  */
+  padding: 12px 12px 12px 12px;
+}
+div.fwj-onglets {
+    border: 0px solid;
+    border-radius: 12px 12px 0px 0px;
+    padding: 8px 18px 0px 18px;
+    margin: 0px 0px 0px 0px;
+    /*
+
+
+    */
+    height: 35px;
+    float:left;
+    position:relative;
+}
+div.fwj-contenair-onglets {
+    height: 40px;
 }
 
-red-hr-style-two {
-    border: 0;
-    height: 3px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 0, 0, 0.75), rgba(0, 0, 0, 0));
+div.fwj-onglets2 {
+    border: 0px solid;
+    border-radius: 0px;
+    margin: 0px 0px 0px 0px;
+    width: 2px;
+    /*
+
+    */
+    height: 15px;
+    float:left;
+    position:relative;
 }
+
+

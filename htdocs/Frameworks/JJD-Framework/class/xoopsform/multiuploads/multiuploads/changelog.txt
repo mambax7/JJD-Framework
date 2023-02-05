@@ -20,7 +20,7 @@ Ajout des fontionalités suivantes:
     - Bouton d'arret
     - Nombre de fichiers maximum autorises
     - Taille maximulm des fichiers autorisee
-    - Am‚lioration de la logique d'interface
+    - Amelioration de la logique d'interface
     - Ajout de fichiers de langues
 	  - positionnement dans la liste du fichier en cours
 	  - Modification visuelles de l'interface (bouton en bas, ...)

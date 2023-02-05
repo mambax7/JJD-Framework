@@ -37,7 +37,6 @@ namespace JJD;
 // $Id: .php,v 1.2 2004/09/18 19:25:55 dawilby Exp $
 
 //echo "<hr>JJD-FRamework is charged<hr>";
-echo "<hr> ----- framework JJD charge -----<hr>";
 
 define('JJD_PATH', XOOPS_ROOT_PATH . '/Frameworks/' . basename(dirname(__FILE__)));
 define('JJD_PATH_XFORMS', JJD_PATH . '/class/xoopsform');
@@ -62,8 +61,8 @@ global $xoopsConfig;
  *                  functions du back office
  * *******************************************************************/
 include_once (JJD_PATH . "/include/constantes.php");
-include_once (JJD_PATH . "/include/functions.php");
-include_once (JJD_PATH . "/include/jjd-functions.php");
+include_once (JJD_PATH . "/include/globales-functions.php");
+include_once (JJD_PATH . "/include/fw-functions.php");
 include_once (JJD_PATH . "/include/fso.php");
 include_once (JJD_PATH . "/include/date-functions.php");
 include_once (JJD_PATH . "/include/xform-functions.php");

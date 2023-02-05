@@ -99,12 +99,12 @@ class XoopsFormDataList extends XoopsFormElement
         if (! $encode) {
             return $this->_options;
         }
-        $value = array();
+        $values = array();
         foreach ($this->_options as $val => $name) {
-            $value[$encode ? htmlspecialchars($val, ENT_QUOTES) : $val] = ($encode > 1) ? htmlspecialchars($name, ENT_QUOTES) : $name;
+            $values[$encode ? htmlspecialchars($val, ENT_QUOTES) : $val] = ($encode > 1) ? htmlspecialchars($name, ENT_QUOTES) : $name;
         }
 
-        return $value;
+        return $values;
     }
 
 /**********************************************************************
@@ -315,146 +315,5 @@ global $xoTheme;
 
 
 }
-
-
-
-
-/**
- * A simple text field
- */
-class XoopsFormDataListGroup extends XoopsFormElement
-{
-  var $version = '1.04';
-  var $url = '';
-  var $_dataListOk = '';
-  var $_maxValues = 0;
-  var $cat = '';
-  //const DATALIST_NONE = '__NONE__';
- 
-    function __construct($name, $options = null, $groupName = '__NONE__')
-    {  
-        //$this->setCaption('');     //pas besoin de titre pour cet objet $caption
-        $this->setName($name);
-        if (!is_null($options)) $this->addOptionArray($options, $groupName);
-        $this->_dataListOk = false;
-    }
-
-/**********************************************************************
- *
- **********************************************************************/
-     /**
-     * Add an option
-     *
-     * @param string $value "value" attribute
-     * @param string $name  "key" attribute
-     * @param string $groupName  "groupName" attribute
-     */
-    function addOption($value, $key = '', $groupName = '__NONE__')
-    {
-        if ($name) {
-            $this->_options[$groupName][$key] = $value;
-        } else {
-            $this->_options[$groupName][$key] = $value;
-        }
-    }
-
-    /**
-     * Add multiple options
-     *
-     * @param array $options Associative array of value->name pairs
-     */
-    function addOptionsArray($options, $groupName = '__NONE__'){
-        $this->addOptionArray($options, $groupName);
-    }
-    function addOptionArray($options, $groupName = '__NONE__')
-    {
-        if (is_array($options)) {
-            foreach ($options as $k => $v) {
-                $this->addOption($k, $v, $groupName);
-            }
-        }
-    }
-    /**
-     * Add multiple options
-     *
-     * @param array $options Associative array of value->name pairs
-     */
-    function addOptionsArrayArray($options){
-        //echo "addOptionsAssociativeArray : <br>";
-        foreach ($options as $groupName => $arr) {
-        //echo "addOptionsAssociativeArray : groupName={$groupName}<br>";
-            foreach ($arr as $key => $val) {
-                $this->addOption($val, $key, $groupName);
-            }
-        }
-    }
-    /**
-     * Get an array with all the options
-     * Note: both name and value should be sanitized. However for backward compatibility, only value is sanitized for now.
-     * @param bool|int $encode To sanitizer the text? potential values: 0 - skip; 1 - only for value; 2 - for both value and name
-     * @return array Associative array of value->name pairs
-     */
-    function getOptions($encode = false)
-    {
-        if (! $encode) {
-            return $this->_options;
-        }
-        $values = array();
-        foreach ($this->_options as $groupName => $arr) {
-            foreach ($arr as $key => $val) {
-                $values[$groupName][$encode ? htmlspecialchars($val, ENT_QUOTES) : $val] = ($encode > 1) ? htmlspecialchars($name, ENT_QUOTES) : $name;
-            }
-        }
-
-        return $values;
-    }
-
-/**********************************************************************
- *
- **********************************************************************/
-
-function render(){
-global $xoTheme;
-  
-  
-//-----------------------------------
-//     $xoTheme->addScript($this->url . '/datalist/datalist.js');
-//-------------------------------------  
-  
-                              
-    $name = $this->getName();
-    $tHtml = array();
-    $tHtml[] = "\n<datalist name='{$name}' id='{$name}' >\n";
-/*exemple de code
-<datalist id="bieres">
-  <option value="Meteor" idList="1">
-  <option value="Pils" idList="2">
-  <option value="Kronenbourg" idList="3">
-  <option value="Grimbergen" idList="4">
-</datalist>
-*/    
-    $typeList = 1; //0 = associative (liste de cle) | 1 = index (liste d'id))
-    $ele_options = $this->getOptions();
-    //echo "<hr>_options<pre>" . print_r($ele_options, true) . "</pre><hr>";    
-    //echo "--->datalist : ".count($ele_options)."<hr>";
-    foreach($ele_options as $groupName => $arr) {
-    
-        foreach($arr as $key => $value) {
-          //$tHtml[] = "<option value='{$name}' idList='{$value}'>\n";   
-          $tHtml[] =  "<option id='{$name}[{$groupName}][$key]' name='{$groupName}' value='{$value}' />";         
-
-          //if (!is_numeric($value)) $typeList = 0;
-          //echo "--->{$name} -> {$value} / " .  count($ele_options) . "<br />";
-        }
-    }
-    $tHtml[] = "</datalist>\n";
-  
-  return implode("\n", $tHtml);
-
-} // /render()
-
-
-} // /Class XoopsFormDataListGroup
-
 
 ?>

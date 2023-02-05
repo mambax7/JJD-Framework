@@ -35,8 +35,8 @@ function getIdListInDataList(obSource){
 
 /***    
  *  @idFrom         string id of object datalist
- *  @idTo           string id of object to add items from fatalist
- *  @idsSelected    array of selected tems
+ *  @idTo           string id of object to add items from datalist
+ *  @idsSelected    array of selected items
  ***/
 function dataList_loadItems(idFrom,idTo,idsSelected){
   objFrom = document.getElementById(idFrom);
@@ -47,7 +47,7 @@ function dataList_loadItems(idFrom,idTo,idsSelected){
 	  for(var h = 0 ,hl = idsSelected.length; h< hl; h++ ){
       //alert(ListeOption.options[i].value + " - " + idSelected[h]);
 				if(objTo.options[i].value == idsSelected[h]){
-           objTo.options[i].selected = true;
+                    objTo.options[i].selected = true;
 				}	
 		}
   }    

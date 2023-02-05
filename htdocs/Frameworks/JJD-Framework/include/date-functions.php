@@ -29,6 +29,7 @@ function getSqlDate($dateVar = null, $formatSql = 'Y-m-d H:i:s', $formatFrom = '
 //         echo "<hr>getSqlDate : {$dateVar}<br>{$newDateVar}<br>{$ret}<hr>";
     //$language = $GLOBALS['xoopsConfig']['language'];
 
+		//$dateVar = strtotime($dateVar['date']) + (int)$dateVar['time'];
         $newDate = date_create_from_format($formatFrom, $dateVar);
         $ret = date_format($newDate, $formatSql);
         //echo "<hr>getSqlDate : {$dateVar}<br>{$ret}<hr>";

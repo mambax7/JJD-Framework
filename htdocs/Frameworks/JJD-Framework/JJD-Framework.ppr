@@ -5,6 +5,7 @@ Compilator.CompileOnBackground=0
 Compilator.ProgSaveAll=0
 Compilator.ProgRunSelection=0
 Compilator.LogType=0
+Compilator.LogEncoding=0
 DefaultDir=J:\Xoops\modules-JJD\JJD-Frameworks
 DefaultCP=0
 LogtoEnd=1
@@ -17,8 +18,8 @@ Extensions=*.*
 [Project tree]
 JJD-Frameworks
 	+JJD-Frameworks
-		+class
-			-xoopsform
+		-class
+			+xoopsform
 				-admintable
 					-doc
 						-images
@@ -270,7 +271,7 @@ JJD-Frameworks
 						class\xoopsform\imgbarre\templates\jjd_selecteur_list.html
 					class\xoopsform\imgbarre\admin_imgbarre.php
 					class\xoopsform\imgbarre\formimgbarre.php
-				-loadimages
+				+loadimages
 					class\xoopsform\loadimages\formfile.php
 					class\xoopsform\loadimages\formfilesimages.php
 					class\xoopsform\loadimages\formloadimages.php
@@ -755,7 +756,7 @@ JJD-Frameworks
 						class\xoopsform\selecteur\templates\jjd_selecteur_list.html
 					class\xoopsform\selecteur\Selecteur.php
 					class\xoopsform\selecteur\Selecteur_Admin.php
-				-selectfile
+				+selectfile
 					class\xoopsform\selectfile\formselectfile.php
 				-spin_map
 					-spin_map
@@ -863,10 +864,12 @@ JJD-Frameworks
 				class\xoopsform\formtext.php
 				class\xoopsform\index.html
 				class\xoopsform\themeformjjd.php
-		-css
+		+css
 			css\index.html
 			css\style-item-color.css
 			css\style-item-design.css
+			css\style-item-color-old.css
+			css\style-item-design-old.css
 		-images
 			-icons
 				-16
@@ -1246,9 +1249,9 @@ JJD-Frameworks
 			include\constantes.php
 			include\date-functions.php
 			include\fso.php
-			include\functions.php
-			include\jjd-functions.php
 			include\xform-functions.php
+			include\fw-functions.php
+			include\globales-functions.php
 		+language
 			-english
 				language\english\admin.php
@@ -1259,63 +1262,37 @@ JJD-Frameworks
 				language\french\common.php
 				language\french\modinfo.php
 		back_office.php
-		desktop.ini
 		front_office.php
-		JJD-Frameworks.ppr
 		load.php
 [Open project files]
-0=front_office.php
-1=back_office.php
-2=load.php
-3=class\xoopsform\admintable\doc\admintable.html
-4=include\constantes.php
-5=include\fso.php
-6=language\french\admin.php
-7=include\date-functions.php
-8=language\french\common.php
-9=language\french\modinfo.php
-10=include\functions.php
-11=include\xform-functions.php
-12=include\jjd-functions.php
+0=include\globales-functions.php
+1=include\fw-functions.php
+2=include\fso.php
+3=load.php
+4=back_office.php
+5=front_office.php
+6=include\date-functions.php
 [Selected Project Files]
 Main=
-Selected=include\jjd-functions.php
-[front_office.php]
-TopLine=1
-Caret=15,2
-[back_office.php]
-TopLine=92
-Caret=1,119
-[load.php]
-TopLine=31
-Caret=1,41
-[class\xoopsform\admintable\doc\admintable.html]
-TopLine=62
-Caret=1,62
-[include\constantes.php]
-TopLine=1
-Caret=7,12
-[include\fso.php]
-TopLine=40
-Caret=18,55
-[language\french\admin.php]
-TopLine=1
-Caret=1,15
-[include\date-functions.php]
-TopLine=26
-Caret=3,44
-[language\french\common.php]
-TopLine=1
-Caret=30,12
-[language\french\modinfo.php]
+Selected=include\fw-functions.php
+[include\globales-functions.php]
 TopLine=1
 Caret=1,1
-[include\functions.php]
-TopLine=39
-Caret=1,58
-[include\xform-functions.php]
-TopLine=141
-Caret=42,160
-[include\jjd-functions.php]
+[include\fw-functions.php]
+TopLine=83
+Caret=1,98
+[include\fso.php]
+TopLine=242
+Caret=26,268
+[load.php]
+TopLine=67
+Caret=1,1
+[back_office.php]
+TopLine=31
+Caret=71,68
+[front_office.php]
+TopLine=27
+Caret=24,42
+[include\date-functions.php]
 TopLine=1
-Caret=1,18
+Caret=5,32
