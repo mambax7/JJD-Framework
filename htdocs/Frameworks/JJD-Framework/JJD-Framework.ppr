@@ -1272,9 +1272,11 @@ JJD-Frameworks
 4=back_office.php
 5=front_office.php
 6=include\date-functions.php
+7=language\french\common.php
+8=language\french\modinfo.php
 [Selected Project Files]
 Main=
-Selected=include\fw-functions.php
+Selected=language\french\common.php
 [include\globales-functions.php]
 TopLine=1
 Caret=1,1
@@ -1296,3 +1298,9 @@ Caret=24,42
 [include\date-functions.php]
 TopLine=1
 Caret=5,32
+[language\french\common.php]
+TopLine=1
+Caret=1,24
+[language\french\modinfo.php]
+TopLine=1
+Caret=1,1
