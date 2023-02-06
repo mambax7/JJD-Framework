@@ -1253,7 +1253,7 @@ JJD-Frameworks
 			include\fw-functions.php
 			include\globales-functions.php
 		+language
-			-english
+			+english
 				language\english\admin.php
 				language\english\common.php
 				language\english\modinfo.php
@@ -1274,9 +1274,10 @@ JJD-Frameworks
 6=include\date-functions.php
 7=language\french\common.php
 8=language\french\modinfo.php
+9=language\english\common.php
 [Selected Project Files]
 Main=
-Selected=language\french\common.php
+Selected=language\english\common.php
 [include\globales-functions.php]
 TopLine=1
 Caret=1,1
@@ -1300,7 +1301,10 @@ TopLine=1
 Caret=5,32
 [language\french\common.php]
 TopLine=1
-Caret=1,24
+Caret=1,23
 [language\french\modinfo.php]
 TopLine=1
 Caret=1,1
+[language\english\common.php]
+TopLine=1
+Caret=1,23
