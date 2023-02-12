@@ -155,13 +155,13 @@ __js__;
     
     
 
-		$ret .= '<input type="button" value="' . _CANCEL . '" onClick="history.go(-1);return true;" />&nbsp;';
+	$ret .= '<input type="button" value="' . _CANCEL . '" onClick="history.go(-1);return true;" />&nbsp;';
     $ret .= '<input type="reset" class="formbutton"  name="reset"  id="reset" value="' . _RESET . '" />&nbsp;';
     $ret .= '<input type="' . $this->getType() . '" class="formbutton"  name="' . $this->getName() . '"  id="' . $this->getName() . '" value="' . $this->getValue() . '"' . $this->getExtra() . '  />';
 		
-		if ( $this->_showAdd ) {
+	if ( $this->_showAdd ) {
       $ret .= '&nbsp;<input type="' . $this->getType() . '" class="formbutton"  name="' . "add" . '"  id="' . $this->getName() . '" value="' . _ADD . '"' . $this->getExtra() . '  />';
-		}
+	}
 		
 		return $ret;
 	}

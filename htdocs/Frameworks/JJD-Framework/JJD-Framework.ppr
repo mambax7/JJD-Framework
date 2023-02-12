@@ -6,7 +6,7 @@ Compilator.ProgSaveAll=0
 Compilator.ProgRunSelection=0
 Compilator.LogType=0
 Compilator.LogEncoding=0
-DefaultDir=J:\Xoops\modules-JJD\JJD-Frameworks
+DefaultDir=J:\Xoops\modules-JJD\JJD-Framework\projet\htdocs\Frameworks\JJD-Framework
 DefaultCP=0
 LogtoEnd=1
 DontOpen=0
@@ -16,8 +16,8 @@ ProjectFilesOnly=0
 HTServer=localhost
 Extensions=*.*
 [Project tree]
-JJD-Frameworks
-	+JJD-Frameworks
+JJD-Framework
+	+JJD-Framework
 		-class
 			+xoopsform
 				-admintable
@@ -85,15 +85,15 @@ JJD-Frameworks
 						class\xoopsform\alphabarre\alphabarre\alphabarre.js
 					class\xoopsform\alphabarre\formalphabarre.php
 					class\xoopsform\alphabarre\formalphabarre-js.php
-				-breakLine
-					class\xoopsform\breakLine\formBreakLine.php
-				-checkBoxAll
-					class\xoopsform\checkBoxAll\changelog.txt
-					class\xoopsform\checkBoxAll\formcheckboxall.php
+				-breakline
+					class\xoopsform\breakline\formbreakline.php
+				-checkboxall
+					class\xoopsform\checkboxall\changelog.txt
+					class\xoopsform\checkboxall\formcheckboxall.php
 				-checkboxbin
 					-checkboxbin
 						class\xoopsform\checkboxbin\checkboxbin\checkboxbin.js
-					class\xoopsform\checkboxbin\formBinCheckbox.php
+					class\xoopsform\checkboxbin\formbincheckbox.php
 				-chosen
 					-chosen
 						-docsupport
@@ -122,6 +122,7 @@ JJD-Frameworks
 					-datalist
 						class\xoopsform\datalist\datalist\datalist.js
 					class\xoopsform\datalist\formdatalist.php
+					class\xoopsform\datalist\formdatalist-2022-11-21a.php
 				-doublelist
 					-images
 						-blue
@@ -241,37 +242,7 @@ JJD-Frameworks
 						class\xoopsform\editlist\editlist\editlist.js
 					class\xoopsform\editlist\changelog.txt
 					class\xoopsform\editlist\formeditlist.php
-				-explorer
-					-explorer
-						-images
-							-skins
-						class\xoopsform\explorer\explorer\explorer.css
-						class\xoopsform\explorer\explorer\explorer.js
-					class\xoopsform\explorer\explorer.php
-					class\xoopsform\explorer\get_files.php
-				-imgbarre
-					-language
-						-english
-							class\xoopsform\imgbarre\language\english\imgbarre.php
-							class\xoopsform\imgbarre\language\english\index.html
-						-french
-							class\xoopsform\imgbarre\language\french\imgbarre.php
-							class\xoopsform\imgbarre\language\french\index.html
-						class\xoopsform\imgbarre\language\index.html
-					-templates
-						-lib
-							class\xoopsform\imgbarre\templates\lib\anim.html
-							class\xoopsform\imgbarre\templates\lib\index.html
-							class\xoopsform\imgbarre\templates\lib\lisa.html
-							class\xoopsform\imgbarre\templates\lib\mona.html
-							class\xoopsform\imgbarre\templates\lib\standard.html
-						class\xoopsform\imgbarre\templates\index.html
-						class\xoopsform\imgbarre\templates\jjd_selecteur.html
-						class\xoopsform\imgbarre\templates\jjd_selecteur_fiche.html
-						class\xoopsform\imgbarre\templates\jjd_selecteur_list.html
-					class\xoopsform\imgbarre\admin_imgbarre.php
-					class\xoopsform\imgbarre\formimgbarre.php
-				+loadimages
+				-loadimages
 					class\xoopsform\loadimages\formfile.php
 					class\xoopsform\loadimages\formfilesimages.php
 					class\xoopsform\loadimages\formloadimages.php
@@ -708,148 +679,103 @@ JJD-Frameworks
 						class\xoopsform\notation\notation\index.html
 						class\xoopsform\notation\notation\notation.css
 						class\xoopsform\notation\notation\notation.js
-					-old
-						class\xoopsform\notation\old\notation.js
-						class\xoopsform\notation\old\zzz-notation.min.js
 					class\xoopsform\notation\formnotation.php
 					class\xoopsform\notation\index.html
 					class\xoopsform\notation\modele-notation.php
-				-notedef
-					class\xoopsform\notedef\notedef.php
-					class\xoopsform\notedef\Notedef_Admin.php
-					class\xoopsform\notedef\notedef_ado.php
-				-onglets
-					-onglets
-						-css
-							-old
-								class\xoopsform\onglets\onglets\css\old\onglets-blue.css
-								class\xoopsform\onglets\onglets\css\old\onglets-default.css
-								class\xoopsform\onglets\onglets\css\old\onglets-green.css
-							class\xoopsform\onglets\onglets\css\blue.css
-							class\xoopsform\onglets\onglets\css\green.css
-							class\xoopsform\onglets\onglets\css\onglets-default.css
-							class\xoopsform\onglets\onglets\css\PIE.htc
-							class\xoopsform\onglets\onglets\css\soleil.css
-						class\xoopsform\onglets\onglets\onglets.js
-						class\xoopsform\onglets\onglets\PIE.htc
-						class\xoopsform\onglets\onglets\z-onglets.min.js
-					class\xoopsform\onglets\formonglets.php
-				-selecteur
-					-language
-						-english
-							class\xoopsform\selecteur\language\english\index.html
-							class\xoopsform\selecteur\language\english\selecteur.php
-						-french
-							class\xoopsform\selecteur\language\french\index.html
-							class\xoopsform\selecteur\language\french\selecteur.php
-						class\xoopsform\selecteur\language\index.html
-					-templates
-						-lib
-							class\xoopsform\selecteur\templates\lib\anim.html
-							class\xoopsform\selecteur\templates\lib\index.html
-							class\xoopsform\selecteur\templates\lib\lisa.html
-							class\xoopsform\selecteur\templates\lib\mona.html
-							class\xoopsform\selecteur\templates\lib\standard.html
-						class\xoopsform\selecteur\templates\index.html
-						class\xoopsform\selecteur\templates\jjd_selecteur.html
-						class\xoopsform\selecteur\templates\jjd_selecteur_fiche.html
-						class\xoopsform\selecteur\templates\jjd_selecteur_list.html
-					class\xoopsform\selecteur\Selecteur.php
-					class\xoopsform\selecteur\Selecteur_Admin.php
-				+selectfile
+				-selectfile
 					class\xoopsform\selectfile\formselectfile.php
-				-spin_map
+				-spinmap
 					-spin_map
 						-doc
 							-images
-							class\xoopsform\spin_map\spin_map\doc\spin_map-french.html
+							class\xoopsform\spinmap\spin_map\doc\spin_map-french.html
 						-images
 							-bleu
-								class\xoopsform\spin_map\spin_map\images\bleu\index.html
-								class\xoopsform\spin_map\spin_map\images\bleu\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\bleu\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\bleu\spin_arrows_1.png
+								class\xoopsform\spinmap\spin_map\images\bleu\index.html
+								class\xoopsform\spinmap\spin_map\images\bleu\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\bleu\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\bleu\spin_arrows_1.png
 							-bleu_FPNL
-								class\xoopsform\spin_map\spin_map\images\bleu_FPNL\index.html
-								class\xoopsform\spin_map\spin_map\images\bleu_FPNL\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\bleu_FPNL\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\bleu_FPNL\spin_arrows_1.png
+								class\xoopsform\spinmap\spin_map\images\bleu_FPNL\index.html
+								class\xoopsform\spinmap\spin_map\images\bleu_FPNL\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\bleu_FPNL\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\bleu_FPNL\spin_arrows_1.png
 							-bleu-ud
-								class\xoopsform\spin_map\spin_map\images\bleu-ud\index.html
-								class\xoopsform\spin_map\spin_map\images\bleu-ud\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\bleu-ud\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\bleu-ud\spin_arrows_1.png
+								class\xoopsform\spinmap\spin_map\images\bleu-ud\index.html
+								class\xoopsform\spinmap\spin_map\images\bleu-ud\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\bleu-ud\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\bleu-ud\spin_arrows_1.png
 							-blue_cadreH
-								class\xoopsform\spin_map\spin_map\images\blue_cadreH\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\blue_cadreH\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\blue_cadreH\spin_arrows_1.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreH\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\blue_cadreH\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreH\spin_arrows_1.png
 							-blue_cadreV1
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV1\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV1\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV1\spin_arrows_1.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV1\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV1\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV1\spin_arrows_1.png
 							-blue_cadreV2
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV2\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV2\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV2\spin_arrows_1.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV2\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV2\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV2\spin_arrows_1.png
 							-blue_cadreV3
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV3\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV3\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV3\spin_arrows_1.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV3\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV3\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV3\spin_arrows_1.png
 							-blue_cadreV9
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV9\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV9\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\blue_cadreV9\spin_arrows_1.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV9\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV9\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreV9\spin_arrows_1.png
 							-blue_cadreVud
-								class\xoopsform\spin_map\spin_map\images\blue_cadreVud\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\blue_cadreVud\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\blue_cadreVud\spin_arrows_1.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreVud\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\blue_cadreVud\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\blue_cadreVud\spin_arrows_1.png
 							-default
 								-imgMap
 									-index_fichiers
-										class\xoopsform\spin_map\spin_map\images\default\imgMap\index_fichiers\add.gif
-										class\xoopsform\spin_map\spin_map\images\default\imgMap\index_fichiers\colorPicker.css
-										class\xoopsform\spin_map\spin_map\images\default\imgMap\index_fichiers\default_interface.js
-										class\xoopsform\spin_map\spin_map\images\default\imgMap\index_fichiers\delete.gif
-										class\xoopsform\spin_map\spin_map\images\default\imgMap\index_fichiers\html.gif
-										class\xoopsform\spin_map\spin_map\images\default\imgMap\index_fichiers\imgmap.css
-										class\xoopsform\spin_map\spin_map\images\default\imgMap\index_fichiers\jquery.js
-										class\xoopsform\spin_map\spin_map\images\default\imgMap\index_fichiers\jquery-1.js
-										class\xoopsform\spin_map\spin_map\images\default\imgMap\index_fichiers\upload.htm
-										class\xoopsform\spin_map\spin_map\images\default\imgMap\index_fichiers\zoom.gif
-									class\xoopsform\spin_map\spin_map\images\default\imgMap\index.html
-								class\xoopsform\spin_map\spin_map\images\default\spin_arrows - Copie.ini
-								class\xoopsform\spin_map\spin_map\images\default\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\default\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\default\spin_arrows_1.png
+										class\xoopsform\spinmap\spin_map\images\default\imgMap\index_fichiers\add.gif
+										class\xoopsform\spinmap\spin_map\images\default\imgMap\index_fichiers\colorPicker.css
+										class\xoopsform\spinmap\spin_map\images\default\imgMap\index_fichiers\default_interface.js
+										class\xoopsform\spinmap\spin_map\images\default\imgMap\index_fichiers\delete.gif
+										class\xoopsform\spinmap\spin_map\images\default\imgMap\index_fichiers\html.gif
+										class\xoopsform\spinmap\spin_map\images\default\imgMap\index_fichiers\imgmap.css
+										class\xoopsform\spinmap\spin_map\images\default\imgMap\index_fichiers\jquery.js
+										class\xoopsform\spinmap\spin_map\images\default\imgMap\index_fichiers\jquery-1.js
+										class\xoopsform\spinmap\spin_map\images\default\imgMap\index_fichiers\upload.htm
+										class\xoopsform\spinmap\spin_map\images\default\imgMap\index_fichiers\zoom.gif
+									class\xoopsform\spinmap\spin_map\images\default\imgMap\index.html
+								class\xoopsform\spinmap\spin_map\images\default\spin_arrows - Copie.ini
+								class\xoopsform\spinmap\spin_map\images\default\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\default\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\default\spin_arrows_1.png
 							-default1
-								class\xoopsform\spin_map\spin_map\images\default1\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\default1\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\default1\spin_arrows_1.png
+								class\xoopsform\spinmap\spin_map\images\default1\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\default1\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\default1\spin_arrows_1.png
 							-demi_rond
-								class\xoopsform\spin_map\spin_map\images\demi_rond\index.html
-								class\xoopsform\spin_map\spin_map\images\demi_rond\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\demi_rond\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\demi_rond\spin_arrows_1.gif
+								class\xoopsform\spinmap\spin_map\images\demi_rond\index.html
+								class\xoopsform\spinmap\spin_map\images\demi_rond\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\demi_rond\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\demi_rond\spin_arrows_1.gif
 							-grey_buttons
-								class\xoopsform\spin_map\spin_map\images\grey_buttons\index.html
-								class\xoopsform\spin_map\spin_map\images\grey_buttons\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\grey_buttons\spin_arrows_0.gif
-								class\xoopsform\spin_map\spin_map\images\grey_buttons\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\grey_buttons\index.html
+								class\xoopsform\spinmap\spin_map\images\grey_buttons\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\grey_buttons\spin_arrows_0.gif
+								class\xoopsform\spinmap\spin_map\images\grey_buttons\spin_arrows_0.png
 							-point
-								class\xoopsform\spin_map\spin_map\images\point\index.html
-								class\xoopsform\spin_map\spin_map\images\point\spin_arrows.ini
-								class\xoopsform\spin_map\spin_map\images\point\spin_arrows_0.png
-								class\xoopsform\spin_map\spin_map\images\point\spin_arrows_1.png
-							class\xoopsform\spin_map\spin_map\images\index.html
-							class\xoopsform\spin_map\spin_map\images\spin_masque.gif
-							class\xoopsform\spin_map\spin_map\images\spin_masque.png
-							class\xoopsform\spin_map\spin_map\images\spin_masque-2.png
-						class\xoopsform\spin_map\spin_map\bulle.js
-						class\xoopsform\spin_map\spin_map\spin_map.css
-						class\xoopsform\spin_map\spin_map\spin_map.js
-						class\xoopsform\spin_map\spin_map\spin_map_new.js
-					class\xoopsform\spin_map\formspinmap.php
-					class\xoopsform\spin_map\index.html
+								class\xoopsform\spinmap\spin_map\images\point\index.html
+								class\xoopsform\spinmap\spin_map\images\point\spin_arrows.ini
+								class\xoopsform\spinmap\spin_map\images\point\spin_arrows_0.png
+								class\xoopsform\spinmap\spin_map\images\point\spin_arrows_1.png
+							class\xoopsform\spinmap\spin_map\images\index.html
+							class\xoopsform\spinmap\spin_map\images\spin_masque.gif
+							class\xoopsform\spinmap\spin_map\images\spin_masque.png
+							class\xoopsform\spinmap\spin_map\images\spin_masque-2.png
+						class\xoopsform\spinmap\spin_map\bulle.js
+						class\xoopsform\spinmap\spin_map\spin_map.css
+						class\xoopsform\spinmap\spin_map\spin_map.js
+						class\xoopsform\spinmap\spin_map\spin_map_new.js
+					class\xoopsform\spinmap\formspinmap.php
+					class\xoopsform\spinmap\index.html
 				class\xoopsform\form_jjd.php
 				class\xoopsform\formbuttontray.php
 				class\xoopsform\formElementTable.php
@@ -861,14 +787,16 @@ JJD-Frameworks
 				class\xoopsform\formSelectCategory.php
 				class\xoopsform\formselectfile.php
 				class\xoopsform\formselectsystab.php
+				class\xoopsform\formtabletray.php
 				class\xoopsform\formtext.php
 				class\xoopsform\index.html
 				class\xoopsform\themeformjjd.php
-		+css
+			class\index.html
+		-css
 			css\index.html
 			css\style-item-color.css
-			css\style-item-design.css
 			css\style-item-color-old.css
+			css\style-item-design.css
 			css\style-item-design-old.css
 		-images
 			-icons
@@ -1243,68 +1171,124 @@ JJD-Frameworks
 					images\icons\bookmarks\xnewsvine.gif
 					images\icons\bookmarks\yahoomyweb.gif
 				images\icons\_img.html
-				images\icons\build html img.xls
 				images\icons\index.html
+			images\index.html
 		+include
 			include\constantes.php
 			include\date-functions.php
 			include\fso.php
-			include\xform-functions.php
 			include\fw-functions.php
 			include\globales-functions.php
+			include\index.html
+			include\xform-functions.php
+		-js
+			-trierTableauHTML
+				-images
+					-chiffres_Garamond
+						js\trierTableauHTML\images\chiffres_Garamond\chiffre_0.gif
+						js\trierTableauHTML\images\chiffres_Garamond\chiffre_1.gif
+						js\trierTableauHTML\images\chiffres_Garamond\chiffre_2.gif
+						js\trierTableauHTML\images\chiffres_Garamond\chiffre_3.gif
+						js\trierTableauHTML\images\chiffres_Garamond\chiffre_4.gif
+						js\trierTableauHTML\images\chiffres_Garamond\chiffre_5.gif
+						js\trierTableauHTML\images\chiffres_Garamond\chiffre_6.gif
+						js\trierTableauHTML\images\chiffres_Garamond\chiffre_7.gif
+						js\trierTableauHTML\images\chiffres_Garamond\chiffre_8.gif
+						js\trierTableauHTML\images\chiffres_Garamond\chiffre_9.gif
+						js\trierTableauHTML\images\chiffres_Garamond\index.html
+					-skin-arrow-blue-02
+						js\trierTableauHTML\images\skin-arrow-blue-02\down_off.png
+						js\trierTableauHTML\images\skin-arrow-blue-02\down_on.png
+						js\trierTableauHTML\images\skin-arrow-blue-02\index.html
+						js\trierTableauHTML\images\skin-arrow-blue-02\up_off.png
+						js\trierTableauHTML\images\skin-arrow-blue-02\up_on.png
+					-skin-arrow-blue-round
+						js\trierTableauHTML\images\skin-arrow-blue-round\down_off.png
+						js\trierTableauHTML\images\skin-arrow-blue-round\down_on.png
+						js\trierTableauHTML\images\skin-arrow-blue-round\index.html
+						js\trierTableauHTML\images\skin-arrow-blue-round\up_off.png
+						js\trierTableauHTML\images\skin-arrow-blue-round\up_on.png
+					-skin-arrow-green
+						js\trierTableauHTML\images\skin-arrow-green\down_off.png
+						js\trierTableauHTML\images\skin-arrow-green\down_on.png
+						js\trierTableauHTML\images\skin-arrow-green\index.html
+						js\trierTableauHTML\images\skin-arrow-green\up_off.png
+						js\trierTableauHTML\images\skin-arrow-green\up_on.png
+					-skin-arrow-red-02
+						js\trierTableauHTML\images\skin-arrow-red-02\down_off.png
+						js\trierTableauHTML\images\skin-arrow-red-02\down_on.png
+						js\trierTableauHTML\images\skin-arrow-red-02\index.html
+						js\trierTableauHTML\images\skin-arrow-red-02\up_off.png
+						js\trierTableauHTML\images\skin-arrow-red-02\up_on.png
+					-skin-triangle-blue
+						js\trierTableauHTML\images\skin-triangle-blue\down_off.gif
+						js\trierTableauHTML\images\skin-triangle-blue\down_on.gif
+						js\trierTableauHTML\images\skin-triangle-blue\index.html
+						js\trierTableauHTML\images\skin-triangle-blue\up_down.gif
+						js\trierTableauHTML\images\skin-triangle-blue\up_on.gif
+					-skin-triangle-green
+						js\trierTableauHTML\images\skin-triangle-green\down_off.gif
+						js\trierTableauHTML\images\skin-triangle-green\down_on.gif
+						js\trierTableauHTML\images\skin-triangle-green\index.html
+						js\trierTableauHTML\images\skin-triangle-green\up_down.gif
+						js\trierTableauHTML\images\skin-triangle-green\up_on.gif
+				js\trierTableauHTML\_trierTableauHTML.ppr
+				js\trierTableauHTML\help.txt
+				js\trierTableauHTML\index.html
+				js\trierTableauHTML\trierTableau.js
+			js\config_highslide.js
+			js\index.html
 		+language
-			+english
+			-english
 				language\english\admin.php
 				language\english\common.php
+				language\english\index.html
 				language\english\modinfo.php
 			+french
 				language\french\admin.php
 				language\french\common.php
+				language\french\index.html
 				language\french\modinfo.php
+			language\index.html
+		-ressources
+			ressources\build html img.xls
+			ressources\index.html
 		back_office.php
 		front_office.php
 		load.php
 [Open project files]
 0=include\globales-functions.php
 1=include\fw-functions.php
-2=include\fso.php
-3=load.php
+2=load.php
+3=include\xform-functions.php
 4=back_office.php
-5=front_office.php
-6=include\date-functions.php
-7=language\french\common.php
-8=language\french\modinfo.php
-9=language\english\common.php
+5=language\french\common.php
+6=language\french\admin.php
+7=include\fso.php
 [Selected Project Files]
 Main=
-Selected=language\english\common.php
+Selected=include\fso.php
 [include\globales-functions.php]
-TopLine=1
-Caret=1,1
+TopLine=29
+Caret=20,52
 [include\fw-functions.php]
-TopLine=83
-Caret=1,98
-[include\fso.php]
-TopLine=242
-Caret=26,268
+TopLine=323
+Caret=9,346
 [load.php]
-TopLine=67
-Caret=1,1
+TopLine=54
+Caret=1,74
+[include\xform-functions.php]
+TopLine=155
+Caret=1,188
 [back_office.php]
-TopLine=31
-Caret=71,68
-[front_office.php]
-TopLine=27
-Caret=24,42
-[include\date-functions.php]
-TopLine=1
-Caret=5,32
+TopLine=70
+Caret=1,111
 [language\french\common.php]
 TopLine=1
-Caret=1,23
-[language\french\modinfo.php]
+Caret=30,12
+[language\french\admin.php]
 TopLine=1
-Caret=1,1
-[language\english\common.php]
-TopLine=1
-Caret=1,23
+Caret=1,16
+[include\fso.php]
+TopLine=246
+Caret=1,226

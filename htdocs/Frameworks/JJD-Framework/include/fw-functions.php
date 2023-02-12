@@ -111,6 +111,13 @@ function load_css($dirname = '', $loadOldCss = true){
 
     $GLOBALS['xoTheme']->addStylesheet($GLOBALS['xoops']->url($dir . "/style.css"));
 }
+/**********************************************
+ *
+ **********************************************/
+function load_trierTableauHTML(){
+    $url = XOOPS_URL . "/Frameworks/JJD-Framework/js/trierTableauHTML/trierTableau.js";
+    $GLOBALS['xoTheme']->addScript($url);
+}
 
 /**************************************************************
  * 
@@ -322,6 +329,21 @@ function array2js($name, $options, $isNew = false, $bolEcho = false){
   if ($bolEcho) echo $js;
   
   return $js;
+}
+/****************************************************************************
+Genere les parametres d'une URL
+$name : nom du ta&bleau associatif (cle=name / value)
+$addPrefix : caractere "?" ou "&" ajouter en premier
+retour : string liste des parameres pu l'url
+ ****************************************************************************/
+function array2urlParams($params, $addPrefix = '', $url = ''){
+
+  $tUrl = array();
+  
+  foreach($params as $key => $value){
+      $tUrl[] = "{$key}={$value}"; 
+  }
+  return $url . $addPrefix . implode("&", $tUrl);
 }
 
 /* *********************************************

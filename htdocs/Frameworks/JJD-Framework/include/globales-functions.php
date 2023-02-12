@@ -49,6 +49,9 @@ Charge les fichiers de langues
 ****************************************************************************/
 function loadLanguageFWJJD($file){
 global $xoopsConfig;
+  // au cas ou un autre module tenterais de charger les constantes de langue  
+  if(defined ('_CO_JJD_LOCALE_MONTH')) return true;
+  
   $root =  JJD_PATH . "/language/"; 
   $lang = $root . $xoopsConfig['language'] . "/" . $file . ".php";
 //echo "<hr>lg = {$lang}<hr>";

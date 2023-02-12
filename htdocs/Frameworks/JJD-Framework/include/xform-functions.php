@@ -139,7 +139,7 @@ global $xoopsDB;
 ****** */
 function loadXForm($name){
     $name = strtolower($name);
-    $f = JJD_PATH_XFORMS . "/chosen/{$name}.php";
+    $f = JJD_PATH_XFORMS . "/{$name}/form{$name}.php";
     if (!file_exists($f))
       return include_once($f);
     else
@@ -157,7 +157,7 @@ function loadXForms($namesString, $sep = ","){
     for ($h=0; $h < count($arr); $h++){
         $name = strtolower($arr['$h']);
         $f = JJD_PATH_XFORMS . "/{$name}/form{$name}.php";
-        if (file_exists($f)) include_once($f);
+        //if (file_exists($f)) include_once($f);
     }
 }
 
@@ -166,14 +166,26 @@ function loadXForms($namesString, $sep = ","){
 ************************** */
 function loadAllXForms(){
          
+    //chargement des xforms composés d'un dossier
     $arr = \XoopsLists::getDirListAsArray(JJD_PATH_XFORMS);
 //    echoArray($arr);
+
     foreach ($arr as $key=>$fld){
         $f = JJD_PATH_XFORMS . "/" . $fld .  "/form" . $fld . ".php";
         if (file_exists($f)) include_once($f);
         //if (!file_exists($f)) echo "{$f}<br>";
+        //echo "{$f}<br>";
     }
-
+    
+    //chargement des xforms formés d'un seul fichier
+    $arr = \XoopsLists::getFileListAsArray(JJD_PATH_XFORMS);
+    //echoArray($arr);
+    foreach ($arr as $key=>$file){
+        if ($file === "index.html") continue;
+        $f = JJD_PATH_XFORMS . "/" . $file;
+        if (file_exists($f)) include_once($f);
+        //if (file_exists($f)) echo "{$f}<br>";
+    }
 }
 
 ?>
