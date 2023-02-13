@@ -223,7 +223,7 @@ if ($path=='') return false;
 /**********************************************************************
  * 
  **********************************************************************/
-function addHtmlIndex2folder($sRoot){
+function addHtmlIndex2folder($sRoot, $browseSubfolder = false){
     
     if (!is_dir($sRoot)) return false;
     //echo "\n<hr>addHtmlIndex2folder<br>{$sRoot}<hr>\n";
@@ -237,7 +237,11 @@ function addHtmlIndex2folder($sRoot){
         saveTexte2File2($fileIndex,  $content, 0666);
     } 
 
-
+    if($browseSubfolder){
+         $folders = \XoopsLists::getDirListAsArray($sRoot);
+         foreach($folders AS $key=>$ubfolder)
+            addHtmlIndex2folder($sRoot .'/' . $ubfolder);
+    }
 }
 /**********************************************************************
  * 
