@@ -682,7 +682,7 @@ JJD-Framework
 					class\xoopsform\notation\formnotation.php
 					class\xoopsform\notation\index.html
 					class\xoopsform\notation\modele-notation.php
-				-selectfile
+				+selectfile
 					class\xoopsform\selectfile\formselectfile.php
 				-spinmap
 					-spin_map
@@ -1257,38 +1257,14 @@ JJD-Framework
 		front_office.php
 		load.php
 [Open project files]
-0=include\globales-functions.php
-1=include\fw-functions.php
-2=load.php
-3=include\xform-functions.php
-4=back_office.php
-5=language\french\common.php
-6=language\french\admin.php
-7=include\fso.php
+0=back_office.php
+1=load.php
 [Selected Project Files]
 Main=
-Selected=include\fso.php
-[include\globales-functions.php]
-TopLine=29
-Caret=20,52
-[include\fw-functions.php]
-TopLine=323
-Caret=9,346
-[load.php]
-TopLine=54
-Caret=1,74
-[include\xform-functions.php]
-TopLine=155
-Caret=1,188
+Selected=back_office.php
 [back_office.php]
-TopLine=70
-Caret=1,111
-[language\french\common.php]
 TopLine=1
-Caret=30,12
-[language\french\admin.php]
+Caret=15,2
+[load.php]
 TopLine=1
-Caret=1,16
-[include\fso.php]
-TopLine=200
-Caret=22,241
+Caret=1,1

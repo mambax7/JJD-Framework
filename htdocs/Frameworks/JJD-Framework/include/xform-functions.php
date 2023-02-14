@@ -157,7 +157,7 @@ function loadXForms($namesString, $sep = ","){
     for ($h=0; $h < count($arr); $h++){
         $name = strtolower($arr['$h']);
         $f = JJD_PATH_XFORMS . "/{$name}/form{$name}.php";
-        //if (file_exists($f)) include_once($f);
+        if (file_exists($f)) include_once($f);
     }
 }
 

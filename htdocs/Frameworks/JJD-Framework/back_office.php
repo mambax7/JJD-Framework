@@ -1,5 +1,5 @@
 <?php
-
+namespace JJD;
 // +-----------------------------------------------------------------------+
 // | Copyright (c) 2014, Charles Dezert                                    |
 // | All rights reserved.                                                  |
