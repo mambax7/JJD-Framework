@@ -137,6 +137,26 @@ global $xoopsDB;
 /* *******
 
 ****** */
+function loadXFormArr($arr){
+    if(!is_array($arr))  return false;  
+    foreach($arr as $key=>$name){
+        ///verifie si le xfoem est a la racine du dossier
+        $f = JJD_PATH_XFORMS . "/{$name}.php";
+        
+        //si il n'y est pas verifie si il est dans un sous dossier
+        if (!file_exists($f)) $f = JJD_PATH_XFORMS . "/{$name}/form{$name}.php";
+        
+        //il y a erreur sur lnom du xForm
+        if (!file_exists($f)) return false;
+        
+        include_once($f);
+    } 
+    return true;
+}
+
+/* *******
+
+****** */
 function loadXForm($name){
     $name = strtolower($name);
     $f = JJD_PATH_XFORMS . "/{$name}/form{$name}.php";

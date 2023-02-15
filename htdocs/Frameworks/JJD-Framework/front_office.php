@@ -75,34 +75,8 @@ loadLanguageFWJJD('common');
 include_once (XOOPS_ROOT_PATH . '/class/xoopsformloader.php');
 require_once (XOOPS_ROOT_PATH . '/class/template.php');
 //------------------------------------------------------------------
-/*
-
-//include_once ($xform . '/grouppermform.php');
-include_once (JJD_PATH_XFORMS . '/formLineBreak.php');
-
-include_once (JJD_PATH_XFORMS . '/formimg.php');
-include_once (JJD_PATH_XFORMS . '/formnumber.php');
-
-include_once (JJD_PATH_XFORMS . '/admintable/formadmintable.php');
-include_once (JJD_PATH_XFORMS . '/spin_map/formspinmap.php');
-include_once (JJD_PATH_XFORMS . '/checkboxbin/formBinCheckbox.php');
-include_once (JJD_PATH_XFORMS . '/breakLine/formBreakLine.php');
-include_once (JJD_PATH_XFORMS . '/editlist/formeditlist.php');
-include_once (JJD_PATH_XFORMS . '/alphabarre/formalphabarre.php');
-include_once (JJD_PATH_XFORMS . '/notation/formnotation.php');
-include_once (JJD_PATH_XFORMS . '/formimage.php');
-include_once (JJD_PATH_XFORMS . '/loadimages/formloadimages.php');
-include_once (JJD_PATH_XFORMS . '/chosen/formchosen.php');
-include_once (JJD_PATH_XFORMS . '/formElementTable.php');
-
-include_once (JJD_PATH_XFORMS . '/formSelectCategory.php');
-include_once (JJD_PATH_XFORMS . '/selectfile/formselectfile.php');
-include_once (JJD_PATH_XFORMS . '/datalist/formdatalist.php');
-include_once (JJD_PATH_XFORMS . '/themeformjjd.php');
-include_once (JJD_PATH_XFORMS . '/formselectsystab.php');
-include_once (JJD_PATH_XFORMS . '/formbuttontray.php');
-include_once (JJD_PATH_XFORMS . '/FormFileCheckBox.php');
-*/
+$xFormsArray = array('formLineBreak','formimg','formnumber');
+\JJD\loadXFormArr($xFormsArray);
 
 
 

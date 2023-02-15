@@ -18,7 +18,7 @@ Extensions=*.*
 [Project tree]
 JJD-Framework
 	+JJD-Framework
-		-class
+		+class
 			+xoopsform
 				-admintable
 					-doc
@@ -293,7 +293,7 @@ JJD-Framework
 					class\xoopsform\multiuploads\_multiuploads.ppr
 					class\xoopsform\multiuploads\formmultiuploads.php
 					class\xoopsform\multiuploads\index.html
-				-notation
+				+notation
 					-notation
 						-doc
 							-images
@@ -1259,12 +1259,28 @@ JJD-Framework
 [Open project files]
 0=back_office.php
 1=load.php
+2=front_office.php
+3=include\xform-functions.php
+4=class\xoopsform\notation\formnotation.php
+5=include\globales-functions.php
 [Selected Project Files]
 Main=
-Selected=back_office.php
+Selected=class\xoopsform\notation\formnotation.php
 [back_office.php]
-TopLine=1
-Caret=15,2
+TopLine=61
+Caret=1,87
 [load.php]
+TopLine=61
+Caret=1,113
+[front_office.php]
+TopLine=51
+Caret=29,83
+[include\xform-functions.php]
+TopLine=125
+Caret=22,140
+[class\xoopsform\notation\formnotation.php]
 TopLine=1
-Caret=1,1
+Caret=33,10
+[include\globales-functions.php]
+TopLine=33
+Caret=1,67
