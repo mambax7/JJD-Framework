@@ -20,7 +20,7 @@ namespace JJD;
  * @param array|null         $options
  * @return \XoopsFormDhtmlTextArea|\XoopsFormEditor
  */
-function getAdminEditor($helper = null, $caption, $name, $value, $description = '')
+function getAdminEditor($helper, $caption, $name, $value, $description = '')
 {
     /** @var Creaquiz\Helper $helper */
     $editorConfigs = [];

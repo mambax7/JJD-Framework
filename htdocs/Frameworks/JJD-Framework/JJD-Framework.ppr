@@ -18,7 +18,7 @@ Extensions=*.*
 [Project tree]
 JJD-Framework
 	+JJD-Framework
-		+class
+		-class
 			+xoopsform
 				-admintable
 					-doc
@@ -1265,19 +1265,19 @@ JJD-Framework
 5=include\globales-functions.php
 [Selected Project Files]
 Main=
-Selected=class\xoopsform\notation\formnotation.php
+Selected=include\xform-functions.php
 [back_office.php]
 TopLine=61
 Caret=1,87
 [load.php]
-TopLine=61
+TopLine=69
 Caret=1,113
 [front_office.php]
 TopLine=51
 Caret=29,83
 [include\xform-functions.php]
-TopLine=125
-Caret=22,140
+TopLine=1
+Caret=32,23
 [class\xoopsform\notation\formnotation.php]
 TopLine=1
 Caret=33,10
