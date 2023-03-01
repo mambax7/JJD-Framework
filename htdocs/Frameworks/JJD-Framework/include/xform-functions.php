@@ -141,11 +141,12 @@ function loadXFormArr($arr){
     if(!is_array($arr))  return false;  
     foreach($arr as $key=>$name){
         ///verifie si le xfoem est a la racine du dossier
-        $f = JJD_PATH_XFORMS . "/{$name}.php";
+        $f = JJD_PATH_XFORMS . "/form{$name}.php";
         
         //si il n'y est pas verifie si il est dans un sous dossier
         if (!file_exists($f)) $f = JJD_PATH_XFORMS . "/{$name}/form{$name}.php";
-        
+
+//echo "{$f}<hr>" ;       
         //il y a erreur sur lnom du xForm
         if (!file_exists($f)) return false;
         
@@ -185,7 +186,8 @@ function loadXForms($namesString, $sep = ","){
 
 ************************** */
 function loadAllXForms(){
-         
+    xoops_load('XoopsFormLoader');      
+       
     //chargement des xforms composés d'un dossier
     $arr = \XoopsLists::getDirListAsArray(JJD_PATH_XFORMS);
 //    echoArray($arr);

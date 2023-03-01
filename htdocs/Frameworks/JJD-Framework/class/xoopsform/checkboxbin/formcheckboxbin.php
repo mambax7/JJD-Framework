@@ -23,7 +23,10 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
 // /**
 //  * A list of chextbox that generate a bin value
 //  */
-class XoopsFormBinCheckbox extends XoopsFormElement
+class XoopsFormBinCheckbox extends xoopsFormCheckboxBin
+{  }
+
+class xoopsFormCheckboxBin extends XoopsFormElement
 {
     /**
      * Initial text
@@ -94,16 +97,19 @@ class XoopsFormBinCheckbox extends XoopsFormElement
     
     var $path = '';
     var $url = '';
-
+    var $className = 'checkboxbin';
 
     function __construct($caption, $name, $value = 0, 
                          $cols = 1, $allowCheckAll = false,
                          $optionsSeparator = ";")
     {
+        $this->className = basename(dirname(__FILE__));
 
-      $this->path = str_replace('\\','/',dirname(__FILE__)) . '/checkboxbin';
+      $this->path = str_replace('\\','/',dirname(__FILE__)) . '/' . $this->className;
 //       $this->url = str_replace(XOOPS_ROOT_PATH, XOOPS_URL, $this->path);
-      $this->url = str_replace(JJD_PATH, JJD_URL, $this->path);
+
+      $this->url = JJD_XFORM_URL .  '/' . 'checkboxbin';
+ 
 // echo "<hr>" . XOOPS_ROOT_PATH . "<br>" 
 //             . JJD_PATH . "<br>" 
 //             . JJD_URL . "<br>" 
@@ -325,8 +331,8 @@ class XoopsFormBinCheckbox extends XoopsFormElement
       global $xoTheme;
       //$xoTheme->addStylesheet(XOOPS_URL . "/class/xoopsform/notation/notation/notation.css");
       //$xoTheme->addStylesheet(XOOPS_URL . "/class/xoopsform/notation/notation.css");
-      $xoTheme->addScript($this->url . '/checkboxbin.js');
-// echo "<hr>" . $this->url . '/checkboxbin.js' . "<hr>";
+      $xoTheme->addScript($this->url . '/js/' . $this->className . '.js');
+
         if ($this->_cols < 0){
           $row = 1;
           $cols = count($this->_options);
@@ -388,7 +394,7 @@ class XoopsFormBinCheckbox extends XoopsFormElement
 // echo "{$k} - {$value} = "   . $this->isBitOk($k, $value) . " <br>";      
 // echo "{$k} - {$value} = "   .  ((($k & $value)!=0) ? 1 : 0) . " <br>";      
           //$v = $this->isBitOk($k, $value);
-          $v = ((($k & $value)!=0) ? 1 : 0);
+          $v = (((pow(2, $k) & $value)!=0) ? 1 : 0);
           $checked = (($v == 1)) ? 'checked' : 0;
           if (!$this->_showCaptions) $caption = "";
           $tHtml[] = sprintf($line, $k, $checked, $caption, $k, $groupeName);

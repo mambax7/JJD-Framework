@@ -4,7 +4,7 @@
 //class XoopsFormNotation extends XoopsFormElement  
 //include_once("../form_jjd.php");
 //include_once(JJD_FOEM_PATH . "/form_jjd.php");
-include_once(dirname(dirname(__FILE__)) . "/form_jjd.php");
+//include_once(dirname(dirname(__FILE__)) . "/form_jjd.php");
 
 //class XoopsFormNotation extends Form_JJD  
 class XoopsFormNotation extends XoopsFormElement   

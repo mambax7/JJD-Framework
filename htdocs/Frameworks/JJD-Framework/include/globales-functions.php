@@ -44,6 +44,23 @@ function isBitOk($bitIndex, $binValue){
 
 }
 
+/**
+ * Returns an array of boolean
+ * @$valueBin  int binaire
+ * @return array
+ */
+function convert_bin_to_array($valueBin)  
+{      
+    $tBin = array();                                  
+    for($h = 0; $h < 32; $h++) {
+        $tBin[$h] =     (($valueBin & pow(2,$h))  != 0);
+    }
+
+//echo "<hr><pre>" .  print_r($tBin, true) . "</pre><hr>";        
+     
+    return $tBin;
+}
+
 /***************************************************************************
 Charge les fichiers de langues
 ****************************************************************************/
