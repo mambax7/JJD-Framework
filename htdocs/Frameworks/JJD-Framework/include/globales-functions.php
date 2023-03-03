@@ -49,10 +49,10 @@ function isBitOk($bitIndex, $binValue){
  * @$valueBin  int binaire
  * @return array
  */
-function convert_bin_to_array($valueBin)  
+function convert_bin_to_array($valueBin, $nbMaxBits = 32)  
 {      
     $tBin = array();                                  
-    for($h = 0; $h < 32; $h++) {
+    for($h = 0; $h < $nbMaxBits; $h++) {
         $tBin[$h] =     (($valueBin & pow(2,$h))  != 0);
     }
 
@@ -67,7 +67,7 @@ Charge les fichiers de langues
 function loadLanguageFWJJD($file){
 global $xoopsConfig;
   // au cas ou un autre module tenterais de charger les constantes de langue  
-  if(defined ('_CO_JJD_LOCALE_MONTH')) return true;
+  if(defined ('_CO_JJD_MONTH_DAY_FR')) return true;
   
   $root =  JJD_PATH . "/language/"; 
   $lang = $root . $xoopsConfig['language'] . "/" . $file . ".php";

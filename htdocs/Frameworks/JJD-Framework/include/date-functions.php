@@ -40,23 +40,28 @@ function getSqlDate($dateVar = null, $formatSql = 'Y-m-d H:i:s', $formatFrom = '
   }
 
 // Convertit une date ou un timestamp en français
-function dateToLocale($dateStr) 
+function dateToLocale($dateStr, $langTo = 'FR', $langFrom = 'EN') 
 {
-//echo _CO_JJD_ENGLISH_MONTH."<br>"._CO_JJD_LOCALE_MONTH."<br>";
-    $english_months = explode(',', _CO_JJD_ENGLISH_MONTH);
-    $french_months = explode(',',  _CO_JJD_LOCALE_MONTH);
-    return str_replace($english_months, $french_months, $dateStr);
-    
 
+    $from = explode(',', constant('_CO_JJD_MONTH_DAY_' . $langFrom));
+    $to   = explode(',',  constant('_CO_JJD_MONTH_DAY_' . $langTo));
+    $dateStr = str_replace($from, $to, $dateStr);
+    
+    $from = explode(',', constant('_CO_JJD_MONTH_DAY_3_' . $langFrom));
+    $to   = explode(',',  constant('_CO_JJD_MONTH_DAY_3_' . $langTo));
+    $dateStr = str_replace($from, $to, $dateStr);
+
+    return $dateStr;
 }
   
 /**************************************************************
  * 
  * ************************************************************/
-function getDateSql2Str($dateSql, $formatSql = 'd-m-Y H:i:s')
-{setlocale(LC_TIME, "fr_FR");
-    $dateStr = date($formatSql, strtotime ($dateSql));
-    return dateToLocale($dateStr);
+function getDateSql2Str($dateSql, $format = 'd-m-Y H:i:s', $langTo = 'FR', $langFrom = 'EN')
+{        
+    setlocale(LC_TIME, "fr_FR");
+    $dateStr = date($format, strtotime ($dateSql));          
+    return dateToLocale($dateStr, $langTo, $langFrom);
 }
 
 /**************************************************************

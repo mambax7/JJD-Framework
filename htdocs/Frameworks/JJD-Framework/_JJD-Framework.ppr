@@ -13,6 +13,7 @@ DontOpen=0
 AbsolutePath=0
 FileFormat=0
 ProjectFilesOnly=0
+HTServer=localhost
 Extensions=*.*
 [Project tree]
 _JJD-Framework
@@ -1186,8 +1187,8 @@ _JJD-Framework
 				js\trierTableauHTML\trierTableau.js
 			js\config_highslide.js
 			js\index.html
-		-language
-			-english
+		+language
+			+english
 				language\english\admin.php
 				language\english\common.php
 				language\english\index.html
@@ -1209,21 +1210,33 @@ _JJD-Framework
 2=include\xform-functions.php
 3=include\globales-functions.php
 4=class\xoopsform\formLineBreak.php
+5=include\date-functions.php
+6=language\french\common.php
+7=language\english\common.php
 [Selected Project Files]
 Main=
-Selected=include\xform-functions.php
+Selected=include\constantes.php
 [load.php]
 TopLine=27
 Caret=1,44
 [include\constantes.php]
 TopLine=1
-Caret=1,11
+Caret=27,12
 [include\xform-functions.php]
 TopLine=139
 Caret=3,149
 [include\globales-functions.php]
-TopLine=3
-Caret=1,22
+TopLine=51
+Caret=22,55
 [class\xoopsform\formLineBreak.php]
 TopLine=1
 Caret=25,26
+[include\date-functions.php]
+TopLine=30
+Caret=20,63
+[language\french\common.php]
+TopLine=1
+Caret=1,18
+[language\english\common.php]
+TopLine=1
+Caret=103,27
