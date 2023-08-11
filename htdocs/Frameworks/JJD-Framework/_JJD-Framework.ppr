@@ -5,7 +5,6 @@ Compilator.CompileOnBackground=0
 Compilator.ProgSaveAll=0
 Compilator.ProgRunSelection=0
 Compilator.LogType=0
-Compilator.LogEncoding=0
 DefaultDir=D:\_JJD-WorkSpace-D\Wamp-Serveur\Sites\xoops-2511b-fr\www\Frameworks\JJD-Framework
 DefaultCP=0
 LogtoEnd=1
@@ -91,7 +90,7 @@ _JJD-Framework
 					class\xoopsform\checkboxall\changelog.txt
 					class\xoopsform\checkboxall\formcheckboxall.php
 				-checkboxbin
-					-js
+					+js
 						class\xoopsform\checkboxbin\js\checkboxbin.js
 					class\xoopsform\checkboxbin\formcheckboxbin.php
 				-chosen
@@ -242,7 +241,7 @@ _JJD-Framework
 						class\xoopsform\editlist\editlist\editlist.js
 					class\xoopsform\editlist\changelog.txt
 					class\xoopsform\editlist\formeditlist.php
-				-loadimages
+				+loadimages
 					class\xoopsform\loadimages\formfile.php
 					class\xoopsform\loadimages\formfilesimages.php
 					class\xoopsform\loadimages\formloadimages.php
@@ -741,6 +740,7 @@ _JJD-Framework
 				class\xoopsform\formtabletray.php
 				class\xoopsform\index.html
 				class\xoopsform\themeformjjd.php
+				class\xoopsform\formloadimages.php
 			class\index.html
 		-css
 			css\index.html
@@ -1130,8 +1130,8 @@ _JJD-Framework
 			include\globales-functions.php
 			include\index.html
 			include\xform-functions.php
-		-js
-			-trierTableauHTML
+		+js
+			+trierTableauHTML
 				-images
 					-chiffres_Garamond
 						js\trierTableauHTML\images\chiffres_Garamond\chiffre_0.gif
@@ -1207,36 +1207,48 @@ _JJD-Framework
 [Open project files]
 0=load.php
 1=include\constantes.php
-2=include\xform-functions.php
-3=include\globales-functions.php
-4=class\xoopsform\formLineBreak.php
-5=include\date-functions.php
-6=language\french\common.php
-7=language\english\common.php
+2=js\config_highslide.js
+3=include\fw-functions.php
+4=class\xoopsform\formtabletray.php
+5=class\xoopsform\admintable\formadmintable.php
+6=include\globales-functions.php
+7=include\fso.php
+8=include\xform-functions.php
+9=include\date-functions.php
+10=class\xoopsform\formloadimages.php
 [Selected Project Files]
 Main=
-Selected=include\constantes.php
+Selected=class\xoopsform\formloadimages.php
 [load.php]
-TopLine=27
-Caret=1,44
+TopLine=38
+Caret=1,45
 [include\constantes.php]
+TopLine=21
+Caret=1,28
+[js\config_highslide.js]
 TopLine=1
-Caret=27,12
-[include\xform-functions.php]
-TopLine=139
-Caret=3,149
+Caret=35,4
+[include\fw-functions.php]
+TopLine=93
+Caret=22,119
+[class\xoopsform\formtabletray.php]
+TopLine=94
+Caret=1,101
+[class\xoopsform\admintable\formadmintable.php]
+TopLine=806
+Caret=1,813
 [include\globales-functions.php]
-TopLine=51
-Caret=22,55
-[class\xoopsform\formLineBreak.php]
 TopLine=1
-Caret=25,26
+Caret=1,1
+[include\fso.php]
+TopLine=394
+Caret=3,409
+[include\xform-functions.php]
+TopLine=99
+Caret=1,115
 [include\date-functions.php]
-TopLine=30
-Caret=20,63
-[language\french\common.php]
-TopLine=1
-Caret=1,18
-[language\english\common.php]
-TopLine=1
-Caret=103,27
+TopLine=31
+Caret=24,60
+[class\xoopsform\formloadimages.php]
+TopLine=90
+Caret=30,126

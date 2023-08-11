@@ -262,7 +262,11 @@ function unZipFile($fullName, $destPath){
 //     } 
 //   } 
 //   $dir->close(); 
-// } 
+// }   
+
+
+
+
 /****************************************************************************
  * 
  ****************************************************************************/
@@ -275,27 +279,26 @@ function include_highslide($options = null, $moduleDirName = ''){
 //   $xoTheme->addStylesheet('browse.php?Frameworks/zoom/highslide.css');
 //   $xoTheme->addScript('browse.php?Frameworks/zoom/highslide.js');
 
-//$fldHighslide = $xoopsModuleConfig['highslide'];
-$fldHighslide = "highslide";
-//$link = XOOPS_ROOT_PATH . "/Frameworks/" . $helper->getConfig('highslide');  
-$link = XOOPS_URL . "/Frameworks/" . $fldHighslide;  
-//echo "===>highslide : <hr>{$link}<hr>";  
+    //$fldHighslide = $xoopsModuleConfig['highslide'];
+    $fldHighslide = "highslide";
+    //$link = XOOPS_ROOT_PATH . "/Frameworks/" . $helper->getConfig('highslide');  
+    $link = XOOPS_URL . "/Frameworks/" . $fldHighslide;  
+    //echo "===>highslide : <hr>{$link}<hr>";  
+    $xoTheme->addStylesheet("{$link}/highslide.css");
+    $xoTheme->addScript("{$link}/highslide.js");
 
-  $xoTheme->addStylesheet("{$link}/highslide.css");
-  $xoTheme->addScript("{$link}/highslide.js");
+    //$xoTheme->addScript('browse.php?modules/slider/assets/js/highslide.js');
+    if(file_exists(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/assets/js/config_highslide.js"))
+    {
+      $xoTheme->addScript(XOOPS_URL . "/modules/{$moduleDirName}/assets/js/config_highslide.js");
+    }else{
+      $xoTheme->addScript(XOOPS_URL . "/Frameworks/JJD-Framework/js/config_highslide.js");
+    }
 
-  //$xoTheme->addScript('browse.php?modules/slider/assets/js/highslide.js');
-  if(file_exists(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/assets/js/config_highslide.js"))
-  {
-    $xoTheme->addScript(XOOPS_URL . "/modules/{$moduleDirName}/assets/js/config_highslide.js");
-  }else{
-    $xoTheme->addScript(XOOPS_URL . "/Frameworks/JJD_Framework/js/config_highslide.js");
-  }
+    if (!is_array($options)) $options = array();
+    $options['graphicsDir'] = "{$link}/graphics/";
+    \JJD\array2js('hs', $options, false, true);
 
-  if (!is_array($options)) $options = array();
-  $options['graphicsDir'] = "{$link}/graphics/";
-  \JJD\array2js('hs', $options, false, true);
-//exit ("include_highslide");
 }
 
 /****************************************************************************
@@ -306,8 +309,7 @@ $bolEcho : si true envoie directement la chaine générée dans le flux html
 retour : string a envoyer dans le flus html
 note : la balise script est ajoutée automatiquement
  ****************************************************************************/
-function array2js($name, $options, $isNew = false, $bolEcho = false){
-
+function array2js($name, $options, $isNew = false, $boInsertInFlux = false){
   $t = array();
   $t[] = "\n<script type='text/javascript'>"; 
   
@@ -326,7 +328,8 @@ function array2js($name, $options, $isNew = false, $bolEcho = false){
   $t[] = "</script>\n"; 
   
   $js = implode("\n", $t);
-  if ($bolEcho) echo $js;
+  //Insert la config dans le flux de la page
+  if ($boInsertInFlux) echo $js;
   
   return $js;
 }

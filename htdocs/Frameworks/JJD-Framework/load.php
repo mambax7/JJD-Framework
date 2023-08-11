@@ -54,7 +54,7 @@ include_once (JJD_PATH . "/include/fw-functions.php");
 include_once (JJD_PATH . "/include/fso.php");
 include_once (JJD_PATH . "/include/date-functions.php");
 include_once (JJD_PATH . "/include/xform-functions.php");
-
+include_once (JJD_PATH . "/class/tools.php");
 
 /*********************************************************************
  *                  fichiers de langues

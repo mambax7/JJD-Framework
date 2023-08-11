@@ -148,6 +148,7 @@ function tth_trierTableau(idTbl, defautCol2sort = 0, cols2sort = "", sRoot = "")
     }
 
   const obTable = document.getElementById(idTbl);
+  if(!obTable) return false;
   const tbody   = obTable.getElementsByTagName("tbody")[0];
   const thx = obTable.querySelectorAll('th');
   const trxb = tbody.querySelectorAll('tr');

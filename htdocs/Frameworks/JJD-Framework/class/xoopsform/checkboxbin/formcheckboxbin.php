@@ -359,9 +359,9 @@ class xoopsFormCheckboxBin extends XoopsFormElement
         $tHtml[] = "<tr>";
         
         if ($this->getAllowCheckAll()){
-          $oc = "onclick='updateGroupeChkBin(\"{$name}\",\"{$prefixChk}\",\"{$groupeName}\")'";
+          $oc = "onclick='updateChkBin(\"{$name}\",\"{$prefixChk}\",\"{$groupeName}\")'";
           //$line =  '<td '.$style.'><input type="checkbox" name="'.$prefixChk.$name.'[all]" id="'.$prefixChk.$name.'[all]" '.$oc.'>&nbsp;(*)</td>';
-          $line =  "<td {$style}><input type='checkbox' name='{$prefixChk}{$name}[{$groupeName}]' id='{$prefixChk}{$name}[{$groupeName}]' {$oc}>(*){$groupeName}</td>";
+          $line =  "<td {$style}><label style='cursor: pointer;'><input type='checkbox' name='{$prefixChk}{$name}[{$groupeName}]' id='{$prefixChk}{$name}[{$groupeName}]' {$oc}>(*){$groupeName}</label></td>";
 
           $tHtml[] = "<tr>{$line}</tr>";
         }
@@ -370,9 +370,9 @@ class xoopsFormCheckboxBin extends XoopsFormElement
         $oc = "onclick='updateChkBin(\"{$name}\",\"{$prefixChk}\")'";
         $td1 =  '<td '.$style.'>';
         $td2 =  '</td>';
-        $line = '<input type="checkbox" name="'.$prefixChk.$name.'[items]"'
+        $line = '<label style="cursor: pointer;"><input type="checkbox" name="'.$prefixChk.$name.'[items]"'
               . ' id="'.$prefixChk.$name.'[items][%1$s]" %2$s '
-              . $oc . ' binFlag="%4$s" groupName="%5$s">&nbsp;%3$s';
+              . $oc . ' binFlag="%4$s" groupName="%5$s">&nbsp;%3$s</label>';
         
         
         //$line =  "<input type='checkbox' name='{$prefixe}[{$v}][value]' {$oc} {$value}>&nbsp;{$item[$keyLib]}";
@@ -404,6 +404,10 @@ class xoopsFormCheckboxBin extends XoopsFormElement
         $tHtml[] = $td2;
 
         $tHtml[] = "</tr>";
+        
+        //pour le dev
+        //$tHtml[] = "<tr><td><div id='togodo'>999</div></td></tr>";
+        
         $tHtml[] = "</table>";
 
         //-----------------------------------------
@@ -499,19 +503,21 @@ class XoopsFormBinCheckboxGroup extends  XoopsFormBinCheckbox{
         $styleTable = (($this->_width == 0 ) ? '' : "style='width:{$this->_width}px'");
         $tHtml[] = "<table border='0px' {$styleTable}>";
         $tHtml[] = "<tr>";
+
         /****************************************************************/
-        $line = '<input type="checkbox" name="'.$prefixChk.$name.'[items]"'
+        $line = '<label style="cursor:pointer;"><input type="checkbox" name="'.$prefixChk.$name.'[items]"'
               . ' id="'.$prefixChk.$name.'[items][%1$s]" %2$s '
-              . $oc . ' binFlag="%4$s" groupName="%5$s">&nbsp;%3$s';
+              . $oc . ' binFlag="%4$s" groupName="%5$s">&nbsp;%3$s</label>';
               
         foreach($this->_groupes AS $groupeName=>$groupe){
           $tHtml[] = '<td '.$style.'>';
           $tCol = array();
           //$tHtml[] = $kg . '<br />';
           if ($this->getAllowCheckAll()){
-            $oc = "onclick='updateGroupeChkBin(\"{$name}\",\"{$prefixChk}\",\"{$groupeName}\")'";
+            $oc = "onclick='updateChkBin(\"{$name}\",\"{$prefixChk}\",\"{$groupeName}\")'";
             //$line =  '<td '.$style.'"><input type="checkbox" name="'.$prefixChk.$name.'[all]" id="'.$prefixChk.$name.'[all]" '.$oc.'>&nbsp;(*)</td>';
-            $tHtml[] =  "<input type='checkbox' name='{$prefixChk}{$name}[{$groupeName}]' id='{$prefixChk}{$name}[{$groupeName}]' {$oc}>(*){$groupeName}<br />";
+            //$tHtml[] =  "<input type='checkbox' name='{$prefixChk}{$name}[{$groupeName}]' id='{$prefixChk}{$name}[{$groupeName}]' {$oc}>(*){$groupeName}<br />";
+            $tHtml[] =  "<label><input type='checkbox' name='{$prefixChk}{$name}[{$groupeName}]' id='{$prefixChk}{$name}[{$groupeName}]' {$oc}>(*){$groupeName}</label><br />";
            
           }
           foreach($groupe AS $k){

@@ -32,12 +32,14 @@ class XoopsFormImage extends XoopsFormElement
      * @var string
      * @access private
      */
-    var $_value;
-    var $_local_description;    
-    var $_url='';    
-    var $_files;    
-    var $_title;    
-    var $_alt;    
+    //var $_value;
+    //var $_local_description;    
+    
+    var $_link = '';    
+    var $_title = '';    
+    var $_alt   = '';    
+    var $_width = 0;    
+    var $_center = 1;    
     /**
      * Constructor
      *
@@ -47,23 +49,19 @@ class XoopsFormImage extends XoopsFormElement
      * @param int $maxlength Maximum length of text
      * @param string $value Initial text
      */
-    function __construct($caption , $files, $title='', $alt='')
+    //function __construct($caption , $files, $title='', $alt='')
+    function __construct($caption , $name, $files, $url='', $title='', $alt='')
     {
+        $this->setCaption($caption);
+        $this->setName($name);
+        //$this->_type = $type;   
         
-//         $myts =& MyTextSanitizer::getInstance();
-//         $this->setValue($myts->htmlspecialchars($value));                         
-        
-        //$this->setValue($value);  
-        $this->setCaption($caption);  
-        
-//         $this->_url = $url;
-        if(is_array($files)){
-          $this->_files = $files;
+        if ($url) {
+          $this->setValue($url . '/' . $files);
         }else{
-          $this->_files = array($files);
-        }
-                             
-
+          $this->setValue($value);
+        }                
+        
     }
     
     
@@ -88,32 +86,65 @@ class XoopsFormImage extends XoopsFormElement
         $this->_value = $value;
     }
     
-//     /**
-//      * Get initial content
-//      *
-//      * @param bool $encode To sanitizer the text? Default value should be "true"; however we have to set "false" for backward compat
-//      * @return string
-//      */
-//     function getDescription($encode = false)
-//     {
-//         return $encode ? htmlspecialchars($this->_local_description, ENT_QUOTES) : $this->_local_description;
-//     }
-//     
-//     /**
-//      * Set initial text value
-//      *
-//      * @param  $value string
-//      */
-//     function setDescription($description)
-//     {
-//         //XoopsFormElement::setDescription(null);
-//         //$parent->setDescription(null);
-//         $this->_local_description = $description;
-//     }
-//     function getTitle(){return false;}
-//     function getCaption(){return false;}     
-//     
-     
+    /**
+     * Get initial content
+     *
+     * @return int
+     */
+    function getWidth()
+    {
+        return $this->_witdh;
+    }
+    
+    /**
+     * Set initial text value
+     *
+     * @param  $value string
+     */
+    function setWidth($value)
+    {
+        $this->_width = $value;
+    }
+    
+    /**
+     * Get initial content
+     *
+     * @return string
+     */
+    function getLink()
+    {
+        return $this->_link;
+    }
+    
+    /**
+     * Set initial text value
+     *
+     * @param  $value string
+     */
+    function setLink($value)
+    {
+        $this->_link = $value;
+    }
+  
+    /**
+     * Get initial content
+     *
+     * @return bool
+     */
+    function getCenter()
+    {
+        return $this->_center;
+    }
+    
+    /**
+     * Set initial text value
+     *
+     * @param  $value string
+     */
+    function setCenter($value)
+    {
+        $this->_center = $value;
+    }
     
     
     
@@ -125,42 +156,22 @@ class XoopsFormImage extends XoopsFormElement
     function render()
     {
       
-    //$this->setFormType(false);    
-    //global $config;
-//         $myts =& MyTextSanitizer::getInstance();
-//                     //$form->insertBreak($title);
-//         $class = $myts->htmlspecialchars($config[$i]->getConfValueForOutput());
-//         $class = ($class != '') ? " class='" . preg_replace('/[^A-Za-z0-9\s\s_-]/i', '', $class) . "'" : '';
-//       $html = '<tr><td colspan="2" ' . $class . '>'
-      
-//         if($this->getDescription() != ''){
-//           $this->_local_description = $this->getDescription(); 
-//           $this->setDescription('');
-//         }
+        //$description = $this->getDescription();
+        $width = ($this->_width > 0) ?  "width='{$this->_width}px'" : ''; 
+        $nameid = ($this->_name) ?  "name='{$this->_name}' id='{$this->_name}'" : ''; 
         
-        if (strpos($this->_url,'//' )===false){
-          $this->_url = XOOPS_URL . '/' . $this->_url;
-        }
-        if (substr($this->_url, -1) !='/') $this->_url .= '/';
+        $htmlImg = "<img {$nameid} src='{$this->getValue()}' {$width} title='{$this->_title}' alt='{$this->_alt}' />";
+        //$htmlImg = "<hr>zzz{$htmlImg}yyy<hr>"; // pour tests
         
-        
-      
-        $tHtml = array();
-        $description = $this->getDescription();
-        
-
-        
-        foreach($this->_files as $f){
-// echo $f . '<br />';         
-          //$tHtml[] = "<img src='{$this->_url}{$f}' width='150px' title='{$this->_title}' alt='{$this->_alt}' />";
-          $tHtml[] = "<img src='{$f}' width='150px' title='{$this->_title}' alt='{$this->_alt}' />";
+        if($this->_link){
+            $htmlImg  = "<a href='{$this->_link}'  title='{$this->_title}' alt='{$this->_alt}'>{$htmlImg}</a>";
         }
 
-        $html = implode('', $tHtml);
-        return $html;
-
-
-
+        if($this->_center){
+          return "<center>".$htmlImg."</center>";
+        }else{
+          return $htmlImg;
+        }
 
     }
 }

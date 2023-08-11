@@ -39,7 +39,8 @@ class XoopsFormTableTray extends XoopsFormElement
      * @var int
      * @access private
      */
-    var $_style = array();    
+    var $_tdStyle = array();    
+    var $_globalTdStyle = array();    
     var $_elements = array();    
     var $_hiddens = array();    
     var $_odd = '';    
@@ -53,14 +54,13 @@ class XoopsFormTableTray extends XoopsFormElement
      * @param int $row nombre de ligne de la table
      * @param string width largeur de la table
      */
-    function __construct($caption = '', $style = 'width:100%' , $extra = '')
+    function __construct($caption = '', $globalTdStyle = null , $extra = null)
     { 
         $this->setCaption($caption);
         //$this->setName($name);
-        $this->addStyle($style);
-        //$this->_width = $width;
-        $this->setExtra($extra);
+        if($globalTdStyle) $this->addGlobalTdStyle($globalTdStyle);
 
+        if ($extra) $this->setExtra($extra);
     }
     function setEven($style){
         $this->_even = $style;    
@@ -69,8 +69,9 @@ class XoopsFormTableTray extends XoopsFormElement
         $this->_odd = $style;    
     }
     
-    function addStyle($style){
-        $this->_style[] = $style . ((substr($style,-1,1) != ';') ? ';' : '' );
+    function addGlobalTdStyle($globalTdStyle){
+        //ajoute un ";" si il n'est pas présent
+        $this->_globalTdStyle[] = $globalTdStyle . ((substr($globalTdStyle,-1,1) != ';') ? ';' : '' );
     }
     /**
      * addElement : ajoute un elements dans le tableau
@@ -84,9 +85,10 @@ class XoopsFormTableTray extends XoopsFormElement
     {
         if(is_null($numRow)) $numRow = 0;
         if(is_null($numCol)) $numCol = 0;
+        
         if($numCol >= 0){
             if(!isset($this->_elements[$numRow])) $this->_elements[$numRow] = array();
-          $this->_elements[$numRow][$numCol][] = [$element,$delimiter];
+            $this->_elements[$numRow][$numCol][] = [$element,$delimiter];
         }else{
           $this->_hiddens[] = $element;
         }
@@ -96,7 +98,20 @@ class XoopsFormTableTray extends XoopsFormElement
         return true;
     }
     
+    function addTdStyle($numCol, $tdStyle){
+        if(is_null($numCol) || $numCol<0) $numCol = 0;
+        //ajoute un ";" si il n'est pas présent
+        $this->_tdStyle[$numCol][] = $tdStyle  . ((substr($tdStyle,-1,1) != ';') ? ';' : '' );
+    }
     
+    function getTdStyle($numCol){
+        if(isset($this->_tdStyle[$numCol]))
+            return "style='" . implode("", $this->_tdStyle[$numCol]) . "'";
+        else
+            return '';
+    }
+    
+        
     /**
      * Prepare HTML for output
      *
@@ -111,8 +126,11 @@ class XoopsFormTableTray extends XoopsFormElement
 //              $tHtml[] = "<style>.tblForm {" . implode('', $this->_style) . ";}</style>";
 //              $tHtml[] = "<style>.tblForm td{padding:5px 0px 0px 5px;}</style>";
              $tHtml[] = "<style>\n";
-             $tHtml[] = ".tblForm td{padding:5px 0px 0px 5px;}\n";
-             $tHtml[] = ".tblForm {" . implode('', $this->_style) . ";}\n";
+             
+             if(count($this->_globalTdStyle)>0){
+                $tHtml[] = ".tblForm td{" . implode('', $this->_globalTdStyle)  . "}\n";
+             }
+             //$tHtml[] = ".tblForm {" . implode('', $this->_style) . "}\n";
              $tHtml[] = "</style>\n";
         
         // Ajout des élement invisible (hidden
@@ -120,7 +138,8 @@ class XoopsFormTableTray extends XoopsFormElement
         for ($h = 0; $h < count($this->_hiddens); $h++)
              $tHtml[] = $this->_hiddens[$h]->render();
         //--------------------------------------------
-        $tHtml[] = "<table class='tblForm' " . implode(' ', $this->_extra) . ">"; 
+        //$tHtml[] = "<table class='tblForm' " . implode(' ', $this->_extra) . ">"; 
+        $tHtml[] = "<table class='tblForm' " . $this->getExtra() . ">"; 
 
         $rows = count($this->_elements);      
         for ($row = 0; $row < $rows; $row++){
@@ -137,7 +156,7 @@ class XoopsFormTableTray extends XoopsFormElement
           
             
             for ($col = 0; $col < $cols; $col++){
-                $tHtml[] = "<td>";
+                $tHtml[] = "<td " . $this->getTdStyle($col) . ">";
                 $countElements = count($this->_elements[$row][$col]);
                 foreach($this->_elements[$row][$col] as $key=>$elem){
                   $elemCaption = ($elem[0]->getCaption() ) ? $elem[0]->getCaption() . ' : ' :  '';
@@ -233,6 +252,6 @@ class XoopsFormTableTrayStrict extends XoopsFormElement
         $tHtml[] = "</table>";
         return implode("\n", $tHtml);
     }
-}
+} // fin de la classe
 
 ?>
