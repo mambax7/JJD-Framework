@@ -5,6 +5,7 @@ Compilator.CompileOnBackground=0
 Compilator.ProgSaveAll=0
 Compilator.ProgRunSelection=0
 Compilator.LogType=0
+Compilator.LogEncoding=0
 DefaultDir=D:\_JJD-WorkSpace-D\Wamp-Serveur\Sites\xoops-2511b-fr\www\Frameworks\JJD-Framework
 DefaultCP=0
 LogtoEnd=1
@@ -89,7 +90,7 @@ _JJD-Framework
 				-checkboxall
 					class\xoopsform\checkboxall\changelog.txt
 					class\xoopsform\checkboxall\formcheckboxall.php
-				-checkboxbin
+				+checkboxbin
 					+js
 						class\xoopsform\checkboxbin\js\checkboxbin.js
 					class\xoopsform\checkboxbin\formcheckboxbin.php
@@ -241,10 +242,13 @@ _JJD-Framework
 						class\xoopsform\editlist\editlist\editlist.js
 					class\xoopsform\editlist\changelog.txt
 					class\xoopsform\editlist\formeditlist.php
-				+loadimages
-					class\xoopsform\loadimages\formfile.php
-					class\xoopsform\loadimages\formfilesimages.php
-					class\xoopsform\loadimages\formloadimages.php
+				-iconselect
+					-lib
+						class\xoopsform\iconselect\lib\arrow.png
+						class\xoopsform\iconselect\lib\iconselect.css
+						class\xoopsform\iconselect\lib\iconselect.js
+						class\xoopsform\iconselect\lib\iscroll.js
+					class\xoopsform\iconselect\formiconselect.php
 				-notation
 					-notation
 						-doc
@@ -732,16 +736,25 @@ _JJD-Framework
 				class\xoopsform\formElementTable.php
 				class\xoopsform\FormFileCheckBox.php
 				class\xoopsform\formimage.php
+				class\xoopsform\formimages.php
 				class\xoopsform\formimg.php
 				class\xoopsform\formLineBreak.php
+				class\xoopsform\formloadfiles.php
+				class\xoopsform\formloadimages.php
 				class\xoopsform\formnumber.php
 				class\xoopsform\formSelectCategory.php
 				class\xoopsform\formselectsystab.php
 				class\xoopsform\formtabletray.php
 				class\xoopsform\index.html
 				class\xoopsform\themeformjjd.php
-				class\xoopsform\formloadimages.php
+			-xoopsForm-old
+				-loadimages
+					class\xoopsForm-old\loadimages\formfile.php
+					class\xoopsForm-old\loadimages\formfilesimages.php
+					class\xoopsForm-old\loadimages\formloadimages.php
+				class\xoopsForm-old\formimage.php
 			class\index.html
+			class\tools.php
 		-css
 			css\index.html
 			css\style-item-color.css
@@ -1130,8 +1143,8 @@ _JJD-Framework
 			include\globales-functions.php
 			include\index.html
 			include\xform-functions.php
-		+js
-			+trierTableauHTML
+		-js
+			-trierTableauHTML
 				-images
 					-chiffres_Garamond
 						js\trierTableauHTML\images\chiffres_Garamond\chiffre_0.gif
@@ -1187,8 +1200,8 @@ _JJD-Framework
 				js\trierTableauHTML\trierTableau.js
 			js\config_highslide.js
 			js\index.html
-		+language
-			+english
+		-language
+			-english
 				language\english\admin.php
 				language\english\common.php
 				language\english\index.html
@@ -1199,56 +1212,30 @@ _JJD-Framework
 				language\french\index.html
 				language\french\modinfo.php
 			language\index.html
-		_JJD-Framework.ppr.lnk
-		back_office.php
-		front_office.php
-		JJD-Framework.ppr
+		_JJD-Framework.ppr
+		_projet_JJD-Framework.ppr.lnk
 		load.php
 [Open project files]
-0=load.php
-1=include\constantes.php
-2=js\config_highslide.js
-3=include\fw-functions.php
-4=class\xoopsform\formtabletray.php
-5=class\xoopsform\admintable\formadmintable.php
-6=include\globales-functions.php
-7=include\fso.php
-8=include\xform-functions.php
-9=include\date-functions.php
-10=class\xoopsform\formloadimages.php
+0=class\xoopsform\formloadimages.php
+1=class\xoopsform\formloadfiles.php
+2=class\xoopsform\checkboxbin\js\checkboxbin.js
+3=class\xoopsform\checkboxbin\formcheckboxbin.php
+4=include\fw-functions.php
 [Selected Project Files]
 Main=
-Selected=class\xoopsform\formloadimages.php
-[load.php]
-TopLine=38
-Caret=1,45
-[include\constantes.php]
-TopLine=21
-Caret=1,28
-[js\config_highslide.js]
-TopLine=1
-Caret=35,4
-[include\fw-functions.php]
-TopLine=93
-Caret=22,119
-[class\xoopsform\formtabletray.php]
-TopLine=94
-Caret=1,101
-[class\xoopsform\admintable\formadmintable.php]
-TopLine=806
-Caret=1,813
-[include\globales-functions.php]
+Selected=include\fw-functions.php
+[class\xoopsform\formloadimages.php]
+TopLine=215
+Caret=38,247
+[class\xoopsform\formloadfiles.php]
+TopLine=26
+Caret=28,26
+[class\xoopsform\checkboxbin\js\checkboxbin.js]
 TopLine=1
 Caret=1,1
-[include\fso.php]
-TopLine=394
-Caret=3,409
-[include\xform-functions.php]
-TopLine=99
-Caret=1,115
-[include\date-functions.php]
-TopLine=31
-Caret=24,60
-[class\xoopsform\formloadimages.php]
-TopLine=90
-Caret=30,126
+[class\xoopsform\checkboxbin\formcheckboxbin.php]
+TopLine=240
+Caret=33,271
+[include\fw-functions.php]
+TopLine=179
+Caret=19,191

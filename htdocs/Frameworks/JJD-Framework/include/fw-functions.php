@@ -185,33 +185,39 @@ function ZipReccurssiveDir($source, $destination)
     }
 
     $source = str_replace('\\', '/', realpath($source));
-
+    $lgSource = strlen($source) + 1;  //pas de slash en début de chaine
+    
     if (is_dir($source) === true)
     {
-        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
+        $allFiles = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
 
-        foreach ($files as $file)
+        foreach ($allFiles as $file)
         {
-            $file = str_replace('\\', '/', $file);
-
+            //$file = str_replace('\\', '/', $file);
+            //$file = str_replace('\\', '/', realpath($file));
+            $file = str_replace('\\', '/', realpath($file));
+            $shortPath = substr($file, $lgSource);
+            
             // Ignore "." and ".." folders
             if( in_array(substr($file, strrpos($file, '/')+1), array('.', '..')) )
                 continue;
 
-            $file = realpath($file);
+            //$file = realpath($file);
 
-            if (is_dir($file) === true)
-            {
-                $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
+            if (!$shortPath) { 
+                continue;
+            }else if (is_dir($file) === true) {
+
+//echo "<br>ZipReccurssiveDir [dir] : source / file / shortPath<br> ->{$source}<br>->{$file}<br>->{$shortPath}<hr>";
+                $zip->addEmptyDir($shortPath . '/');
             }
             else if (is_file($file) === true)
             {
-                $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
+//echo "<br>ZipReccurssiveDir [dir] : source / file / shortPath<br> ->{$source}<br>->{$file}<br>->{$shortPath}<hr>";
+                $zip->addFromString($shortPath, file_get_contents($file));
             }
         }
-    }
-    else if (is_file($source) === true)
-    {
+    }else if (is_file($source) === true) {
         $zip->addFromString(basename($source), file_get_contents($source));
     }
 
@@ -227,6 +233,7 @@ function ZipReccurssiveDir($source, $destination)
  * @param string $outZipPath Path of output zip file.
  */
 function unZipFile($fullName, $destPath){
+//echo "<hr>unZipFile : <br>fullName ->{$fullName}<br>destPath->{$destPath}<hr>";
     $zip = new ZipArchive();
     if ($zip->open($fullName) === TRUE) {
         $zip->extractTo($destPath);

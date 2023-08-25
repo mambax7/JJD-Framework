@@ -23,7 +23,7 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
 /**
  * A simple text field
  */
-class XoopsFormLoadFile extends XoopsFormElement
+class XoopsFormLoadFileszzz extends XoopsFormElement
 {
     
     /**
@@ -32,7 +32,7 @@ class XoopsFormLoadFile extends XoopsFormElement
      * @var int
      * @access private
      */
-    var $_maxFileSize;
+    var $_maxFileSize = 5000000;
     /**
      * Initial text
      *
@@ -45,7 +45,7 @@ class XoopsFormLoadFile extends XoopsFormElement
     var $_files;    
     var $_title;    
     var $_alt;    
-    var $_width;    
+    var $_width = 150;    
     var $_names;    
     var $_deleteImgName = 'delete_img';    
     /**
@@ -57,7 +57,7 @@ class XoopsFormLoadFile extends XoopsFormElement
      * @param int $maxlength Maximum length of text
      * @param string $value Initial text
      */
-    function __construct($caption , $names, $files, $width = 150, $maxfilesize=500000, $title='', $alt='')
+    function __construct($caption , $names, $files, $width = null, $maxfilesize = null, $title='', $alt='')
     {
         
 //         $myts =& MyTextSanitizer::getInstance();
@@ -65,9 +65,9 @@ class XoopsFormLoadFile extends XoopsFormElement
         
         //$this->setValue($value);  
         $this->setCaption($caption);  
-        $this->_maxFileSize = intval($maxfilesize);
+        if ($maxfilesize) $this->_maxFileSize = intval($maxfilesize);
         //$this->_names = $names;
-        $this->_width = $width;
+        if ($width) $this->_width = $width;
         
         if(is_array($names)){
           $this->setValue($names);

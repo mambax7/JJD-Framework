@@ -23,7 +23,7 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
 /**
  * A simple text field
  */
-class XoopsFormLoadImages extends XoopsFormElement
+class XoopsFormLoadFiles extends XoopsFormElement
 {
     
     /**
@@ -47,7 +47,10 @@ class XoopsFormLoadImages extends XoopsFormElement
     var $_alt;    
     var $_width;    
     var $_names;    
-    var $_deleteImgName = 'delete_img';    
+    var $_deleteName = 'delete_file';  
+    var $_extAllowed = "doc,docx,txt,pdf";
+      
+    var $_libelles = ['add'=>'Ajouter','del'=>'Supprimer'];
     /**
      * Constructor
      *
@@ -106,16 +109,26 @@ class XoopsFormLoadImages extends XoopsFormElement
     {
         $this->_value = $value;
     }
-
+    
+    /**
+     * Set initial text value
+     *
+     * @param  $libelle[] string
+     */
+    function setlibellese($add, $del)
+    {
+        $this->_libelles['add'] = $add;
+        $this->_libelles['del'] = $del;
+    }
     /**
      * Get initial content
      *
      * @param bool $encode To sanitizer the text? Default value should be "true"; however we have to set "false" for backward compat
      * @return string
      */
-    function getDeleteImgName()
+    function getExtensions()
     {
-        return $this->_deleteImgName;
+        return $this->_extAllowed;
     }
     
     /**
@@ -123,9 +136,45 @@ class XoopsFormLoadImages extends XoopsFormElement
      *
      * @param  $value string
      */
-    function setDeleteImgName($deleteImgName)
+    function setExtensions($value)
     {
-        $this->_deleteImgName = $deleteImgName;
+        $this->_extAllowed = $value;
+    }
+    function setDefaultExtensions($value = 'img')
+    {
+        switch($value){
+            case 'img':
+                $this->_extAllowed = "gif,jpg,jpeg,png";
+                break;
+            case 'video':
+                $this->_extAllowed = "mp4,avi,mpeg,mov";
+                break;
+            case 'doc':
+            default :
+                $this->_extAllowed = "doc,docx,txt,pdf";
+                break;
+        }
+    }
+
+    /**
+     * Get initial content
+     *
+     * @param bool $encode To sanitizer the text? Default value should be "true"; however we have to set "false" for backward compat
+     * @return string
+     */
+    function getDeleteName()
+    {
+        return $this->_deleteName;
+    }
+    
+    /**
+     * Set initial text value
+     *
+     * @param  $value string
+     */
+    function setDeleteName($deleteName)
+    {
+        $this->_deleteName = $deleteName;
     }
     
     /**
@@ -138,34 +187,7 @@ class XoopsFormLoadImages extends XoopsFormElement
         return $this->_maxFileSize;
     }
     
-//     /**
-//      * Get initial content
-//      *
-//      * @param bool $encode To sanitizer the text? Default value should be "true"; however we have to set "false" for backward compat
-//      * @return string
-//      */
-//     function getDescription($encode = false)
-//     {
-//         return $encode ? htmlspecialchars($this->_local_description, ENT_QUOTES) : $this->_local_description;
-//     }
-//     
-//     /**
-//      * Set initial text value
-//      *
-//      * @param  $value string
-//      */
-//     function setDescription($description)
-//     {
-//         //XoopsFormElement::setDescription(null);
-//         //$parent->setDescription(null);
-//         $this->_local_description = $description;
-//     }
-//     function getTitle(){return false;}
-//     function getCaption(){return false;}     
-//     
-     
-    
-    
+   
     
     /**
      * Prepare HTML for output
@@ -176,6 +198,66 @@ class XoopsFormLoadImages extends XoopsFormElement
     {
       
         $tValues = $this->getValue();
+        $maxFileSize = $this->getMaxFileSize() * count($tValues);
+        $chkDelete = array();
+        $ext = '.' . str_replace(',', ',.', $this->_extAllowed);        
+        
+// echoArray($tValues,"======== tValues ==========");        
+// echoArray($this->_files,"======== this->_files ==========");        
+        //------------------------------------------     
+        $tHtml = array();
+        $tHtml[] = "<table>";
+        for($h = 0; $h<count($tValues); $h++){
+
+            $name = $tValues [$h];
+            if (isset($this->_files[$h]) && $this->_files[$h] !=''){
+                $f = $this->_files[$h];
+                $chkDelete =  "<input type='checkbox' name='{$this->_deleteName}[{$f}]' id='{$this->_deleteName}[[{$f}]' value='1' />{$this->_libelles['del']}";
+            }else{
+                $f = '';
+                $chkDelete = $this->_libelles['add'];
+            } 
+            
+            $tHtml[] = "<tr>";
+            $tHtml[] = "<td style='text-align:left;'>{$chkDelete}</td>";
+            $tHtml[] = "<td style='text-align:left;'><input type='hidden' name='MAX_FILE_SIZE' value='" . $maxFileSize . "' />"              
+                     . "<input type='file' name='{$name}' id='{$name}' accept='{$ext}' title='" . $this->getTitle() . "' " .$this->getExtra() . " />"
+                     . "<input type='hidden' name='{$name}' id='{$name}' value='{$name}' />"
+                     . "</td>";		
+            $tHtml[] = "<td style='text-align:left;'>{$f}</td>";
+            $tHtml[] = "</tr>";        
+        }
+        
+        //------------------------------------------        
+
+        $tHtml[] = "</table>";
+        $html = implode('', $tHtml);
+        return $html;
+
+    }
+/***********************************************************************/    
+}
+
+class XoopsFormLoadImages extends XoopsFormLoadFiles
+{
+    function __construct($caption , $names, $files, $width = 150, $maxfilesize=500000, $title='', $alt='')
+    {  
+        parent::__construct($caption , $names, $files, $width, $maxfilesize, $title, $alt);
+        $this->setDefaultExtensions('img');
+        $this->setDeleteName('delete_img');
+        
+    }
+
+    /**
+     * Prepare HTML for output
+     *
+     * @return string HTML
+     */
+    function render()
+    {
+      
+        $tValues = $this->getValue();
+//echoArray($tValues,"======== tValues ==========");        
         
         $tHtml = array();
         $tHtml[] = "<table>";
@@ -189,8 +271,7 @@ class XoopsFormLoadImages extends XoopsFormElement
             $img = str_replace(XOOPS_URL, XOOPS_ROOT_PATH, $f);
             if(file_exists($img)){      
             $tHtml[] = "<img src='{$f}' width='{$this->_width }px' title='{$this->_title}' alt='{$this->_alt}' />";
-            $chkDelete[] =  "<input type='checkbox' name='{$this->_deleteImgName}[{$f}]' id='{$this->_deleteImgName}[[{$f}]' value='1' />Suppression";
-
+            $chkDelete[] =  "<input type='checkbox' name='{$this->_deleteName}[{$f}]' id='{$this->_deleteName}[[{$f}]' value='1' />{$this->_libelles['del']}";
           }else{
             $chkDelete[] =  "";
           }
@@ -206,10 +287,11 @@ class XoopsFormLoadImages extends XoopsFormElement
         $tHtml[] = "</tr>";        
         
         //------------------------------------------        
+        $ext = '.' . str_replace(',', ',.', $this->_extAllowed);        
         $tHtml[] = "<tr>";
         foreach($tValues as $name){
          $tHtml[] = "<td><input type='hidden' name='MAX_FILE_SIZE' value='" . $maxFileSize . "' />"
-                . "<input type='file' name='{$name}' id='{$name}' title='" . $this->getTitle() . "' " .$this->getExtra() . " />"
+                . "<input type='file' name='{$name}' id='{$name}' accept='{$ext}' title='" . $this->getTitle() . "' " .$this->getExtra() . " />"
                 . "<input type='hidden' name='{$name}' id='{$name}' value='{$name}' />"
                 . "</td>";		
        }
@@ -222,90 +304,5 @@ class XoopsFormLoadImages extends XoopsFormElement
         return $html;
 
     }
-/***********************************************************************/    
-    function render_old()
-    {
-      
-    //$this->setFormType(false);    
-    //global $config;
-//         $myts =& MyTextSanitizer::getInstance();
-//                     //$form->insertBreak($title);
-//         $class = $myts->htmlspecialchars($config[$i]->getConfValueForOutput());
-//         $class = ($class != '') ? " class='" . preg_replace('/[^A-Za-z0-9\s\s_-]/i', '', $class) . "'" : '';
-//       $html = '<tr><td colspan="2" ' . $class . '>'
-      
-//         if($this->getDescription() != ''){
-//           $this->_local_description = $this->getDescription(); 
-//           $this->setDescription('');
-//         }
-        
-//         if (strpos($this->_url,'//' )===false){
-//           $this->_url = XOOPS_URL . '/' . $this->_url;
-//         }
-//         if (substr($this->_url, -1) !='/') $this->_url .= '/';
-        
-        $tHtml = array();
-        $tHtml[] = "<table><tr><td>";
-        $tValues = $this->getValue();
-        $maxFileSize = $this->getMaxFileSize() * count($tValues);
-        foreach($tValues as $name){
-         $tHtml[] = "<input type='hidden' name='MAX_FILE_SIZE' value='" . $maxFileSize . "' />"
-                . "<input type='file' name='{$name}' id='{$name}' title='" . $this->getTitle() . "' " .$this->getExtra() . " />"
-                . "<input type='hidden' name='{$name}' id='{$name}' value='{$name}' />"
-                . "<br />";		
-		
-       }
-/*
-        $h = 0;
-        foreach($this->getValue() as $name){
-         $tHtml[] = "<input type='hidden' name='MAX_FILE_SIZE[{$h}]' value='" . $this->getMaxFileSize() . "' />"
-                . "<input type='file' name='{$name}[{$h}]' id='{$name}[{$h}]' title='" . $this->getTitle() . "' " .$this->getExtra() . " />"
-                . "<input type='hidden' name='{$name}[{$h}]' id='{$name}[{$h}]' value='{$name}' />"
-                . "<br />";		
-		      $h++;
-       }
-*/        
-         $tHtml[] = "</td><td>";
-       
-        //------------------------------------------------------
-        // ajout des images
-        $tHtml[] = "<table style='text-align: left; width: 100px;' border='0' cellpadding='2' cellspacing='2'><tr>";
-        foreach($this->_files as $f){
-          //$tHtml[] = "<img src='{$this->_url}{$f}' width='150px' title='{$this->_title}' alt='{$this->_alt}' />";
-          //$tHtml[] = "<td style='vertical-align: top; text-align: left;'>";
-          $tHtml[] = "<td>";
-          
-          
-            $img = str_replace(XOOPS_URL, XOOPS_ROOT_PATH, $f);
-            if(file_exists($img)){// echo $f . '<br />';         
-            $tHtml[] = "<img src='{$f}' width='{$this->_width }px' title='{$this->_title}' alt='{$this->_alt}' />";
-            
-  
-            $tHtml[] = "<br />";
-  //           $tHtml[] = "<img src='{$f}' width='{$this->_width }px' title='{$this->_title}' alt='{$this->_alt}' />";
-  
-            $tHtml[] =  "<input type='checkbox' name='{$this->_deleteImgName}[{$f}]' id='{$this->_deleteImgName}[[{$f}]' value='1' />Suppression";
-
-          }
-          $tHtml[] = "</td>";
-        }
-        $tHtml[] = "</tr></table>";
-        //------------------------------------------------------
-
-
-
-
-
-
-        $tHtml[] = "</table></td></tr>";
-        $html = implode('', $tHtml);
-        return $html;
-
- /////////////////////////////       
-
-
-
-    }
 }
-
 ?>
