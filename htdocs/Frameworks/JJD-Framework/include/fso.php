@@ -145,6 +145,27 @@ function getFolder ($folder, $extention = '', $fullName = true){
     //displayArray($f, '----fichiers-----'.$folder);
     return $f;
 }
+/****************************************************************************
+ *
+ ****************************************************************************/
+function getFolder2 ($folder, $fullName = true, $pattern = '*'){
+
+    if (!(substr($folder,-1) == '/')) $folder.='/';
+    $td = glob($folder.$pattern, GLOB_ONLYDIR);
+    $flds = array();
+    foreach ($td as $fldName) {          
+        if($fullName){
+          $flds[basename ($fldName)] = $fldName;            
+        }else{
+          $flds[] = basename ($fldName);            
+        }
+    }
+
+    //--------------------------------------------------------------
+      
+    //displayArray($f, '----fichiers-----'.$folder);
+    return $flds;
+}
 
 /**********************************************************************
  * 
@@ -287,7 +308,26 @@ function setChmodRecursif($chemin, $m = 0777){
         }
     }
 }
-
+/*
+function explorer($chemin){
+    $lstat    = lstat($chemin);
+    $mtime    = date('d/m/Y H:i:s', $lstat['mtime']);
+    $filetype = filetype($chemin);
+     
+    // Affichage des infos sur le fichier $chemin
+    echo "$chemin   type: $filetype size: $lstat[size]  mtime: $mtime\n";
+     
+    // Si $chemin est un dossier => on appelle la fonction explorer() pour chaque élément (fichier ou dossier) du dossier$chemin
+    if( is_dir($chemin) ){
+        $me = opendir($chemin);
+        while( $child = readdir($me) ){
+            if( $child != '.' && $child != '..' ){
+                explorer( $chemin.DIRECTORY_SEPARATOR.$child );
+            }
+        }
+    }
+}
+*/
 /**********************************************************************
  * 
  **********************************************************************/
@@ -323,142 +363,5 @@ function saveTexte2File2($fullName, $content, $mod = 0000){
    // }
     
 }
-//=================================================
-/***************************************************************************
-*
-*****************************************************************************/
-function query($sql, $prefix_module='', $lang=''){
-global $xoopsDB;
-
-  $sql = buildSql($sql, $prefix_module, $lang);
-  $rst = $xoopsDB->query($sql);
-  
-  return $rst;
-
-}
-
-/***************************************************************************
-*
-*****************************************************************************/
-function queryF($sql, $prefix_module='', $lang=''){
-global $xoopsDB;
-
-  $sql = buildSql($sql, $prefix_module, $lang);
-  $rst = $xoopsDB->queryF($sql);
-  
-  return $rst;
-
-}
-
-/***************************************************************************
-*
-*****************************************************************************/
-function executeSql($sql, $prefix_module='', $lang=''){
-global $xoopsDB;
-
-
-  $sql = buildSql($sql, $prefix_module, $lang);
-  $xoopsDB->query($sql);
-  
-  return true;
-
-}
-/***************************************************************************
-*
-*****************************************************************************/
-function buildSql($sql, $prefix_module='', $lang1='', $lang2=''){
-global $xoopsDB, $xoopsConfig;
-  
-//   if ($lang1 == '')
-//     $lang = "set @lang='{$xoopsConfig['language']}';\n";
-
-    $lang  = "SET @lang  ='{$xoopsConfig['language']}';\n";
-    $lang .= "SET @lang1 = " . (($lang1=="") ? "'{$xoopsConfig['language']}';\n": "'$lang1';\n");
-    $lang .= "SET @lang2 = " . (($lang1=="") ? "'english';\n": "'$lang2';\n");
-    
-
-
-  
-  $sql = str_replace('#',$xoopsDB->prefix($prefix_module) ,$sql);
-  $sql = $lang . $sql;
-
-  
-  //echo "<hr>{$sql}<hr>";
-  return $sql;
-
-}
-
-///////////////////////////////////////////////////////
-// fichiers SQL  
-///////////////////////////////////////////////////////
-
-/***************************************************************************
-*
-*****************************************************************************/
-function executeSqlFile($f){
-global $xoopsDB;
-echo("executeSqlFile : {$f}<br>");
-  if (!is_readable($f)){return false;}
-  
-  $fp = fopen($f,'rb');
-  $taille = filesize($f);
-  $content = fread($fp, $taille);
-  fclose($fp);
-  
-  $content = sprintf($content, $xoopsDB->prefix());
-  echo "<hr>{$content}<hr>";  
-  
-  $t = explode(';', $content);
-  foreach ($t as $sql){
-    $sql = trim($sql);
-    if ($sql != ''){
-      $xoopsDB->queryF($sql . ';');
-    echo "<hr>===>executeSqlFile :<br>{$sql}";
-    }
-  }
-//jexit;  
-  return true;
-  
-}
-/***************************************************************************
-*
-*****************************************************************************/
-function sanityseSqlFile($input){
-
-  return $input;
- 
-  $search = array(
-    '@\--[\s\S]*?\--',          // Strip single-line comments -- ???? --
-    '@/\#\#[\s\S]*?\#\#',          // Strip single-line comments ## ???? ##
-    '(?m)^-^-.*$',          // Strip single-line comments ## ???? ##
-    '@/\*[\s\S]*?\*/@'         // Strip multi-line comments
-  );
-  $output = preg_replace($search, '', $input);
-  return $output;
-
-}
-
-/***************************************************************************
-*
-*****************************************************************************/
-function executeSqlFileDirect($f){
-global $xoopsDB;
-
-  if (!is_readable($f)){return false;}
-  
-  $fp = fopen($f,'rb');
-  $taille = filesize($f);
-  $sql = fread($fp, $taille);
-  fclose($fp);
-  
-  
-  $sql = sprintf($sql, $xoopsDB->prefix());
-  jecho($sql);
-  $xoopsDB->queryF($sql);
-  
-  return true;
-  
-}
-
 
 ?>

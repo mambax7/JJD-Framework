@@ -23,9 +23,16 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
 /**
  * A simple text field
  */
-class XoopsFormImage extends XoopsFormElement
+class XoopsFormFilesImages.php extends XoopsFormElement
 {
     
+    /**
+     * Maximum size for an uploaded file
+     *
+     * @var int
+     * @access private
+     */
+    var $_maxFileSize;
     /**
      * Initial text
      *
@@ -38,6 +45,7 @@ class XoopsFormImage extends XoopsFormElement
     var $_files;    
     var $_title;    
     var $_alt;    
+    var $_names;    
     /**
      * Constructor
      *
@@ -47,7 +55,7 @@ class XoopsFormImage extends XoopsFormElement
      * @param int $maxlength Maximum length of text
      * @param string $value Initial text
      */
-    function __construct($caption , $files, $title='', $alt='')
+    function __construct($caption , $names, $files, $title='', $alt='')
     {
         
 //         $myts =& MyTextSanitizer::getInstance();
@@ -55,6 +63,14 @@ class XoopsFormImage extends XoopsFormElement
         
         //$this->setValue($value);  
         $this->setCaption($caption);  
+        $this->_maxFileSize = intval($maxfilesize);
+        $this->_names = $names;
+        
+        if(is_array($name)){
+          $this->setName($name);
+        }else{
+          $this->_files = array(setName($name));
+        }
         
 //         $this->_url = $url;
         if(is_array($files)){
@@ -86,6 +102,16 @@ class XoopsFormImage extends XoopsFormElement
     function setValue($value)
     {
         $this->_value = $value;
+    }
+
+    /**
+     * Get the maximum filesize
+     *
+     * @return int
+     */
+    function getMaxFileSize()
+    {
+        return $this->_maxFileSize;
     }
     
 //     /**
@@ -138,16 +164,24 @@ class XoopsFormImage extends XoopsFormElement
 //           $this->setDescription('');
 //         }
         
-        if (strpos($this->_url,'//' )===false){
-          $this->_url = XOOPS_URL . '/' . $this->_url;
-        }
-        if (substr($this->_url, -1) !='/') $this->_url .= '/';
+//         if (strpos($this->_url,'//' )===false){
+//           $this->_url = XOOPS_URL . '/' . $this->_url;
+//         }
+//         if (substr($this->_url, -1) !='/') $this->_url .= '/';
         
-        
-      
         $tHtml = array();
-        $description = $this->getDescription();
+        $tHtml = "<table><tr><td>";
+      
+        foreach($this->_names as $name){
+         $tHtml = "<input type='hidden' name='MAX_FILE_SIZE' value='" . $this->getMaxFileSize() . "' />"
+                . "<input type='file' name='{$name}' id='{$name}' title='" . $this->getTitle() . "' " .$this->getExtra() . " />"
+                . "<input type='hidden' name='{$name}' id='{$name}' value='{$name}' />"
+                . "<br />";		
+		
+       }
         
+         $tHtml = "</td><td>";
+       
 
         
         foreach($this->_files as $f){
@@ -156,9 +190,11 @@ class XoopsFormImage extends XoopsFormElement
           $tHtml[] = "<img src='{$f}' width='150px' title='{$this->_title}' alt='{$this->_alt}' />";
         }
 
+        $tHtml = "</table></td></tr>";
         $html = implode('', $tHtml);
         return $html;
 
+ /////////////////////////////       
 
 
 

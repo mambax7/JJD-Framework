@@ -33,8 +33,9 @@ var $_selectedBoxPadding    =  5;
 var $_iconsWidth            = 48;
 var $_iconsHeight           = 48;
 var $_boxIconSpace          =  3;
-var $_vectoralIconNumber    =  8;
-var $_horizontalIconNumber  =  1;
+var $_vectoralIconNumber    =  0;
+var $_horizontalIconNumber  =  0;
+var $_value  =  1;
 
 var $_fldImg  =  null;
 var $_imgArr = array();
@@ -56,7 +57,7 @@ var $_imgArr = array();
         $this->setCaption($caption);
         $this->setName($name);
         $this->setValue($value);
-        $this->fldImg = $fldImg;
+        $this->setFldImg($fldImg);
         $this->addImagesFromFolder($fldImg);
          
     }
@@ -84,6 +85,30 @@ var $_imgArr = array();
     }
     
 //------------------------------------------------    
+    /**
+     * Get the initial fldImg
+     *
+     * @param  void
+     * @return string
+     */
+    public function getFldImg()
+    {
+        return $this->_fldImg;
+    }
+
+    /**
+     * Set the initial fldImg
+     *
+     * @param string $fldImg
+     *
+     * @return string
+     */
+    public function setFldImg($fldImg)
+    {
+        $this->_fldImg = $fldImg;
+    }
+    
+//------------------------------------------------    
 
 
 //------------------------------------------------    
@@ -95,7 +120,7 @@ function addImagesFromFolder($imgPath){
 $url = str_replace(XOOPS_ROOT_PATH, XOOPS_URL, $imgPath);
     $imgList = XoopsLists::getFileListByExtension($imgPath,  array('jpg','png','gif'), '');
     foreach($imgList as $k => $img)
-        $this->_imgArr[] = $url . '/' . $img;
+        $this->_imgArr[$img] = $url . '/' . $img;
 }
 //------------------------------------------------    
 function getSelectedIconWidth (){
@@ -153,6 +178,12 @@ function getHorizontalIconNumber (){
 function setHorizontalIconNumber ($newValue){
     $this->_horizontalIconNumber = $newValue;
 }    
+    
+//------------------------------------------------    
+function setGridIconNumber ($newHorizontalIcons, $newVectoralIcons){
+    $this->_horizontalIconNumber = $newHorizontalIcons;
+    $this->_vectoralIconNumber   =  $newVectoralIcons;
+}    
 //------------------------------------------------    
     
 function render(){
@@ -167,23 +198,47 @@ $html[] = <<<__script01__
 <script type="text/javascript" src="{$path}/iscroll.js"></script>
 __script01__;
 //----------------------------------------
-  echo "{$this->imgPath}<br>";
+  //echo "{$this->imgPath}<br>";
 $imgs = array();
+$indexImg = 0;
 foreach ($this->_imgArr as $k => $img){
-  $imgs[] = "icons.push({'iconFilePath':'{$img}', '{$img}':'{$k}'});";  
+  $h = strrpos($k, ".");
+  $indexKey = substr($k,0 , $h);
+  $imgs[] = "icons.push({'iconFilePath':'{$img}', 'iconValue':'{$indexKey}'});";  
+  if ($indexKey == $this->getValue()) $indexImg = count($imgs)-1;
   //echo "{$img}<br>";
 }
+//echo "<hr>index : {$indexImg} - {$this->getValue()}<hr>";
+
+//par defaut le nombre d'icones en largeur egal le nombre de fichier trouvs
+if($this->_horizontalIconNumber == 0 ) $this->_horizontalIconNumber = count($imgs);
+if($this->_vectoralIconNumber == 0 ) $this->_vectoralIconNumber = 1;
+
 $imgList = implode("\n", $imgs);
 $extra = $this->getExtra() ;
+/*
+echo  "<br>value : {$this->getValue()}<br>" . implode("<br>", $imgs);
+echo   "<br>{'selectedIconWidth':{$this->_selectedIconWidth},
+        <br>'selectedIconHeight':{$this->_selectedIconHeight},
+        <br>'selectedBoxPadding':{$this->_selectedBoxPadding},
+        <br>'iconsWidth':{$this->_iconsWidth},
+        <br>'iconsHeight':{$this->_iconsHeight},
+        <br>'boxIconSpace':{$this->_boxIconSpace},
+        <br>'vectoralIconNumber':{$this->_vectoralIconNumber},
+        <br>'horizontalIconNumber':{$this->_horizontalIconNumber},
+        <br>'iconFilePath':'{$path}/arrow.png',
+        <br>'indexImg':{$indexImg}
+        })";
+*/
 
 //-------------------------------------------------------
 $html[] = <<<__script02__
-<script>
+<script type="text/javascript">
     
 var iconSelect;
 
 window.onload = function(){
-    iconSelect = new IconSelect("{$this->getName()}-contenair", "{$this->getName()}", 
+    iconSelect = new IconSelect("{$this->getName()}-contenair", "{$this->getName()}",  
         {'selectedIconWidth':{$this->_selectedIconWidth},
         'selectedIconHeight':{$this->_selectedIconHeight},
         'selectedBoxPadding':{$this->_selectedBoxPadding},
@@ -192,8 +247,8 @@ window.onload = function(){
         'boxIconSpace':{$this->_boxIconSpace},
         'vectoralIconNumber':{$this->_vectoralIconNumber},
         'horizontalIconNumber':{$this->_horizontalIconNumber},
-        'iconFilePath':"{$path}/arrow.png",
-        'indexImg':{$this->getValue()}
+        'iconFilePath':'{$path}/arrow.png',
+        'indexImg':{$indexImg}
         });
 
 var icons = [];
@@ -203,7 +258,7 @@ iconSelect.refresh(icons);
 };
 </script>
 <input type="hidden" name="{$this->getName()}" id="{$this->getName()}" value="{$this->getValue()}" />
-<div id="{$this->getName()}-contenair" ${$extra}></div>
+<div id="{$this->getName()}-contenair" {$extra}></div>
 __script02__;
 //----------------------------------------
 

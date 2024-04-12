@@ -73,7 +73,7 @@ class XoopsFormNumber extends XoopsFormElement
      * @param int    $maxlength Maximum length of text
      * @param string $value     Initial text
      */
-    public function __construct($caption, $name, $size, $maxlength, $value = 0)
+    public function __construct($caption, $name, $size, $maxlength, $value = '')
     {
         $this->setCaption($caption);
         $this->setName($name);

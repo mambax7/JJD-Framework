@@ -6,7 +6,7 @@ Compilator.ProgSaveAll=0
 Compilator.ProgRunSelection=0
 Compilator.LogType=0
 Compilator.LogEncoding=0
-DefaultDir=D:\_JJD-WorkSpace-D\Wamp-Serveur\Sites\xoops-2511b-fr\www\Frameworks\JJD-Framework
+DefaultDir=J:\Xoops\modules-JJD\JJD-Framework\projet\htdocs\Frameworks\JJD-Framework
 DefaultCP=0
 LogtoEnd=1
 DontOpen=0
@@ -16,7 +16,7 @@ ProjectFilesOnly=0
 HTServer=localhost
 Extensions=*.*
 [Project tree]
-_JJD-Framework
+JJD-Framework
 	+JJD-Framework
 		+class
 			+xoopsform
@@ -91,9 +91,9 @@ _JJD-Framework
 					class\xoopsform\checkboxall\changelog.txt
 					class\xoopsform\checkboxall\formcheckboxall.php
 				-checkboxbin
-					-js
-						class\xoopsform\checkboxbin\js\checkboxbin.js
-					class\xoopsform\checkboxbin\formcheckboxbin.php
+					-checkboxbin
+						class\xoopsform\checkboxbin\checkboxbin\checkboxbin.js
+					class\xoopsform\checkboxbin\formbincheckbox.php
 				-chosen
 					-chosen
 						-docsupport
@@ -246,6 +246,53 @@ _JJD-Framework
 					class\xoopsform\loadimages\formfile.php
 					class\xoopsform\loadimages\formfilesimages.php
 					class\xoopsform\loadimages\formloadimages.php
+				-multiuploads
+					-multiuploads
+						-applications
+							class\xoopsform\multiuploads\multiuploads\applications\index.html
+							class\xoopsform\multiuploads\multiuploads\applications\multiUploader.fla
+							class\xoopsform\multiuploads\multiuploads\applications\multiUploader.swd
+							class\xoopsform\multiuploads\multiuploads\applications\multiUploader.swf
+						-doc
+							-images
+								class\xoopsform\multiuploads\multiuploads\doc\images\home.gif
+								class\xoopsform\multiuploads\multiuploads\doc\images\index.html
+								class\xoopsform\multiuploads\multiuploads\doc\images\installation-01.jpg
+								class\xoopsform\multiuploads\multiuploads\doc\images\installation-01.png
+								class\xoopsform\multiuploads\multiuploads\doc\images\interface-01.png
+								class\xoopsform\multiuploads\multiuploads\doc\images\interface-02.png
+								class\xoopsform\multiuploads\multiuploads\doc\images\interface-03.png
+								class\xoopsform\multiuploads\multiuploads\doc\images\interface-04.png
+								class\xoopsform\multiuploads\multiuploads\doc\images\presentation-01.png
+								class\xoopsform\multiuploads\multiuploads\doc\images\Thumbs.db
+							class\xoopsform\multiuploads\multiuploads\doc\index.html
+							class\xoopsform\multiuploads\multiuploads\doc\multiuploads.css
+							class\xoopsform\multiuploads\multiuploads\doc\multiuploads-english.html
+							class\xoopsform\multiuploads\multiuploads\doc\multiuploads-french.html
+						-js
+							class\xoopsform\multiuploads\multiuploads\js\index.html
+							class\xoopsform\multiuploads\multiuploads\js\jsscript.js
+							class\xoopsform\multiuploads\multiuploads\js\swfobject.js
+						-language
+							-english
+								class\xoopsform\multiuploads\multiuploads\language\english\index.html
+								class\xoopsform\multiuploads\multiuploads\language\english\libelles.txt
+								class\xoopsform\multiuploads\multiuploads\language\english\main.php
+							-french
+								class\xoopsform\multiuploads\multiuploads\language\french\index.html
+								class\xoopsform\multiuploads\multiuploads\language\french\libelles.txt
+								class\xoopsform\multiuploads\multiuploads\language\french\main.php
+							class\xoopsform\multiuploads\multiuploads\language\index.html
+						-template
+							class\xoopsform\multiuploads\multiuploads\template\tplMultiUploads.html
+						class\xoopsform\multiuploads\multiuploads\changelog.txt
+						class\xoopsform\multiuploads\multiuploads\readme.txt
+						class\xoopsform\multiuploads\multiuploads\upload_filemanager.php
+						class\xoopsform\multiuploads\multiuploads\upload_filemanager-new.php
+						class\xoopsform\multiuploads\multiuploads\upload_filemanager-old.php
+					class\xoopsform\multiuploads\_multiuploads.ppr
+					class\xoopsform\multiuploads\formmultiuploads.php
+					class\xoopsform\multiuploads\index.html
 				-notation
 					-notation
 						-doc
@@ -635,7 +682,7 @@ _JJD-Framework
 					class\xoopsform\notation\formnotation.php
 					class\xoopsform\notation\index.html
 					class\xoopsform\notation\modele-notation.php
-				-selectfile
+				+selectfile
 					class\xoopsform\selectfile\formselectfile.php
 				-spinmap
 					-spin_map
@@ -729,6 +776,7 @@ _JJD-Framework
 						class\xoopsform\spinmap\spin_map\spin_map_new.js
 					class\xoopsform\spinmap\formspinmap.php
 					class\xoopsform\spinmap\index.html
+				class\xoopsform\form_jjd.php
 				class\xoopsform\formbuttontray.php
 				class\xoopsform\formElementTable.php
 				class\xoopsform\FormFileCheckBox.php
@@ -737,8 +785,10 @@ _JJD-Framework
 				class\xoopsform\formLineBreak.php
 				class\xoopsform\formnumber.php
 				class\xoopsform\formSelectCategory.php
+				class\xoopsform\formselectfile.php
 				class\xoopsform\formselectsystab.php
 				class\xoopsform\formtabletray.php
+				class\xoopsform\formtext.php
 				class\xoopsform\index.html
 				class\xoopsform\themeformjjd.php
 			class\index.html
@@ -1089,6 +1139,7 @@ _JJD-Framework
 					images\icons\48\quitter.png
 					images\icons\48\quitter2.png
 					images\icons\48\rights.png
+					images\icons\48\Thumbs.db
 					images\icons\48\update.png
 					images\icons\48\walls.png
 					images\icons\48\watermarks.png
@@ -1188,31 +1239,60 @@ _JJD-Framework
 			js\config_highslide.js
 			js\index.html
 		+language
-			+english
+			-english
 				language\english\admin.php
 				language\english\common.php
 				language\english\index.html
 				language\english\modinfo.php
-			-french
+			+french
 				language\french\admin.php
 				language\french\common.php
 				language\french\index.html
 				language\french\modinfo.php
 			language\index.html
-		_JJD-Framework.ppr.lnk
+		-ressources
+			ressources\build html img.xls
+			ressources\index.html
 		back_office.php
 		front_office.php
-		JJD-Framework.ppr
 		load.php
 [Open project files]
-0=include\fso.php
-1=class\xoopsform\chosen\chosen\options.html
+0=include\globales-functions.php
+1=include\fw-functions.php
+2=load.php
+3=include\xform-functions.php
+4=back_office.php
+5=language\french\common.php
+6=language\french\admin.php
+7=include\fso.php
+8=class\xoopsform\selectfile\formselectfile.php
 [Selected Project Files]
 Main=
-Selected=class\xoopsform\chosen\chosen\options.html
-[include\fso.php]
+Selected=class\xoopsform\selectfile\formselectfile.php
+[include\globales-functions.php]
+TopLine=29
+Caret=20,52
+[include\fw-functions.php]
+TopLine=323
+Caret=9,346
+[load.php]
+TopLine=50
+Caret=56,82
+[include\xform-functions.php]
+TopLine=139
+Caret=9,160
+[back_office.php]
+TopLine=70
+Caret=1,111
+[language\french\common.php]
 TopLine=1
-Caret=1,1
-[class\xoopsform\chosen\chosen\options.html]
-TopLine=254
-Caret=10,277
+Caret=30,12
+[language\french\admin.php]
+TopLine=1
+Caret=1,16
+[include\fso.php]
+TopLine=200
+Caret=29,226
+[class\xoopsform\selectfile\formselectfile.php]
+TopLine=1
+Caret=26,28

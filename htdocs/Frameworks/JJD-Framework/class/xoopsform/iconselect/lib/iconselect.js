@@ -23,12 +23,12 @@ IconSelect.DEFAULT.SELECTED_BOX_PADDING_RIGHT = 12;
 IconSelect.DEFAULT.ICONS_WIDTH = 32;
 IconSelect.DEFAULT.ICONS_HEIGHT = 32;
 IconSelect.DEFAULT.BOX_ICON_SPACE = 1;
-IconSelect.DEFAULT.HORIZONTAL_ICON_NUMBER = 3;
-IconSelect.DEFAULT.VECTORAL_ICON_NUMBER = 3;
+IconSelect.DEFAULT.VECTORAL_ICON_NUMBER = 8;
+IconSelect.DEFAULT.HORIZONTAL_ICON_NUMBER = 1;
 
-IconSelect.DEFAULT.COMPONENT_ICON_FILE_PATH = "lib/arrow.png";
+IconSelect.DEFAULT.COMPONENT_ICON_FILE_PATH = "arrow.png";
 //IconSelect.COMPONENT_ICON_FILE_PATH = "images/control/icon-select/arrow.png";
-IconSelect.DEFAULT.INDEX_IMG = -1;
+IconSelect.DEFAULT.INDEX_IMG = 0;
 
 
 function IconSelect($$elementID, $$xoopsName, $$parameters) {
@@ -52,6 +52,7 @@ function IconSelect($$elementID, $$xoopsName, $$parameters) {
             
             //set parameters
             $$parameters = _Model.checkParameters($$parameters);
+
             //create UI
             var ui = _View.createUI($$parameters, $$elementID);
             //basıldığında göster/gizle
@@ -121,9 +122,10 @@ function IconSelect($$elementID, $$xoopsName, $$parameters) {
             _View.selectedIconImgElement.setAttribute('src', icon.iconFilePath);
             if(_selectedIndex != -1) _icons[_selectedIndex].element.setAttribute('class','icon selected');
         }
-        
         _View.iconSelectElement.dispatchEvent(new Event('changed'));
-        document.getElementById($$parameters.xoopsName).value = $index;
+        //document.getElementById($$parameters.xoopsName).value = $index; //jjdai
+        document.getElementById($$parameters.xoopsName).value = _icons[$index].iconValue;
+        //alert(_icons[$index].iconValue);
         //_View.showBox(false);
         
     };
@@ -237,20 +239,34 @@ function IconSelect($$elementID, $$xoopsName, $$parameters) {
         
         _View.selectedIconImgElement.setAttribute('width', $parameters.selectedIconWidth);
         _View.selectedIconImgElement.setAttribute('height', $parameters.selectedIconHeight);
-        selectedIconElement.style.width = $parameters.selectedIconWidth;
-        selectedIconElement.style.height = $parameters.selectedIconHeight;
-        selectedBoxElement.style.width = $parameters.selectedIconWidth + $parameters.selectedBoxPadding + $parameters.selectedBoxPaddingRight;
-        selectedBoxElement.style.height = $parameters.selectedIconHeight + ($parameters.selectedBoxPadding * 2);
-        selectedIconElement.style.top = $parameters.selectedBoxPadding;
-        selectedIconElement.style.left = $parameters.selectedBoxPadding;
-        componentIconElement.style.bottom = 4 + $parameters.selectedBoxPadding;
+
+        selectedIconElement.style.width = $parameters.selectedIconWidth + 'px';
+        selectedIconElement.style.height = $parameters.selectedIconHeight + 'px';
+        selectedBoxElement.style.width = $parameters.selectedIconWidth + $parameters.selectedBoxPadding + $parameters.selectedBoxPaddingRight + 'px';
+        selectedBoxElement.style.height = $parameters.selectedIconHeight + ($parameters.selectedBoxPadding * 2) + 'px';
+        selectedIconElement.style.top = $parameters.selectedBoxPadding + 'px';
+        selectedIconElement.style.left = $parameters.selectedBoxPadding + 'px';
+        componentIconElement.style.bottom = 4 + $parameters.selectedBoxPadding + 'px';
         
         _View.boxScrollElement.style.left = parseInt(selectedBoxElement.style.width) + 1;
         
-        _View.boxScrollElement.style.width = (($parameters.iconsWidth + 2) * $parameters.vectoralIconNumber) + 
-                (($parameters.vectoralIconNumber + 1) * $parameters.boxIconSpace);
-        _View.boxScrollElement.style.height = (($parameters.iconsHeight + 2) * $parameters.horizontalIconNumber) + 
-                (($parameters.horizontalIconNumber + 1) * $parameters.boxIconSpace);
+        //JJDai - modif nombre d'icone horizontaux
+        _View.boxScrollElement.style.width = ((($parameters.iconsWidth + $parameters.boxIconSpace) * $parameters.horizontalIconNumber) + 
+                (($parameters.horizontalIconNumber + 4) * $parameters.boxIconSpace)) + 'px';
+        _View.boxScrollElement.style.height = ((($parameters.iconsHeight + $parameters.boxIconSpace) * $parameters.vectoralIconNumber) + 
+                (($parameters.vectoralIconNumber + 2) * $parameters.boxIconSpace)) + 'px';
+//alert ("zzz- " + $parameters.horizontalIconNumber  + " - " + $parameters.vectoralIconNumber);        
+         
+/*
+        _View.boxScrollElement.style.width = (($parameters.iconsWidth + 2) * $parameters.vectoralIconNumber) + (($parameters.vectoralIconNumber + 1) * $parameters.boxIconSpace) + 'px';
+        _View.boxScrollElement.style.height = (($parameters.iconsHeight + 2) * $parameters.horizontalIconNumber) + (($parameters.horizontalIconNumber + 1) * $parameters.boxIconSpace) + 'px';
+*/         
+         
+        _View.boxElement.style.left = _View.boxScrollElement.style.left + 'px';
+        _View.boxElement.style.width = _View.boxScrollElement.style.width + 'px';
+
+         
+         
          
         _View.boxElement.style.left = _View.boxScrollElement.style.left;
         _View.boxElement.style.width = _View.boxScrollElement.style.width;
@@ -297,6 +313,8 @@ function IconSelect($$elementID, $$xoopsName, $$parameters) {
         iconImgElement.setAttribute('icon-index', $index);
         iconImgElement.setAttribute('width', $parameters.iconsWidth);
         iconImgElement.setAttribute('height', $parameters.iconsHeight);
+
+       
         
         iconElement.appendChild(iconImgElement);
         _View.boxElement.appendChild(iconElement);
@@ -324,7 +342,6 @@ function IconSelect($$elementID, $$xoopsName, $$parameters) {
     
         $parameters.iconFilePath               = ($parameters.iconFilePath)               ? $parameters.iconFilePath             : _default.COMPONENT_ICON_FILE_PATH;
         $parameters.indexImg                   = ($parameters.indexImg)                   ? $parameters.indexImg                 : _default.INDEX_IMG;
-        
         return $parameters;
     
     };
