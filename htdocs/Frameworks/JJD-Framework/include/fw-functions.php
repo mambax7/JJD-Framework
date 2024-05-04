@@ -173,7 +173,11 @@ function zipSimpleDir($sourcePath, $zipFilename){
 //exit;
 }
 
-function ZipReccurssiveDir($source, $destination)
+//pour compatibilite
+// function ZipReccurssiveDir($source, $destination)
+// {return  zipReccurssiveDir($source, $destination);}
+
+function zipReccurssiveDir($source, $destination)
 {
     if (!extension_loaded('zip') || !file_exists($source)) {
         return false;

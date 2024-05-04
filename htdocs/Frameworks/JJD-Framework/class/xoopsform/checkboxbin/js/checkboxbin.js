@@ -18,7 +18,9 @@ function updateChkBin(name, prefixChk){
           binFlag = obItems[i].getAttribute("binFlag");
           //newVal += binFlag*1;
           //alert(binFlag);
-          newVal += Math.pow(2,i);
+          //newVal += Math.pow(2,i);
+          newVal += Math.pow(2, binFlag*1) ;
+
        //alert(i + " : " + newVal);
        }
      }
@@ -51,7 +53,7 @@ function updateGroupeChkBin(name, prefixChk, groupName){
        //alert(i + " : " + obItems[i].checked);
        if(obItems[i].checked){
           binFlag = obItems[i].getAttribute("binFlag");
-          newVal += binFlag*1;
+          newVal += Math.pow(2, binFlag*1) ;
           //newVal += Math.pow(2,i);
        //alert(i + " : " + newVal);
        }

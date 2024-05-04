@@ -19,7 +19,7 @@ Extensions=*.*
 _JJD-Framework
 	+JJD-Framework
 		+class
-			+xoopsform
+			-xoopsform
 				-admintable
 					-doc
 						-images
@@ -1205,14 +1205,5 @@ _JJD-Framework
 		JJD-Framework.ppr
 		load.php
 [Open project files]
-0=include\fso.php
-1=class\xoopsform\chosen\chosen\options.html
 [Selected Project Files]
 Main=
-Selected=class\xoopsform\chosen\chosen\options.html
-[include\fso.php]
-TopLine=1
-Caret=1,1
-[class\xoopsform\chosen\chosen\options.html]
-TopLine=254
-Caret=10,277

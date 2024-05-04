@@ -19,7 +19,7 @@ Extensions=*.*
 JJD-Framework
 	+JJD-Framework
 		+class
-			+xoopsform
+			-xoopsform
 				-admintable
 					-doc
 						-images
@@ -1265,24 +1265,24 @@ JJD-Framework
 5=language\french\common.php
 6=language\french\admin.php
 7=include\fso.php
-8=class\xoopsform\selectfile\formselectfile.php
+8=include\sql.php
 [Selected Project Files]
 Main=
-Selected=class\xoopsform\selectfile\formselectfile.php
+Selected=include\sql.php
 [include\globales-functions.php]
-TopLine=29
+TopLine=1
 Caret=20,52
 [include\fw-functions.php]
-TopLine=323
-Caret=9,346
+TopLine=293
+Caret=2,346
 [load.php]
-TopLine=50
-Caret=56,82
+TopLine=14
+Caret=1,70
 [include\xform-functions.php]
-TopLine=139
+TopLine=1
 Caret=9,160
 [back_office.php]
-TopLine=70
+TopLine=62
 Caret=1,111
 [language\french\common.php]
 TopLine=1
@@ -1291,8 +1291,8 @@ Caret=30,12
 TopLine=1
 Caret=1,16
 [include\fso.php]
-TopLine=200
-Caret=29,226
-[class\xoopsform\selectfile\formselectfile.php]
 TopLine=1
-Caret=26,28
+Caret=21,226
+[include\sql.php]
+TopLine=1
+Caret=3,15
