@@ -41,7 +41,8 @@ global $xoopsModule;
  **********************************************/
 function  get_css_color($dirname = null, $addEmpty=false){
 global $helper;
-    if (substr($dirname , -4) == ".css"){
+
+    if ($dirname && substr($dirname , -4) == ".css"){
       $fileName = $dirname;
     }else{
       $fileName = get_css_path($dirname) . "/style-item-color.css";

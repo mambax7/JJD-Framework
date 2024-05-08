@@ -741,6 +741,7 @@ _JJD-Framework
 				class\xoopsform\formtabletray.php
 				class\xoopsform\index.html
 				class\xoopsform\themeformjjd.php
+			class\About.php
 			class\index.html
 		-css
 			css\index.html
@@ -1129,6 +1130,7 @@ _JJD-Framework
 			include\fw-functions.php
 			include\globales-functions.php
 			include\index.html
+			include\language-functions.php
 			include\xform-functions.php
 		-js
 			-trierTableauHTML
@@ -1193,7 +1195,7 @@ _JJD-Framework
 				language\english\common.php
 				language\english\index.html
 				language\english\modinfo.php
-			-french
+			+french
 				language\french\admin.php
 				language\french\common.php
 				language\french\index.html
@@ -1205,5 +1207,30 @@ _JJD-Framework
 		JJD-Framework.ppr
 		load.php
 [Open project files]
+0=Nouveau1.txt
+1=include\globales-functions.php
+2=load.php
+3=include\language-functions.php
+4=language\french\admin.php
+5=language\english\admin.php
 [Selected Project Files]
 Main=
+Selected=language\english\admin.php
+[Nouveau1.txt]
+TopLine=1
+Caret=1,1
+[include\globales-functions.php]
+TopLine=53
+Caret=1,95
+[load.php]
+TopLine=46
+Caret=54,57
+[include\language-functions.php]
+TopLine=54
+Caret=17,81
+[language\french\admin.php]
+TopLine=1
+Caret=1,18
+[language\english\admin.php]
+TopLine=1
+Caret=1,17
