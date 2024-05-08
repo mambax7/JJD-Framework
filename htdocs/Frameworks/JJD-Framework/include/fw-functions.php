@@ -369,7 +369,7 @@ function array2urlParams($params, $addPrefix = '', $url = ''){
 * *********************************************** */
 function sanityseNameForFile($exp){
 
-    $reponse = str_replace(" ", "_", $exp);
+    $reponse = str_replace(array(" ",chr(34),'&#034;',chr(39),'&#039;'), "_", $exp);
     
   $a = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð',
              'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'ß', 'à', 'á', 'â', 'ã',
