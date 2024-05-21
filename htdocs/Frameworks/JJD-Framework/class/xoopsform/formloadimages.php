@@ -238,7 +238,7 @@ class XoopsFormLoadFiles extends XoopsFormElement
 /***********************************************************************/    
 }
 
-class XoopsFormLoadImages extends XoopsFormLoadFiles
+class XoopsFormLoadImages0 extends XoopsFormLoadFiles
 {
     function __construct($caption , $names, $files, $width = 150, $maxfilesize=500000, $title='', $alt='')
     {  
