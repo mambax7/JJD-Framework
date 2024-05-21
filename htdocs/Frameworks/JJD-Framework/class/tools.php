@@ -24,7 +24,7 @@ class BoolBin{
 
 
 /***************************************************************************
-Renvoie la valeur d'un bit préciser par un index dans la valeur binaire
+Renvoie la valeur d'un bit prÃ©ciser par un index dans la valeur binaire
 ****************************************************************************/
   public static function isBitOk($bitIndex, $binValue){
     $b = pow(2, $bitIndex);
@@ -169,10 +169,10 @@ public static function get_a($imgUrl, $width = '', $height = '', $path = ''){
 /****************************************************************************
 Genere la declaration d'un tableau en javascript
 $name : nom du ta&bleau javascript
-$options : tableau associatif. les clefs seront les même en javascript
-$bolEcho : si true envoie directement la chaine générée dans le flux html
+$options : tableau associatif. les clefs seront les mÃªme en javascript
+$bolEcho : si true envoie directement la chaine gÃ©nÃ©rÃ©e dans le flux html
 retour : string a envoyer dans le flus html
-note : la balise script est ajoutée automatiquement
+note : la balise script est ajoutÃ©e automatiquement
  ****************************************************************************/
 private static function array2js($name, $options, $isNew = false, $bolEcho = false){
 

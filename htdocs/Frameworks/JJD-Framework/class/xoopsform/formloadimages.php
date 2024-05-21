@@ -17,7 +17,7 @@
  * @author          Kazumi Ono (AKA onokazu) http://www.myweb.ne.jp/, http://jp.xoops.org/
  * @version         $Id$
  */
-//echo "<hr>XoopsFormLoadImages chargé<hr>";
+//echo "<hr>XoopsFormLoadImages chargÃ©<hr>";
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
 /**
@@ -238,7 +238,7 @@ class XoopsFormLoadFiles extends XoopsFormElement
 /***********************************************************************/    
 }
 
-class XoopsFormLoadImages extends XoopsFormLoadFiles
+class XoopsFormLoadImages0 extends XoopsFormLoadFiles
 {
     function __construct($caption , $names, $files, $width = 150, $maxfilesize=500000, $title='', $alt='')
     {  
