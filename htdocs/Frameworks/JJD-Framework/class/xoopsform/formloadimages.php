@@ -17,7 +17,7 @@
  * @author          Kazumi Ono (AKA onokazu) http://www.myweb.ne.jp/, http://jp.xoops.org/
  * @version         $Id$
  */
-//echo "<hr>XoopsFormLoadImages chargé<hr>";
+//echo "<hr>XoopsFormLoadImages chargÃ©<hr>";
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
 /**
